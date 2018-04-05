@@ -1,0 +1,127 @@
+/*
+	Side Navigation Menu V2, RWD
+	===================
+	Author: @PableraShow
+
+ */
+
+ body {
+   font-size: 16px;
+   color: #ffffff;
+   background: #C13237;
+   font-family: 'Raleway', arial, sans-serif;
+ }
+
+ h1 {
+   text-align: center;
+   font-size: 6em;
+   font-weight: 300;
+   position: absolute;
+   margin: 0;
+   top: 50%;
+   left: 50%;
+   -webkit-transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%);
+ }
+
+ #mainnav ul {
+   padding-left: 1em;
+   position: fixed;
+   bottom: 0;
+   font-weight: 400;
+   z-index: 100;
+   min-width: 20em;
+ }
+ #mainnav li {
+   list-style: none;
+   margin: .5em 0 0;
+   font-size: 1.75em;
+ }
+ #mainnav li:hover span {
+   opacity: 1;
+   transition: 0.25s;
+ }
+ #mainnav li.invisible {
+   opacity: 0;
+   visibility: hidden;
+   transition: all 0.25s;
+ }
+ #mainnav li.animate {
+   opacity: 0;
+   animation-duration: 0.25s;
+   animation-name: easeOutBounce;
+   animation-fill-mode: forwards;
+ }
+ #mainnav li.animate:nth-child(4) {
+   animation-delay: 0s;
+ }
+ #mainnav li.animate:nth-child(4) {
+   animation-delay: 0.15s;
+ }
+ #mainnav li.animate:nth-child(4) {
+   animation-delay: 0.3s;
+ }
+ #mainnav li.animate:nth-child(4) {
+   animation-delay: 0.45s;
+ }
+ #mainnav a {
+   text-decoration: none;
+   color: #ffffff;
+ }
+ #mainnav i {
+   border: 2px solid #ffffff;
+   padding: .5em;
+   border-radius: 50%;
+ }
+ #mainnav span {
+   color: #000000;
+   padding: .35em;
+   margin-left: .5em;
+   border-radius: .2em;
+   font-size: .75em;
+   transition: .3s;
+   background: #fff;
+   opacity: 0;
+   position: relative;
+ }
+ #mainnav span:before {
+   content: '';
+   width: 0px;
+   height: 0px;
+   position: absolute;
+   left: -.4em;
+   top: 50%;
+   margin-top: -.5em;
+   border-style: solid;
+   border-width: .5em .5em .5em 0;
+   border-color: transparent #ffffff transparent transparent;
+ }
+
+ /* Imitates jQuery UI's ease-out-bounce animation effect */
+ @keyframes easeOutBounce {
+   0% {
+     font-size: 0;
+   }
+   37% {
+     font-size: 1.75em;
+   }
+   55% {
+     font-size: 1.3125em;
+   }
+   73% {
+     font-size: 1.75em;
+   }
+   82% {
+     font-size: 1.6275em;
+   }
+   91% {
+     font-size: 1.75em;
+   }
+   96% {
+     font-size: 1.715em;
+   }
+   100% {
+     font-size: 1.75em;
+     opacity: 1;
+   }
+ }

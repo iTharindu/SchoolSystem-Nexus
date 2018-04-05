@@ -1,0 +1,17 @@
+html
+  head
+    title SchoolSystem
+    link(rel = "stylesheet" href = "/css/login.css")
+    link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
+  body
+    orm.login-form
+      p.login-text
+        span.fa-stack.fa-lg
+          i.fa.fa-circle.fa-stack-2x
+          i.fa.fa-lock.fa-stack-1x
+      input.login-username(type='email', autofocus='true', required='true', placeholder='Email')
+      input.login-password(type='password', required='true', placeholder='Password')
+      input.login-submit(type='submit', name='Login', value='Login')
+    a.login-forgot-pass(href='#') forgot password?
+    .underlay-photo
+    .underlay-black

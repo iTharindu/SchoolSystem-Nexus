@@ -1,0 +1,121 @@
+html
+  head
+    title SchoolSystem
+    //meta(http-equiv='content-type', content='text/html; charset=UTF-8')
+    //script(src='index_data/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d5.js')
+    //script(src='index_data/css_live_reload_init-890dc39bb89183d4642d58b1ae5376a0193342f9.js')
+    //meta(charset='UTF-8')
+    //meta(name='robots', content='noindex')
+    //link(rel='shortcut icon', type='image/x-icon', href='https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico')
+    //link(rel='mask-icon', type='', href='https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg', color='#111')
+    //link(rel='canonical', href='https://codepen.io/trhino/pen/wBpcI')
+  
+    //link(rel='stylesheet prefetch', href='js/normalize.css')
+    //script(src='index_data/prefixfree.js')
+    link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/font-awesome.css')
+    link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/icon-font.min.css')
+    link(rel='stylesheet', href= '/css/menu.css')
+    link(rel='stylesheet', href= '/css/logout.css')  
+    link(rel='stylesheet', href= '/css/table_assignment.css') 
+  body
+    header
+      nav#mainnav(role='navigation')
+        ul
+          li.invisible
+            a(href='#')
+              i.fa.fa-home
+              span Home
+          li.invisible
+            a(href='#')
+              i.fa.fa-th-large
+              span Dashboard
+          li.invisible
+            a(href='#')
+              i.fa.fa-book
+              span Subjects
+          li.invisible
+            a(href='#')
+              i.fa.fa-smile-o
+              span About Me
+          li.invisible
+            a(href='#')
+              i.fa.fa-bell
+              span Notification
+          li.invisible
+            a(href='#')
+              i.fa.fa-envelope
+              span Messaging
+          li
+            a(href='#')
+              i.fa.fa-bars
+      
+    section(style = 'margin=10px')
+      user#user
+        section
+          img(src='/images/userpic/Emma Watson.jpg')
+          section(style = 'margin=10px')
+            name Emma Watson
+            actions
+              a(href='#settings') settings
+              |  
+              a(href='#logout') logout
+      br
+      br
+      br
+      br
+      br
+      section(style="margin-right:50px")
+        // for demo wrap
+        
+        .tbl-header
+          table(cellpadding='0', cellspacing='0', border='0')
+            thead
+              tr
+                th Code
+                th Company
+                th Price
+                th Change
+                th Change %
+        .tbl-content
+          table(cellpadding='0', cellspacing='0', border='0')
+            tbody
+              each assignment, i in assignments
+                tr
+                  td
+                    a(href="/assignments/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.title
+                      
+                
+              tr
+                td AAC
+                td AUSTRALIAN COMPANY 
+                td $1.38
+                td +2.01
+                td -0.36%
+              tr
+                td AAD
+                td AUSENCO
+                td $2.38
+                td -0.01
+                td -1.36%
+              tr
+                td AAX
+                td ADELAIDE
+                td $3.22
+                td +0.01
+                td +1.36%
+              tr
+                td XXD
+                td ADITYA BIRLA
+                td $1.02
+                td -1.01
+                td +2.36%
+              tr
+                td AAC
+                td AUSTRALIAN COMPANY 
+                td $1.38
+                td +2.01
+                td -0.36%
+    script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
+    script(src='/js/jquery.js')
+    script(src='/js/navigator.js')
+      

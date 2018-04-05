@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1 #{title}
+  ul.list-group
+    each assignment, i in assignments
+      li.list-group-item
+        a(href="/assignments/"+assignment._id)= assignment.title

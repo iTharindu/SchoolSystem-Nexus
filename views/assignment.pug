@@ -1,0 +1,8 @@
+extends layout
+block content
+  h1= assignment.title
+  h5= assignment.author
+  h4= assignment.body
+  hr
+  a.btn.btn-default(href= '/assignments/edit/'+assignment._id) Edit
+  a.btn.btn-danger.delete-assignment(href='#',data-id=assignment._id) Delete
