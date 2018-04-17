@@ -16,11 +16,9 @@ html
     link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/icon-font.min.css')
     link(rel='stylesheet', href= '/css/menu.css')
     link(rel='stylesheet', href= '/css/logout.css')  
-    link(rel='stylesheet', href= '/css/table_assignment.css')
-    link(rel='stylesheet', href= '/css/btn_add_assignment.css')
-    link(rel='stylesheet', type='text/css', href='/css/util.css')
-    //link(rel= "stylesheet" type='text/css', href = '/css/loginmain.css')
-  body(style = "background: -webkit-linear-gradient(left, #404040, #25b7c4);background: linear-gradient(to right, #404040, #25b7c4)")
+    link(rel='stylesheet', href= '/css/table_assignment.css') 
+    link(rel='stylesheet', href= '/css/btn_add_submission.css')
+  body(style = "background: -webkit-linear-gradient(left, #404040, #FFCC00);background: linear-gradient(to right, #404040, #FFCC00)")
     header
       nav#mainnav(role='navigation')
         ul
@@ -63,41 +61,54 @@ html
               |  
               a(href='#logout') logout
       br
+      section
+        h1= assignment.title
+        h3= assignment.body
       br
       br
       br
       br
-      section(style="margin-right:50px")
+      br
+      section(style="margin-right:400px ; margin-left:400px")
         // for demo wrap
         
         .tbl-header
           table(cellpadding='0', cellspacing='0', border='0')
             thead
               tr
-                th Title
-                th Due Date
-                th Marks Allocated
-                th Assignment Type
-        .tbl-content
+                th 
+                th Details
+
+        .tbl-content(style = "height:336px")
           table(cellpadding='0', cellspacing='0', border='0')
             tbody
-              each assignment, i in assignments
-                tr
-                  td
-                    a(href="/assignments/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.title
-                  td
-                    a(href="/assignments/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.due_date
-                  td
-                    a(href="/assignments/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.marks_allocated
-                  td
-                    a(href="/assignments/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.assignment_type
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Subission Satus
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) No Submission
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Due Date
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.due_date
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Uploaded Date
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Marks Allocated
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.marks_allocated
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Assignment Type
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.assignment_type
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Has to Upload a File
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.has_to_upload_a_file
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Marks
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) 0.0
         br
         br
-        form(action='/assignments/add')
+        form(action='/assignments/submission'+assignment._id)
           .container-login100-form-btn.p-t-10
-            button.login100-form-btn
-              | Add Assignment
+            button(style = "margin-right:450px").login100-form-btn
+              | Submission
     script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
     script(src='/js/jquery.js')
     script(src='/js/navigator.js')
-      

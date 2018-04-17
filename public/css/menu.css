@@ -1,28 +1,14 @@
-/*
-	Side Navigation Menu V2, RWD
-	===================
-	Author: @PableraShow
-
- */
+@font-face {
+  font-family: Montserrat-Bold;
+  src: url('/fonts/montserrat/Montserrat-Bold.ttf');
+}
 
  body {
    font-size: 16px;
    color: #ffffff;
-   background: #C13237;
    font-family: 'Raleway', arial, sans-serif;
  }
 
- h1 {
-   text-align: center;
-   font-size: 6em;
-   font-weight: 300;
-   position: absolute;
-   margin: 0;
-   top: 50%;
-   left: 50%;
-   -webkit-transform: translate(-50%, -50%);
-   transform: translate(-50%, -50%);
- }
 
  #mainnav ul {
    padding-left: 1em;
@@ -30,7 +16,7 @@
    bottom: 0;
    font-weight: 400;
    z-index: 100;
-   min-width: 20em;
+   min-width: 2em;
  }
  #mainnav li {
    list-style: none;

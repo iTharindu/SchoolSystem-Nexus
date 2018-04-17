@@ -1,15 +1,102 @@
-extends layout
-block content
-  h1 #{title}
-  form(method = 'POST', action = '/assignments/add')
-    #form-group
-      label Title:
-      input.form-control(name = 'title', type = 'text', required  = '')
-    #form-group
-      label Author:
-      input.form-control(name = 'author', type = 'text', required  = '')
-    #form-group
-      label Body:
-      textarea.form-control(name = 'body', required  = '')
-    br
-    input.btn.btn-primary(type = 'submit', value = 'Submit')
+html
+  head
+    title SchoolSystem
+    //meta(http-equiv='content-type', content='text/html; charset=UTF-8')
+    //script(src='index_data/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d5.js')
+    //script(src='index_data/css_live_reload_init-890dc39bb89183d4642d58b1ae5376a0193342f9.js')
+    //meta(charset='UTF-8')
+    //meta(name='robots', content='noindex')
+    //link(rel='shortcut icon', type='image/x-icon', href='https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico')
+    //link(rel='mask-icon', type='', href='https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg', color='#111')
+    //link(rel='canonical', href='https://codepen.io/trhino/pen/wBpcI')
+  
+    //link(rel='stylesheet prefetch', href='js/normalize.css')
+    //script(src='index_data/prefixfree.js')
+    link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/font-awesome.css')
+    link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/icon-font.min.css')
+    link(rel='stylesheet', href= '/css/menu.css')
+    link(rel='stylesheet', href= '/css/logout.css')  
+    link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
+  body(style = "background: -webkit-linear-gradient(left, #404040, #000000);background: linear-gradient(to right, #404040, #000000)")
+    header
+      nav#mainnav(role='navigation')
+        ul
+          li.invisible
+            a(href='#')
+              i.fa.fa-home
+              span Home
+          li.invisible
+            a(href='#')
+              i.fa.fa-th-large
+              span Dashboard
+          li.invisible
+            a(href='#')
+              i.fa.fa-book
+              span Subjects
+          li.invisible
+            a(href='#')
+              i.fa.fa-smile-o
+              span About Me
+          li.invisible
+            a(href='#')
+              i.fa.fa-bell
+              span Notification
+          li.invisible
+            a(href='#')
+              i.fa.fa-envelope
+              span Messaging
+          li
+            a(href='#')
+              i.fa.fa-bars
+      
+    section
+      user#user
+        section
+          img(src='/images/userpic/Emma Watson.jpg')
+          section
+            name Emma Watson
+            actions
+              a(href='#settings') settings
+              |  
+              a(href='#logout') logout
+      br
+      br
+      
+      section(style="margin-right:100px; margin-left:250px")
+        form(method = 'POST', action = '/assignments/add')
+          #form-group
+            label(style = "font-family: 'Roboto', sans-serif; color :#fff") Title:
+            input.form-control(name = 'title', type = 'text', placeholder='Add the title of the Assignment', required  = '')
+          #form-group
+            label(style = "font-family: 'Roboto', sans-serif; color :#fff") Due Date:
+            input.form-control(name = 'due_date', type = 'text', placeholder='Due date of the assignment' ,required  = '')
+          #form-group
+            label(style = "font-family: 'Roboto', sans-serif; color :#fff") Marks Allocated:
+            input.form-control(name = 'marks_allocated', type = 'text', placeholder='Marks allocated' ,required  = '')
+          #form-group
+            label(style = "font-family: 'Roboto', sans-serif; color :#fff") Assignment Type:
+            input.form-control(name = 'assignment_type', type = 'text', placeholder='Whether its a quiz or a exercise or just homework' ,required  = '')
+          br
+          #form-group
+            label(style = "font-family: 'Roboto', sans-serif; color :#fff") Has to upload a File 
+            .btn-group.btn-group-toggle(data-toggle='buttons')
+              label.btn(style="margin-left:5em").btn-secondary
+                input#option1(type='radio', name='has_to_upload_a_file', value='1', autocomplete='off')
+                | Yes
+              label.btn.btn-secondary
+                input#option2(type='radio', name='has_to_upload_a_file', value='2', autocomplete='off')
+                | No                
+  
+      
+          #form-group
+            label(style = "font-family: 'Roboto', sans-serif; color :#fff") Body:
+            textarea.form-control(name = 'body', placeholder='Assignment details',rows='8',  required  = '')
+            br
+            input.btn.btn-primary(type = 'submit', value = 'Submit')
+    script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+    script(src='/bower_components/jquery/dist/jquery.js')
+    script(src='/js/radio_button.js')
+    script(src='/js/jquery.js')
+    script(src='/js/navigator.js')
+  
+      

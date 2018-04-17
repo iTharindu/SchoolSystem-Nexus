@@ -11,7 +11,10 @@ router.get('/add',function(req,res){
 router.post('/add',function(req,res){
   var assignment = new Assignment();
   assignment.title = req.body.title;
-  assignment.author = req.body.author;
+  assignment.due_date = req.body.due_date;
+  assignment.marks_allocated = req.body.marks_allocated;
+  assignment.assignment_type = req.body.assignment_type;
+  assignment.has_to_upload_a_file = req.body.has_to_upload_a_file;
   assignment.body = req.body.body;
   console.log(req.body.title);
   console.log('Hello');
@@ -68,9 +71,11 @@ router.get('/teacher',function(req,res){
 router.post('/edit/:id',function(req,res){
   let assignment = {};
   assignment.title = req.body.title;
-  assignment.author = req.body.author;
+  assignment.due_date = req.body.due_date;
+  assignment.marks_allocated = req.body.marks_allocated;
+  assignment.assignment_type = req.body.assignment_type;
+  assignment.has_to_upload_a_file = req.body.has_to_upload_a_file;
   assignment.body = req.body.body;
-
   let query = {_id:req.params.id};
 
   Assignment.update(query,assignment,function(err){
@@ -101,6 +106,13 @@ router.get('/:id',function(req,res){
   });
 });
 
+router.get('/details/:id',function(req,res){
+  Assignment.findById(req.params.id,function(err,assignment){
+    res.render('assignment_details', {
+      assignment:assignment
+    });
+  });
+});
 
 
 module.exports = router;
