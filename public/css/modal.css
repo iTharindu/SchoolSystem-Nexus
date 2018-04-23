@@ -1,0 +1,214 @@
+.ng-modal-overlay {
+    /* A dark translucent div that covers the whole screen */
+    position:fixed;
+    z-index:9999;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color: rgba(18, 20, 25, 0.55);
+
+    -webkit-transform: translate3d(0, 0, 100);
+    -moz-transform: translate3d(0, 0, 100);
+    -ms-transform: translate3d(0, 0, 100);
+    transform: translate3d(0, 0, 100);
+}
+
+@-webkit-keyframes modal-out {
+    0% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    20% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+}
+
+@-moz-keyframes modal-out {
+    0% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    20% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+}
+
+@-o-keyframes modal-out {
+    0% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    20% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+}
+
+@keyframes modal-out {
+    0% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    20% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+}
+
+
+@-webkit-keyframes modal-in {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    75% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+    100% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@-moz-keyframes modal-in {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    75% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+    100% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@-o-keyframes modal-in {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    75% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+    100% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes modal-in {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    75% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+    100% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.ng-modal.ng-hide {
+    -webkit-animation: modal-out 0.35s;
+    -moz-animation:    modal-out 0.35s; 
+    -o-animation:      modal-out 0.35s;
+    animation:         modal-out 0.35s;
+}
+
+.ng-modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+
+    top: 0px;
+
+    z-index: 9999!important;
+
+    -webkit-transition: all .35s ease;
+    -moz-transition: all .35s ease;
+    -o-transition: all .35s ease;
+    transition: all .35s ease;
+}
+
+.ng-modal-dialog {
+    font-family: "Lato";
+
+    /* A centered div above the overlay with a box shadow. */
+    z-index:9999!important;
+
+    -webkit-animation: modal-in 0.35s;
+    -moz-animation:    modal-in 0.35s; 
+    -o-animation:      modal-in 0.35s;
+    animation:         modal-in 0.35s;
+
+    position: fixed;
+
+    left: 50%;
+    top: 15%;
+
+    width: 50%; /* Default */
+
+    border-radius: 4px;
+
+    background-color: #fff;
+    box-shadow: 4px 4px 80px #000;
+}
+
+.ng-modal-dialog-content {
+    padding:10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: left;
+}
+
+.ng-modal-close {
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    padding: 5px;
+    cursor: pointer;
+    display: inline-block;
+}

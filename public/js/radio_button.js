@@ -5,11 +5,11 @@ $(document).ready(function() {
   });
 
   $('#option1').change(function(){
-     $(this).parent().removeClass('btn-default').addClass("btn-primary");
+     $(this).parent().removeClass('btn-default').addClass("btn-danger");
   });
 
   $('#option2').change(function(){
-     $(this).parent().removeClass('btn-default').addClass("btn-primary");
+     $(this).parent().removeClass('btn-default').addClass("btn-danger");
   });
 
 });

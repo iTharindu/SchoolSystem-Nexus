@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 let Assignment = require('../models/assignment');
-
+let Submission = require('../models/assignment_submission');
 
 router.get('/add',function(req,res){
   res.render('add_assignment');
@@ -83,7 +83,20 @@ router.post('/edit/:id',function(req,res){
       console.log(err);
       return;
     }else{
-      res.redirect('/');
+      res.redirect('/assignments/teacher');
+    }
+  });
+});
+router.post('/submission/:id',function(req,res){
+  let submission = {};
+  submission.submission = req.body.submission;
+  let query = {_id:req.params.id};
+  Submission.update(query,submission,function(err){
+    if(err){
+      console.log(err);
+      return
+    }else{
+      res.redirect('/assignments/student')
     }
   });
 });
@@ -109,6 +122,23 @@ router.get('/:id',function(req,res){
 router.get('/details/:id',function(req,res){
   Assignment.findById(req.params.id,function(err,assignment){
     res.render('assignment_details', {
+      assignment:assignment
+    });
+  });
+});
+
+router.get('/info/:id',function(req,res){
+  Assignment.findById(req.params.id,function(err,assignment){
+    res.render('assignment_info', {
+      assignment:assignment,
+      id:this.id
+    });
+  });
+});
+
+router.get('/submission/:id',function(req,res){
+  Assignment.findById(req.params.id,function(err,assignment){
+    res.render('assignment_submission', {
       assignment:assignment
     });
   });

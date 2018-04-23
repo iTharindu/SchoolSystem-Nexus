@@ -65,6 +65,9 @@ user actions a {
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
 }
+user actions a:hover{
+  color: rgba(255,215,0, 0.8)
+}
 user actions a:last-child {
   padding-right: 0;
 }

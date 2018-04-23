@@ -55,12 +55,12 @@
    color: #ffffff;
  }
  #mainnav i {
-   border: 2px solid #ffffff;
+   border: 3px solid #ffffff;
    padding: .5em;
    border-radius: 50%;
  }
  #mainnav span {
-   color: #000000;
+   color: #DAA520;
    padding: .35em;
    margin-left: .5em;
    border-radius: .2em;

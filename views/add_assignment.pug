@@ -1,23 +1,23 @@
-html
+// saved from url=(0088)https://s.codepen.io/boomerang/iFrameKey-7f703396-49b6-7b91-0d61-8f4a6e3e8e5c/index.html
+html(lang='en')
   head
-    title SchoolSystem
-    //meta(http-equiv='content-type', content='text/html; charset=UTF-8')
-    //script(src='index_data/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d5.js')
-    //script(src='index_data/css_live_reload_init-890dc39bb89183d4642d58b1ae5376a0193342f9.js')
-    //meta(charset='UTF-8')
-    //meta(name='robots', content='noindex')
-    //link(rel='shortcut icon', type='image/x-icon', href='https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico')
-    //link(rel='mask-icon', type='', href='https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg', color='#111')
-    //link(rel='canonical', href='https://codepen.io/trhino/pen/wBpcI')
-  
-    //link(rel='stylesheet prefetch', href='js/normalize.css')
-    //script(src='index_data/prefixfree.js')
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    //script(src='/css/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js.download')
+    //script(src='/css/css_live_reload_init-890dc39bb89183d4642d58b1ae5376a0193342f9aed88ea04330dc14c8d52f55.js.download')
+    meta(name='robots', content='noindex')
     link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/font-awesome.css')
     link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/icon-font.min.css')
-    link(rel='stylesheet', href= '/css/menu.css')
-    link(rel='stylesheet', href= '/css/logout.css')  
+    link(rel='stylesheet', href= '/css/table_assignment.css')
+    link(rel='stylesheet', href= '/css/logout.css')
     link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
-  body(style = "background: -webkit-linear-gradient(left, #404040, #000000);background: linear-gradient(to right, #404040, #000000)")
+    link(rel='stylesheet', href= '/css/modal.css')
+    link(rel='stylesheet', href= '/css/main.css')
+    link(rel='stylesheet', href='/css/background.css')
+    link(rel='stylesheet', href= '/css/menu.css')
+    link(rel='stylesheet', href= '/css/btn_add_assignment.css')
+
+  body
+    // particles.js container
     header
       nav#mainnav(role='navigation')
         ul
@@ -49,30 +49,44 @@ html
             a(href='#')
               i.fa.fa-bars
       
-    section
+    section(style = 'margin=10px')
       user#user
         section
           img(src='/images/userpic/Emma Watson.jpg')
-          section
+          section(style = 'margin=10px')
             name Emma Watson
             actions
               a(href='#settings') settings
               |  
               a(href='#logout') logout
-      br
-      br
-      
-      section(style="margin-right:100px; margin-left:250px")
+        br
+        br
+        br
+        br
+
+
+    #particles-js(ng-class="{'blur-view': showModal, 'particles-semi-transparent': viewIsCreationsOrPress}")
+      canvas.particles-js-canvas-el(style='width: 100%; height: 200%;', width='1910', height='2007')
+    // ngView:
+    .ng-scope(ng-view='', ng-class="{'blur-view': showPlayerView || showModal || showQuoteView}", style='')
+      .introduction.ng-scope
+    #titles(style = "top:10%;width:100%").ng-scope
+      // <canvas id="canvas" class="title-animated" ng-show="loaded"></canvas>
+
+      #form_Info
         form(method = 'POST', action = '/assignments/add')
           #form-group
             label(style = "font-family: 'Roboto', sans-serif; color :#fff") Title:
             input.form-control(name = 'title', type = 'text', placeholder='Add the title of the Assignment', required  = '')
+            br
           #form-group
             label(style = "font-family: 'Roboto', sans-serif; color :#fff") Due Date:
             input.form-control(name = 'due_date', type = 'text', placeholder='Due date of the assignment' ,required  = '')
+            br
           #form-group
             label(style = "font-family: 'Roboto', sans-serif; color :#fff") Marks Allocated:
             input.form-control(name = 'marks_allocated', type = 'text', placeholder='Marks allocated' ,required  = '')
+            br
           #form-group
             label(style = "font-family: 'Roboto', sans-serif; color :#fff") Assignment Type:
             input.form-control(name = 'assignment_type', type = 'text', placeholder='Whether its a quiz or a exercise or just homework' ,required  = '')
@@ -86,17 +100,25 @@ html
               label.btn.btn-secondary
                 input#option2(type='radio', name='has_to_upload_a_file', value='2', autocomplete='off')
                 | No                
-  
+
       
           #form-group
             label(style = "font-family: 'Roboto', sans-serif; color :#fff") Body:
             textarea.form-control(name = 'body', placeholder='Assignment details',rows='8',  required  = '')
             br
             input.btn.btn-primary(type = 'submit', value = 'Submit')
+                
+    
     script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
     script(src='/bower_components/jquery/dist/jquery.js')
-    script(src='/js/radio_button.js')
+    script(src='/js/radio_button.js')                
+    script(src='/js/particles.min.js.download')
+    //script(src='/js/stats.min.js.download')
+    script(src='/js/background.js')
+    script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
     script(src='/js/jquery.js')
     script(src='/js/navigator.js')
-  
-      
+    div(style='position: absolute; top: 0px; left: 0px; cursor: pointer; opacity: 0.9; z-index: 10000;')
+      canvas(width='80', height='48', style='width: 80px; height: 48px; display: block;')
+      canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')
+      canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')

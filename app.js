@@ -178,10 +178,7 @@ app.get('/',function(req,res){
       console.log(err);
       return;
     } else{
-      res.render('index',{
-        title:'Assignment',
-        assignments : assignments
-      });
+      res.render('layoutpage.pug');
     }
   });
 });

@@ -14,6 +14,7 @@ html(lang='en')
     link(rel='stylesheet', href= '/css/submission_btn.css')
     link(rel='stylesheet', href= '/css/normalize.css')
     link(rel='stylesheet', href= '/css/main.css')
+    link(rel='stylesheet', href= '/css/btn_edit_delete.css')
     link(rel='stylesheet', href= '/css/logout.css')
     link(rel='stylesheet', href='/css/background.css')
     link(rel='stylesheet', href= '/css/menu.css')
@@ -71,14 +72,14 @@ html(lang='en')
 
 
     #particles-js(ng-class="{'blur-view': showModal, 'particles-semi-transparent': viewIsCreationsOrPress}")
-      canvas.particles-js-canvas-el(style='width: 100%; height: 150%;', width='1910', height='3000')
+      canvas.particles-js-canvas-el(style='width: 100%; height: 100%;', width='1910', height='1500')
     // ngView:
     .ng-scope(ng-view='', ng-class="{'blur-view': showPlayerView || showModal || showQuoteView}", style='')
       .introduction.ng-scope
-    #titles(style = "top:5%;width : 100%").ng-scope
+    #titles(style = "top:5%;width:100%").ng-scope
       h1(style = "margin-left:70px")= assignment.title
       h3(style = "margin-left:70px")= assignment.body
-    #titles(style = "top:25%;width : 100%").ng-scope
+    #titles(style = "top:25% ; width:100%").ng-scope
       // <canvas id="canvas" class="title-animated" ng-show="loaded"></canvas>
 
       #table_info_details
@@ -115,22 +116,21 @@ html(lang='en')
                 td(style= "color:#fff; text-decoration: none; font-size: 1em" ) 0.0
           br
           br
-      #titles(style = "top:110%;width:100%").ng-scope
-        section
-          .mockup-content
-            .morph-button.morph-button-modal.morph-button-modal-2.morph-button-fixed
-              button(type='button') submission
-              .morph-content(style='left: 433.7px; top: 444.238px;')
-                div
-                  .content-style-form.content-style-form-1
-                    span(style =	"top: 0;right: 0").fa.fa-close 
-                    h2 Submission
-                    form
-                      p
-                        textarea.form-control(name = 'body', placeholder='Assignment details',rows='8',  required  = '')
-                      p
-                        button Submit
-
+      #titles(style = "top:110% ;width :10%").ng-scope
+        form(action='/assignments/edit/'+assignment._id)
+          .container-login100-form-btn-edit.p-t-10
+            button.login100-form-btn
+              | Edit
+      #titles(style = "top:110% ; width :10%").ng-scope
+        form(action='/',data-id=assignment._id)
+          .container-login100-form-btn-delete.p-t-10
+            button.login100-form-btn.delete-assignment
+              | Delete
+      #titles(style = "top:110% ; width :20%").ng-scope
+        form(action='/')
+          .container-login100-form-btn-submission.p-t-10
+            button.login100-form-btn-submission
+              | Submissions
 
 
 
@@ -141,9 +141,6 @@ html(lang='en')
     script(src='/js/background.js')
     script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
     script(src='/js/jquery.js')
-    script(src='/js/classie.js.download')
-    script(src='/js/uiMorphingButton_fixed.js.download')
-    script(src='/js/submission.js')
     script(src='/js/navigator.js')
     div(style='position: absolute; top: 0px; left: 0px; cursor: pointer; opacity: 0.9; z-index: 10000;')
       canvas(width='80', height='48', style='width: 80px; height: 48px; display: block;')

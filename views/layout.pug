@@ -1,32 +1,74 @@
-html
+doctype html
+// saved from url=(0053)https://s.codepen.io/MarcoGuglielmelli/fullpage/lLCxy
+html(lang='en')
   head
-    title knowledgebase
-    link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
-    link(rel = "stylesheet" href = "/css/style.css")
-  body
-    nav.navbar.navbar-expand-md.navbar-dark.bg-dark
-      a.navbar-brand(href='/') KnowledgeBase
-      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarsExampleDefault', aria-controls='navbarsExampleDefault', aria-expanded='false', aria-label='Toggle navigation')
-        span.navbar-toggler-icon
-      #navbarsExampleDefault.collapse.navbar-collapse
-        ul.navbar-nav.mr-auto
-          li.nav-item
-            a.nav-link(href='/')
-              | Home
-              span.sr-only (current)
-          li.nav-item
-            a.nav-link(href='/assignments/add') Add Assignments
-        form.form-inline.my-2.my-lg-0
-          input.form-control.mr-sm-2(type='text', placeholder='Search', aria-label='Search')
-          button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    title SchoolSystem
+    link(href='/css/css(1)', rel='stylesheet', type='text/css')
+    link(rel='stylesheet', href='/css/normalize.min.css')
+    link(rel='stylesheet prefetch', href='https://www.marcoguglie.it/Codepen/AnimatedHeaderBg/demo-1/css/demo.css')
+    link(rel='stylesheet', href='/css/background.css')
+    link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/font-awesome.css')
+    link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/icon-font.min.css')
+    link(rel='stylesheet', href= '/css/menu.css')
+    link(rel='stylesheet', href= '/css/logout.css')  
+    script.
+      window.console = window.console || function(t) {};
+    script.
+      if (document.location.search.match(/type=embed/gi)) {
+      window.parent.postMessage("resize", "*");
+      }
+  body(translate='no')
+    header
+      user#user
+        section
+          img(src='/images/userpic/Emma Watson.jpg')
+          section
+            name Emma Watson
+            actions
+              a(href='#settings') settings
+              |  
+              a(href='#logout') logout
+      nav#mainnav(role='navigation')
+        ul
+          li.invisible
+            a(href='#')
+              i.fa.fa-home
+              span Home
+          li.invisible
+            a(href='#')
+              i.fa.fa-th-large
+              span Dashboard
+          li.invisible
+            a(href='#')
+              i.fa.fa-book
+              span Subjects
+          li.invisible
+            a(href='#')
+              i.fa.fa-smile-o
+              span About Me
+          li.invisible
+            a(href='#')
+              i.fa.fa-bell
+              span Notification
+          li.invisible
+            a(href='#')
+              i.fa.fa-envelope
+              span Messaging
+          li
+            a(href='#')
+              i.fa.fa-bars
+    #large-header.large-header
+      canvas#demo-canvas
+      h1.main-title
+        | Connect 
+        span.thin Three    
 
-    .container
-      != messages('message', locals)
-      block content
-      br
-      hr
-      footer
-        p Copyright &copy; 2018
-    script(src = '/bower_components/jquery/dist/jquery.js')
-    script(src = '/bower_components/bootstrap/dist/js/bootstrap.js')
-    script(src = '/js/main.js')
+
+    script(src='./stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js.download')
+    script(src='/js/EasePack.min.js.download')
+    script(src='/js/rAF.js.download')
+    script(src='/js/TweenLite.min.js.download')
+    script(src='/js/background.js')
+    script(src='/js/jquery.js')
+    script(src='/js/navigator.js')

@@ -1,5 +1,5 @@
 .container-login100-form-btn {
-  margin-left: 450px;
+  margin-left: 540px;
   width: 30%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -49,10 +49,10 @@
   top: 0;
   left: 0;
   background: #fff;
-  background: -webkit-linear-gradient(left, #404040, #25b7c4);
-  background: -o-linear-gradient(left, #404040, #25b7c4);
-  background: -moz-linear-gradient(left, #404040, #25b7c4);
-  background: linear-gradient(left, #404040, #25b7c4);
+  background: -webkit-linear-gradient(left, #404040, #FFD700);
+  background: -o-linear-gradient(left, #404040, #FFD700);
+  background: -moz-linear-gradient(left, #404040, #FFD700);
+  background: linear-gradient(left, #404040, #FFD700);
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
@@ -62,7 +62,7 @@
 
 .login100-form-btn:hover {
   background: transparent;
-  color: #009999;
+  color: #000000;
 }
 
 .login100-form-btn:hover:before {
