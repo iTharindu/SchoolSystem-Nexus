@@ -1,9 +1,9 @@
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-let submissionSchema = mongoose.Schema({
-  submission : {
+const submissionSchema = mongoose.Schema({
+  assignment_submission : {
     type : String,
     required : true
-  },
+  }
 });
-//var Submission = module.exports = mongoose.model('Submission',submissionSchema);
+const Submission = module.exports = mongoose.model('Submission',submissionSchema);

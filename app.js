@@ -133,7 +133,7 @@ app.post('/add/student',function(req,res){
   let errors = req.validationErrors();
 
   if(errors){
-    res.render('add_teacher',{
+    res.render('add_student',{
       errors:errors
     });
   }else{
@@ -147,7 +147,7 @@ app.post('/add/student',function(req,res){
 			  console.log(student);
 	    });
 
-      res.redirect('/add/teacher');
+      res.redirect('/add/student');
   }
 
 });
@@ -158,7 +158,7 @@ app.get('/user/login',function(req,res){
 
 app.post('/user/login',function(req,res,next){
   passport.authenticate('local',{
-    successRedirect: '/add/teacher',
+    successRedirect: '/',
     failureRedirect: '/user/login',
     failureFlash: true
   })(req, res, next);
