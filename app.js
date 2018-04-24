@@ -71,13 +71,6 @@ require('./config/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('*',function(req,res,next){
-  res.locals.user=req.user || null;
-  //console.log(res.locals.user);
-  //console.log(req.user);
-  next();
-});
-
 app.get('/add/teacher',function(req,res){
   res.render('add_teacher');
 });

@@ -8,13 +8,37 @@ var leaveData=require('../models/teacher-leaves');
 var schemeData=require('../models/data-schemes');
 var circularData=require('../models/data-circular');
 
-router.get('/',ensureAuthenticated,function(req,res){
+router.get('*',function(req,res,next){
+  res.locals.user={ _id: '5ac6fbb3c348ca4134fef9e7',
+  name: 'Dilan',
+  designation: 'Teacher',
+  email: 'dilan@123.com',
+  username: 'dilan',
+  password: '123',
+  __v: 0,
+  grade: 5 };
+  next();
+});
+
+router.post('*',function(req,res,next){
+  res.locals.user={ _id: '5ac6fbb3c348ca4134fef9e7',
+  name: 'Dilan',
+  designation: 'Teacher',
+  email: 'dilan@123.com',
+  username: 'dilan',
+  password: '123',
+  __v: 0,
+  grade: 5 };
+  next();
+});
+
+router.get('/',function(req,res){
   res.render('teacher/teacher');
 });
 
 //circulars...................................................................
 
-router.get('/circulars',ensureAuthenticated,function(req,res){
+router.get('/circulars',function(req,res){
   circularData.find({grade:res.locals.user.grade},function(err,data){
     if(err){
       console.log(err);
@@ -27,7 +51,7 @@ router.get('/circulars',ensureAuthenticated,function(req,res){
 
 //leave app...................................................................
 
-router.get('/leaveMenu',ensureAuthenticated,function(req,res){
+router.get('/leaveMenu',function(req,res){
   leaveData.find({teacherName:res.locals.user.name},function(err,data){
     if(err){
       console.log(err);
@@ -47,15 +71,14 @@ router.delete('/leaveApp/delete/:id',function(req,res){
   });
 });
 
-router.get('/applyLeave',ensureAuthenticated,function(req,res){
+router.get('/applyLeave',function(req,res){
   res.render('teacher/leave-application');
 });
 
-router.post('/processLeaveApp',ensureAuthenticated,function(req,res){
-  console.log(req.body);
+router.post('/processLeaveApp',function(req,res){
   var leavedata=new leaveData();
-  leavedata.teacherName=req.user.name;
-  leavedata.designation=req.user.designation;
+  leavedata.teacherName=res.locals.user.name;
+  leavedata.designation=res.locals.user.designation;
   leavedata.noOfLeaveDays=req.body.noOfLeaveDays;
   leavedata.leavesTaken=req.body.leavesTaken;
   leavedata.dateOfCommencingLeave=req.body.dateOfCommencingLeave;
@@ -73,15 +96,15 @@ router.post('/processLeaveApp',ensureAuthenticated,function(req,res){
 
 //schemes...................................................................
 
-router.get('/schemes',ensureAuthenticated,function(req,res){
+router.get('/schemes',function(req,res){
   res.render('teacher/schemes-teacher');
 });
 
-router.get('/schemes/upload',ensureAuthenticated,function(req,res){
+router.get('/schemes/upload',function(req,res){
   res.render('teacher/schemes-upload');
 });
 
-router.post('/schemes/upload',ensureAuthenticated,function(req,res){
+router.post('/schemes/upload',function(req,res){
   if(!req.files.sampleFile){
     return res.status(400).send('No files were uploaded.');
   }else{
@@ -120,7 +143,7 @@ router.post('/schemes/upload',ensureAuthenticated,function(req,res){
   }
 });
 
-router.get('/schemes/view-previous',ensureAuthenticated,function(req,res){
+router.get('/schemes/view-previous',function(req,res){
   schemeData.find({author:req.user.name},function(err,data){
     if(err){
       console.log(err);
@@ -130,7 +153,7 @@ router.get('/schemes/view-previous',ensureAuthenticated,function(req,res){
   });
 });
 
-router.get('/scheme/:index',ensureAuthenticated,function(req,res){
+router.get('/scheme/:index',function(req,res){
   schemeData.find({author:req.user.name},function(err,data){
     res.locals.scheme=data[req.params.index];
     res.render('teacher/edit-scheme',{data:res.locals.scheme});
@@ -138,7 +161,7 @@ router.get('/scheme/:index',ensureAuthenticated,function(req,res){
 });
 
 
-router.post('/schemes/edit-data/:fname',ensureAuthenticated,function(req,res){
+router.post('/schemes/edit-data/:fname',function(req,res){
   var sampleFile = req.files.sampleFile;
 
   var dir='./public/uploads/schemes/'+sampleFile.name;
