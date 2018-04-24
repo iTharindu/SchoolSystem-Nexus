@@ -7,13 +7,14 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
-const config = require('./config/database')
+const config = require('./config/database');
+const fileupload=require('express-fileupload');
 
-mongoose.connect('mongodb://localhost/nodekb');
+mongoose.connect('mongodb://localhost/oosdTest');
 let db = mongoose.connection;
 
 db.once('open',function(){
-  console.log('server connectedd');
+  console.log('server connected');
 });
 
 db.on('error',function(err){
@@ -69,6 +70,13 @@ require('./config/passport')(passport);
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.get('*',function(req,res,next){
+  res.locals.user=req.user || null;
+  //console.log(res.locals.user);
+  //console.log(req.user);
+  next();
+});
 
 app.get('/add/teacher',function(req,res){
   res.render('add_teacher');
@@ -133,7 +141,7 @@ app.post('/add/student',function(req,res){
   let errors = req.validationErrors();
 
   if(errors){
-    res.render('add_student',{
+    res.render('add_teacher',{
       errors:errors
     });
   }else{
@@ -147,7 +155,7 @@ app.post('/add/student',function(req,res){
 			  console.log(student);
 	    });
 
-      res.redirect('/add/student');
+      res.redirect('/add/teacher');
   }
 
 });
@@ -156,12 +164,16 @@ app.get('/user/login',function(req,res){
   res.render('login');
 });
 
-app.post('/user/login',function(req,res,next){
-  passport.authenticate('local',{
-    successRedirect: '/',
-    failureRedirect: '/user/login',
-    failureFlash: true
-  })(req, res, next);
+app.post('/user/login',passport.authenticate('local'),function(req,res,next){
+/*  passport.authenticate('local',{
+    successRedirect:'/main',
+    failureRedirect:'/'
+  })(req,res,next);*/
+      if(req.user.designation=='Teacher'){
+        res.redirect('/teacher');
+      }else if(req.user.designation=='Principal'){
+        res.redirect('/principal');
+      }
 });
 
 app.get('/user/logincheck',function(req,res){
@@ -185,6 +197,9 @@ app.get('/',function(req,res){
 
 let assignments = require('./routes/assignments');
 app.use('/assignments',assignments);
+
+var teacher=require(__dirname+'/routes/teacher');
+app.use('/teacher',teacher);
 
 app.listen(3000,function(){
     console.log("Server started on port 3000");
