@@ -18,6 +18,8 @@
     "body-parser": "^1.18.2",
     "connect-flash": "^0.1.1",
     "express": "^4.16.2",
+    "express-ejs-extend": "0.0.1",
+    "express-fileupload": "^0.4.0",
     "express-messages": "^1.0.1",
     "express-session": "^1.15.6",
     "express-validator": "^5.0.3",

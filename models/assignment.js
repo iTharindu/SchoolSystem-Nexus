@@ -17,7 +17,7 @@ let assignmentSchema = mongoose.Schema({
     type : String,
     required : true
   },
-  body_assignment : {
+  body : {
     type : String,
     required : true
   },

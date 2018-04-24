@@ -1,0 +1,28 @@
+extends ../newLayout
+block content
+  .signup__container
+    .container__child.signup__form
+      .form-group
+        .circularText
+          .list-group
+            each val, i in data
+              ul.list-group.list-group-flush
+                li.list-group-item=' Leave Date : '+val.dateOfCommencingLeave
+                li.list-group-item=' Approval : '+val.approved
+              .input-group-append
+                a.btn1.input-group-text.delete(href='#', id=val._id) Delete
+            .input-group-append
+              a.btn1.input-group-text(href='/teacher/applyLeave') Apply New Leave
+              a.btn1.input-group-text(href='/teacher') Go Back
+          script.
+            $(document).ready(function(){
+              $('.delete').on('click',function(){
+                  $.ajax({
+                      type:'DELETE',
+                      url:'/teacher/leaveApp/delete/'+this.id,
+                      success:function(){
+                        location.reload();
+                      }
+                    });
+                  });
+                s});

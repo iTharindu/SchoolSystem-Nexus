@@ -14,12 +14,8 @@ router.post('/add',function(req,res){
   assignment.due_date = req.body.due_date;
   assignment.marks_allocated = req.body.marks_allocated;
   assignment.assignment_type = req.body.assignment_type;
-  if (req.body.has_to_upload_a_file == "1"){
-    assignment.has_to_upload_a_file = "Has to upload a file";
-  }else{
-    assignmet.has_to_upload_a_file = "Does not require to upload anything"
-  }
-  assignment.body_assignment = req.body.body_assignment;
+  assignment.has_to_upload_a_file = req.body.has_to_upload_a_file;
+  assignment.body = req.body.body;
   console.log(req.body.title);
   console.log('Hello');
 
@@ -78,14 +74,10 @@ router.post('/edit/:id',function(req,res){
   assignment.due_date = req.body.due_date;
   assignment.marks_allocated = req.body.marks_allocated;
   assignment.assignment_type = req.body.assignment_type;
-  if (req.body.has_to_upload_a_file == "1"){
-    assignment.has_to_upload_a_file = "Has to upload a file";
-  }else{
-    assignmet.has_to_upload_a_file = "Does not require to upload anything"
-  }
-  assignment.body_assignment = req.body.body_assignment;
+  assignment.has_to_upload_a_file = req.body.has_to_upload_a_file;
+  assignment.body = req.body.body;
   let query = {_id:req.params.id};
-  console.log(assignment.has_to_upload_a_file)
+
   Assignment.update(query,assignment,function(err){
     if(err){
       console.log(err);
@@ -95,11 +87,9 @@ router.post('/edit/:id',function(req,res){
     }
   });
 });
-
-
 router.post('/submission/:id',function(req,res){
   let submission = {};
-  assignment_submission.submission = req.body.assignment_submission;
+  submission.submission = req.body.submission;
   let query = {_id:req.params.id};
   Submission.update(query,submission,function(err){
     if(err){

@@ -1,0 +1,29 @@
+extends ../newLayout
+block content
+  .signup__container
+    .container__child.signup__form
+      form#uploadForm.circular(ref='uploadForm',  method='POST', action='/teacher/processLeaveApp')
+        .form-group
+          label No Of Leave Days
+          input.form-control(type='text', name='noOfLeaveDays', required='true')
+        .form-group
+          label Leaves Taken
+          input.form-control(type='text', name='leavesTaken', required='true')
+        .form-group
+          label Date of Commencing Leave
+          input.form-control(type='Date', name='dateOfCommencingLeave', required='true')
+        .form-group
+          label Date of Resuming Duty
+          input.form-control(type='Date', name='dateOfResumingDuty', required='true')
+        .form-group
+          label Reason
+          input.form-control(type='text', name='reason', required='true')
+        .m-t-lg
+          ul.list-inline
+            li
+              input.btn.btn--form(type='submit', value='Submit')  
+      form(action='/teacher/leaveMenu')
+        .m-t-lg
+          ul.list-inline
+            li
+              input.btn.btn--form(type='submit', value='Go Back')

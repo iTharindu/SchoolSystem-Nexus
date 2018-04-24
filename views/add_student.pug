@@ -14,7 +14,7 @@ html(lang='en')
   body
     // particles.js container
     #particles-js
-      canvas.particles-js-canvas-el(style='width: 100%; height: 100%;', width='1402', height='752')
+      canvas.particles-js-canvas-el
     #titles(style = "top:20%").ng-scope
       .signup__container
         //.container__child.signup__thumbnail
@@ -49,35 +49,3 @@ html(lang='en')
       canvas(width='80', height='48', style='width: 80px; height: 48px; display: block;')
       canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')
       canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')
-
-
-
-html
-  head
-    title SchoolSystem
-    link(rel = "stylesheet" href = "/css/registration.css")
-    link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
-  body
-    .signup__container
-      //.container__child.signup__thumbnail
-      //  .signup__overlay
-      .container__child.signup__form
-        form(method='POST', action='/add/student')
-          .form-group
-            label(for='username') Username
-            input.form-control(type='text', name='username', placeholder='james.bond', required='')
-          .form-group
-            label(for='email') Email
-            input.form-control(type='text', name='email', placeholder='james.bond@spectre.com', required='')
-          .form-group
-            label(for='password') Password
-            input.form-control(type='password', name='password', placeholder='********', required='')
-          .form-group
-            label(for='passwordRepeat') Repeat Password
-            input.form-control(type='password', name='passwordRepeat', placeholder='********', required='')
-          .m-t-lg
-            ul.list-inline
-              li
-                input.btn.btn--form(type='submit', value='Register')
-    script(src = '/bower_components/jquery/dist/jquery.js')
-    script(src = '/bower_components/bootstrap/dist/js/bootstrap.js')
