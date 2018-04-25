@@ -1,0 +1,52 @@
+extends ../newLayout
+block content
+  .signup__container
+    .container__child.signup__form
+      .circularText
+        form#uploadForm(ref='uploadForm', action='/teacher/schemes/upload', method='POST', enctype='multipart/form-data')
+          .input-group.mb-3
+            .custom-file
+              input#sampleFile.custom-file-input(type='file',required='true')
+              label.custom-file-label(for='inputGroupFile02') Choose file
+          .input-group.mb-3
+            .input-group-prepend
+              span#basic-addon1.input-group-text Year
+            input.form-control(type='text', id='year', placeholder='Year', aria-label='Username', aria-describedby='basic-addon1')
+          .input-group.mb-3
+            .input-group-prepend
+              span#basic-addon1.input-group-text Grade
+            input.form-control(type='text', id='grade', placeholder='Grade', aria-label='Username', aria-describedby='basic-addon1')
+          .input-group.mb-3
+            .input-group-append
+              input.input-group-text(type='submit')
+              li.input-group-text
+                a(href='/teacher/schemes') Go Back
+  script.
+    $(document).ready(function () {
+      const fileElement = $("#sampleFile")[0];
+      const $form = $("#uploadForm");
+
+      $form.on("submit", function (e) {
+        e.preventDefault();
+        const file = fileElement.files[0];
+        const formData = new FormData();
+
+        formData.set("year", document.getElementById('year').value);
+        formData.set("grade", document.getElementById('grade').value);
+        formData.set("pho", file);
+
+        $.ajax('/teacher/schemes/upload', {
+          method: "POST",
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: formData,
+          success:function(){
+            location.href="/teacher/schemes";
+          },
+          error:function(){
+            location.replace('/teacher/schemes/upload');
+          }
+        });
+      });
+    });

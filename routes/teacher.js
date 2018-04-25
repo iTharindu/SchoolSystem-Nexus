@@ -3,34 +3,23 @@ const router=express.Router();
 var fileupload=require('express-fileupload');
 var path=require('path');
 var fs=require('fs');
+const multer=require('multer');
+const upload = multer().any();
 
 var leaveData=require('../models/teacher-leaves');
 var schemeData=require('../models/data-schemes');
 var circularData=require('../models/data-circular');
 
-router.get('*',function(req,res,next){
-  res.locals.user={ _id: '5ac6fbb3c348ca4134fef9e7',
-  name: 'Dilan',
-  designation: 'Teacher',
-  email: 'dilan@123.com',
-  username: 'dilan',
-  password: '123',
-  __v: 0,
-  grade: 5 };
-  next();
-});
-
-router.post('*',function(req,res,next){
-  res.locals.user={ _id: '5ac6fbb3c348ca4134fef9e7',
-  name: 'Dilan',
-  designation: 'Teacher',
-  email: 'dilan@123.com',
-  username: 'dilan',
-  password: '123',
-  __v: 0,
-  grade: 5 };
-  next();
-});
+var user={
+  _id: '5ac6fbb3c348ca4134fef9e7',
+ name: 'Dilan',
+ designation: 'Teacher',
+ email: 'dilan@123.com',
+ username: 'dilan',
+ password: '123',
+ __v: 0,
+ grade: 5
+};
 
 router.get('/',function(req,res){
   res.render('teacher/teacher');
@@ -39,7 +28,7 @@ router.get('/',function(req,res){
 //circulars...................................................................
 
 router.get('/circulars',function(req,res){
-  circularData.find({grade:res.locals.user.grade},function(err,data){
+  circularData.find({grade:user.grade},function(err,data){
     if(err){
       console.log(err);
     }else{
@@ -52,7 +41,7 @@ router.get('/circulars',function(req,res){
 //leave app...................................................................
 
 router.get('/leaveMenu',function(req,res){
-  leaveData.find({teacherName:res.locals.user.name},function(err,data){
+  leaveData.find({teacherName:user.name},function(err,data){
     if(err){
       console.log(err);
     }else{
@@ -77,8 +66,8 @@ router.get('/applyLeave',function(req,res){
 
 router.post('/processLeaveApp',function(req,res){
   var leavedata=new leaveData();
-  leavedata.teacherName=res.locals.user.name;
-  leavedata.designation=res.locals.user.designation;
+  leavedata.teacherName=user.name;
+  leavedata.designation=user.designation;
   leavedata.noOfLeaveDays=req.body.noOfLeaveDays;
   leavedata.leavesTaken=req.body.leavesTaken;
   leavedata.dateOfCommencingLeave=req.body.dateOfCommencingLeave;
@@ -108,7 +97,7 @@ router.post('/schemes/upload',function(req,res){
   if(!req.files.sampleFile){
     return res.status(400).send('No files were uploaded.');
   }else{
-    var sampleFile = req.files.sampleFile;
+    var sampleFile = req.files.pho;
     schemeData.findOne({fileName:sampleFile.name},function(err,file){
       if(err){
         console.log(err);
@@ -119,7 +108,7 @@ router.post('/schemes/upload',function(req,res){
           schemedata.fileName=sampleFile.name;
           schemedata.year=req.body.year,
           schemedata.grade=req.body.grade;
-          schemedata.author=req.user.name;
+          schemedata.author=user.name;
           schemedata.save(function(err){
             if(err){
               console.log(err);
@@ -128,7 +117,7 @@ router.post('/schemes/upload',function(req,res){
                 if(err){
                   return res.status(500).send(err);
                 }else{
-                  res.redirect('/teacher/schemes');
+                  res.send('success');
                 }
               });
             }
@@ -136,7 +125,7 @@ router.post('/schemes/upload',function(req,res){
         }else{
           /////////////////////////////////////////////////////////////////////////////////////make code to send a message to front end
           console.log('File already exists');
-          res.redirect('back');
+          res.status(500).send(err);
         }
       }
     });
@@ -144,7 +133,7 @@ router.post('/schemes/upload',function(req,res){
 });
 
 router.get('/schemes/view-previous',function(req,res){
-  schemeData.find({author:req.user.name},function(err,data){
+  schemeData.find({author:user.name},function(err,data){
     if(err){
       console.log(err);
     }else{
@@ -154,7 +143,7 @@ router.get('/schemes/view-previous',function(req,res){
 });
 
 router.get('/scheme/:index',function(req,res){
-  schemeData.find({author:req.user.name},function(err,data){
+  schemeData.find({author:user.name},function(err,data){
     res.locals.scheme=data[req.params.index];
     res.render('teacher/edit-scheme',{data:res.locals.scheme});
   });
