@@ -1,0 +1,51 @@
+extends ../newLayout
+block content
+  .signup__container
+    .container__child.signup__form
+      .circularText
+        form#editForm(enctype='multipart/form-data')
+          .input-group
+            .custom-file
+              input#sampleFile.custom-file-input(type='file', required='true', name='sampleFile')
+              label#mylabel.custom-file-label(for='inputGroupFile04')= data.fileName
+            .input-group-append
+              button.btn.btn-outline-secondary(type='button') Upload
+          .form-group
+            label(for='formGroupExampleInput') Year
+            input.form-control(type='text', placeholder=data.year, required='true', id='year')
+            label(for='formGroupExampleInput2') Grade
+            input.form-control(type='text', placeholder=data.grade, required='true', id='grade')
+          .input-group-append
+            input.input-group-text(type='submit', value='Save')
+            a.input-group-text(href='/teacher/schemes') Cancel
+          br
+            
+  script.
+    $(document).ready(function () {
+      const fileElement = $("#sampleFile")[0];
+      const $form = $("#editForm");
+
+      $form.on("submit", function (e) {
+        e.preventDefault();
+        const file = fileElement.files[0];
+        const formData = new FormData();
+        const name=document.getElementById('mylabel').textContent;
+
+        formData.set("year", document.getElementById('year').value);
+        formData.set("grade", document.getElementById('grade').value);
+        formData.set("pho", file);
+        $.ajax('/teacher/schemes/edit-data/'+name, {
+          method: "POST",
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: formData,
+          success:function(){
+            location.href="/teacher/schemes";
+          },
+          error:function(){
+            location.replace('/teacher/schemes/upload');
+          }
+        });
+      });
+    });

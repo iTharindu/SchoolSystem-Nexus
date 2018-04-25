@@ -93,8 +93,9 @@ router.get('/schemes/upload',function(req,res){
   res.render('teacher/schemes-upload');
 });
 
-router.post('/schemes/upload',function(req,res){
-  if(!req.files.sampleFile){
+//var cpUpload = upload.fields([{ name: 'avatar', maxCount: 1 }, { name: 'gallery', maxCount: 8 }])
+router.post('/schemes/upload',fileupload(),function(req,res){
+  if(!req.files.pho.name){
     return res.status(400).send('No files were uploaded.');
   }else{
     var sampleFile = req.files.pho;
@@ -150,11 +151,11 @@ router.get('/scheme/:index',function(req,res){
 });
 
 
-router.post('/schemes/edit-data/:fname',function(req,res){
-  var sampleFile = req.files.sampleFile;
-
+router.post('/schemes/edit-data/:fname',fileupload(),function(req,res){
+  var sampleFile = req.files.pho;
+  console.log(sampleFile.name);
   var dir='./public/uploads/schemes/'+sampleFile.name;
-
+  console.log(req.params.fname);
   schemeData.findOne({fileName:sampleFile.name},function(err,file){
     console.log(file);
     if(file==null){
@@ -194,13 +195,13 @@ router.post('/schemes/edit-data/:fname',function(req,res){
           if(err){
             return res.status(500).send(err);
           }else{
-            res.redirect('/teacher/schemes');
+            res.send('success');
           }
         });
       });
     }else{
       console.log('Another file with this name already exists.');
-      res.redirect('back');
+      res.send('failure');
     }
   });
 });
