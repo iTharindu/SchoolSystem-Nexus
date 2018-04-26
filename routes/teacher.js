@@ -155,9 +155,7 @@ router.post('/schemes/edit-data/:fname',fileupload(),function(req,res){
   var sampleFile = req.files.pho;
   console.log(sampleFile.name);
   var dir='./public/uploads/schemes/'+sampleFile.name;
-  console.log(req.params.fname);
   schemeData.findOne({fileName:sampleFile.name},function(err,file){
-    console.log(file);
     if(file==null){
       schemeData.update({fileName:req.params.fname},{
         fileName:sampleFile.name,
@@ -172,7 +170,6 @@ router.post('/schemes/edit-data/:fname',fileupload(),function(req,res){
           if(err){
             console.log(err);
           }
-
           sampleFile.mv(dir, function(err) {
             if(err){
               return res.status(500).send(err);

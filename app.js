@@ -194,6 +194,9 @@ app.use('/assignments',assignments);
 var teacher=require(__dirname+'/routes/teacher');
 app.use('/teacher',teacher);
 
+var principal=require(__dirname+'/routes/principal');
+app.use('/principal',principal);
+
 app.listen(3000,function(){
     console.log("Server started on port 3000");
 });
