@@ -1,0 +1,13 @@
+extends ../newLayout
+block content
+  .signup__container
+    .container__child.signup__form
+      .circularText
+        ul.list-group
+          each val, i in data
+            li.list-group-item
+              a(href='/principal/leaveDetails/'+val._id)=val.teacherName
+              br
+              a(href='/principal/leaveDetails/'+val._id)=val.dateOfCommencingLeave+' to '+ val.dateOfResumingLeave
+        .list-group
+          a.list-group-item.list-group-item-action(href='/principal/') Go Back

@@ -1,0 +1,53 @@
+extends ../newLayout
+block content
+  .signup__container
+    .container__child.signup__form
+      .circularText
+        form#uploadForm.circular
+          label= 'Name : '+data.teacherName
+          br
+          br
+          label= 'Designation : '+data.designation
+          br
+          br
+          label= 'Number of Leave Days : '+data.noOfLeaveDays
+          br
+          br
+          label= 'Leaves Taken : '+data.leavesTaken
+          br
+          br
+          label= 'Date of Commencing Leave : '+data.dateOfCommencingLeave
+          br
+          br
+          label= 'Date of Resuming Duties : '+data.dateOfResumingLeave
+          br
+          br
+          label= 'Reason : '+data.reason
+          br
+          br
+          #changeThis
+          #changeable
+            input#Approve.btn(type='button', value='Approve', class='btn'+data._id)
+            input#Disapprove.btn(type='button', value='Disapprove', class='btn'+data._id)
+          .input-group-append
+            a.input-group-text(href='/principal/leaveApps') Go Back
+  script.
+    $(document).ready(function(){
+    $('.btn').on('click',function(){
+      var id=this.className.slice(7);
+      $.ajax({
+        type:'POST',
+        url:'/principal/leave/approval/'+id,
+        data:{approval:this.id},
+        success:function(data){
+          var cat='<li class="list-group-item">Approved</li></br>';
+          var dog='<li class="list-group-item">Disapproved</li></br>';
+          if(data.approval=='Approved'){
+            $('#changeThis').html(cat);
+            }else{
+              $('#changeThis').html(dog);
+            }
+          }
+        });
+      });
+    });

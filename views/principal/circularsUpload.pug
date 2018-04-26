@@ -1,0 +1,46 @@
+extends ../newLayout
+block content
+  .signup__container
+    .container__child.signup__form
+      .circularText
+        form#uploadForm.circular(ref='uploadForm', action='/principal/circulars/upload', method='POST', enctype='multipart/form-data')
+          input#sampleFile.upload(type='file', name='sampleFile')
+          br
+          br
+          label Grade : 
+          input#grade(type='number', name='grade', value='Grade', required='true')
+          br
+          br
+          .input-group-append
+            input.input-group-text(type='submit', value='Upload')
+        .input-group-append
+          a.input-group-text(href='/principal/circulars') Go Back
+
+  script.
+    $(document).ready(function () {
+      const fileElement = $("#sampleFile")[0];
+      const $form = $("#uploadForm");
+
+      $form.on("submit", function (e) {
+        e.preventDefault();
+        const file = fileElement.files[0];
+        const formData = new FormData();
+
+        formData.set("grade", document.getElementById('grade').value);
+        formData.set("pho", file);
+
+        $.ajax('/principal/circulars/upload', {
+          method: "POST",
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: formData,
+          success:function(){
+            location.href="/principal/circulars";
+          },
+          error:function(){
+            location.replace('/principal/circulars/upload');
+          }
+        });
+      });
+    });

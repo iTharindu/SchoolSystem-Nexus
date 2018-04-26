@@ -3,8 +3,6 @@ const router=express.Router();
 var fileupload=require('express-fileupload');
 var path=require('path');
 var fs=require('fs');
-const multer=require('multer');
-const upload = multer().any();
 
 var leaveData=require('../models/teacher-leaves');
 var schemeData=require('../models/data-schemes');
