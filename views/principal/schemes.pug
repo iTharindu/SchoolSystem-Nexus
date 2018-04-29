@@ -1,0 +1,30 @@
+extends ../newLayout
+block content
+  .signup__container
+    .container__child.signup__form
+      .circularText
+        .form-group
+          div
+            each val, i in data
+              ul.list-group.list-group-flush
+                li.list-group-item= 'Filename : '+ val.fileName
+                li.list-group-item= 'Year : '+ val.year
+                li.list-group-item= 'Grade : '+ val.grade
+                li.list-group-item= 'Author : '+ val.autho
+              .input-group-append
+                a.input-group-text.delete.delete(id=val._id, href='#') Delete
+                a.input-group-text(href='/uploads/schemes/'+val.fileName, download='') Download
+          .input-group-append
+            a.input-group-text(href='/principal/') Go Back
+  script.
+    $(document).ready(function(){
+      $('.delete').on('click',function(){
+        $.ajax({
+          type:'DELETE',
+          url:'/principal/schemes/delete/'+this.id,
+          success:function(data){
+            location.reload();
+          }
+        });
+      });
+    });
