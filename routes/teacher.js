@@ -53,6 +53,7 @@ router.delete('/leaveApp/delete/:id',function(req,res){
     if(err){
       console.log(err);
     }else{
+      req.flash('success','Delete successfull');
       res.send('success');
     }
   });
@@ -76,6 +77,7 @@ router.post('/processLeaveApp',function(req,res){
     if(err){
       console.log(err);
     }else{
+      req.flash('success','Leave Request Sent');
       res.redirect('/teacher/leaveMenu');
     }
   });
@@ -116,6 +118,7 @@ router.post('/schemes/upload',fileupload(),function(req,res){
                 if(err){
                   return res.status(500).send(err);
                 }else{
+                  req.flash('success','File uploaded successfully');
                   res.send('success');
                 }
               });
@@ -123,7 +126,7 @@ router.post('/schemes/upload',fileupload(),function(req,res){
           });
         }else{
           /////////////////////////////////////////////////////////////////////////////////////make code to send a message to front end
-          console.log('File already exists');
+          req.flash('success','File already exists');
           res.status(500).send(err);
         }
       }
@@ -151,7 +154,6 @@ router.get('/scheme/:index',function(req,res){
 
 router.post('/schemes/edit-data/:fname',fileupload(),function(req,res){
   var sampleFile = req.files.pho;
-  console.log(sampleFile.name);
   var dir='./public/uploads/schemes/'+sampleFile.name;
   schemeData.findOne({fileName:sampleFile.name},function(err,file){
     if(file==null){
@@ -172,7 +174,8 @@ router.post('/schemes/edit-data/:fname',fileupload(),function(req,res){
             if(err){
               return res.status(500).send(err);
             }else{
-              res.redirect('/teacher/schemes');
+              req.flash('success','Scheme Data saved successfully');
+              res.send('success');
             }
           });
         });
@@ -190,11 +193,13 @@ router.post('/schemes/edit-data/:fname',fileupload(),function(req,res){
           if(err){
             return res.status(500).send(err);
           }else{
+            req.flash('success','Scheme Data saved successfully');
             res.send('success');
           }
         });
       });
     }else{
+      req.flash('success','Another file with this name already exists.');
       console.log('Another file with this name already exists.');
       res.send('failure');
     }
@@ -208,6 +213,7 @@ router.delete('/schemes/delete/:id',function(req,res){
       if(errr){
         console.log(err);
       }else{
+        req.flash('success','Deleted Successfully');
         res.send('success');
       }
     });
@@ -219,6 +225,7 @@ function ensureAuthenticated(req,res,next){
     return next();
   }else{
     req.logout();
+    req.flash('success','You are now logged out');
     res.redirect('/user/login');
   }
 }

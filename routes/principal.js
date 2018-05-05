@@ -58,12 +58,14 @@ router.post('/circulars/upload',fileupload(),function(req,res){
                 if(err){
                   return res.status(500).send(err);
                 }else{
+                  req.flash('success','File Uploaded Successfully');
                   res.send('success');
                 }
               });
             }
           });
         }else{
+          req.flash('success','File already exists');
           console.log('File already exists');
           res.status(500).send(err);
         }
@@ -88,6 +90,7 @@ router.delete('/circulars/delete/:id',function(req,res){
         if(errr){
           console.log(errr);
         }else{
+          req.flash('success','Deleted Successfully');
           res.send('success');
         }
       });
@@ -150,6 +153,7 @@ router.delete('/schemes/delete/:id',function(req,res){
         if(errr){
           console.log(err);
         }else{
+          req.flash('success','Deleted Successfully');
           res.send('success');
         }
       });
