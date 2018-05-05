@@ -10,11 +10,11 @@ var dataSchema=mongoose.Schema({
     required:true
   },
   noOfLeaveDays:{
-    type:String,
+    type:Number,
     required:true
   },
   leavesTaken:{
-    type:String,
+    type:Number,
     required:true
   },
   dateOfCommencingLeave:{

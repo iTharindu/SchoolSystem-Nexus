@@ -64,6 +64,7 @@ router.get('/applyLeave',function(req,res){
 });
 
 router.post('/processLeaveApp',function(req,res){
+  console.log(req.body);
   var leavedata=new leaveData();
   leavedata.teacherName=user.name;
   leavedata.designation=user.designation;
@@ -76,9 +77,11 @@ router.post('/processLeaveApp',function(req,res){
   leavedata.save(function(err){
     if(err){
       console.log(err);
+      req.flash('danger','There is an error with the data you entered');
+      res.send('error');
     }else{
       req.flash('success','Leave Request Sent');
-      res.redirect('/teacher/leaveMenu');
+      res.send('success');
     }
   });
 });

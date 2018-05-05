@@ -2,22 +2,22 @@ extends ../newLayout
 block content
   .signup__container
     .container__child.signup__form
-      form#uploadForm.circular(ref='uploadForm',  method='POST', action='/teacher/processLeaveApp')
+      form#uploadForm.circular(ref='uploadForm')
         .form-group
           label No Of Leave Days
-          input.form-control(type='text', name='noOfLeaveDays', required='true')
+          input.form-control(type='number',min=0, id='noOfLeaveDays', name='noOfLeaveDays', required='true')
         .form-group
           label Leaves Taken
-          input.form-control(type='text', name='leavesTaken', required='true')
+          input.form-control(type='number', id='leavesTaken', name='leavesTaken',required='true')
         .form-group
           label Date of Commencing Leave
-          input.form-control(type='Date', name='dateOfCommencingLeave', required='true')
+          input.form-control(type='Date', id='dateOfCommencingLeave', name='dateOfCommencingLeave',required='true')
         .form-group
           label Date of Resuming Duty
-          input.form-control(type='Date', name='dateOfResumingDuty', required='true')
+          input.form-control(type='Date', id='dateOfResumingDuty', name='dateOfResumingDuty',required='true')
         .form-group
           label Reason
-          input.form-control(type='text', name='reason', required='true')
+          input.form-control(type='text', id='reason', name='reason',required='true')
         .m-t-lg
           ul.list-inline
             li
@@ -27,3 +27,48 @@ block content
           ul.list-inline
             li
               input.btn.btn--form(type='submit', value='Go Back')
+  script.
+    $(document).ready(function () {
+      var $form=$("#uploadForm");
+      $form.on("submit", function (e) {
+        e.preventDefault();
+        //alert(typeof $('#dateOfResumingDuty').val());
+        var today=new Date();
+        var trueDate=parseInt(today.getDate());
+        var trueMonth=parseInt(today.getMonth())+1;
+        var trueYear=parseInt(today.getFullYear());
+        var startdate=parseInt(document.getElementById('dateOfCommencingLeave').value.slice(8,10));
+        var startmonth=parseInt(document.getElementById('dateOfCommencingLeave').value.slice(5,7));
+        var startyear=parseInt(document.getElementById('dateOfCommencingLeave').value.slice(0,4));
+        var enddate=parseInt(document.getElementById('dateOfResumingDuty').value.slice(8,10));
+        var endmonth=parseInt(document.getElementById('dateOfResumingDuty').value.slice(5,7));
+        var endyear=parseInt(document.getElementById('dateOfResumingDuty').value.slice(0,4));
+        if(startyear<trueYear){
+          alert('wrong date1');
+        }else if(startyear==trueYear && startmonth<trueMonth){
+          alert('wrong date2');
+        }else if(startyear==trueYear && startmonth==trueMonth && startdate<=trueDate){
+          alert('wrong date3');
+        }else if(endyear<startyear){
+          alert('wrong date4');
+        }else if(startyear==endyear && endmonth<startmonth){
+          alert('wrong date5');
+        }else if(startyear==endyear && endmonth==startmonth && enddate<startdate){
+          alert('wrong date6');
+        }else{
+          var formData = $("#uploadForm").serializeArray();
+          console.log(formData);
+          alert('ff');
+          $.ajax('/teacher/processLeaveApp', {
+            method: "POST",
+            data: formData,
+            success:function(){
+              location.href="/teacher/leaveMenu";
+            },
+            error:function(){
+              location.replace('/teacher/applyLeave');
+            }
+          });
+        }
+      });
+    });
