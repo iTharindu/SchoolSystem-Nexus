@@ -64,7 +64,6 @@ router.get('/applyLeave',function(req,res){
 });
 
 router.post('/processLeaveApp',function(req,res){
-  console.log(req.body);
   var leavedata=new leaveData();
   leavedata.teacherName=user.name;
   leavedata.designation=user.designation;

@@ -2,6 +2,8 @@ extends ../newLayout
 block content
   .signup__container
     .container__child.signup__form
+      #changeThis
+        //div(class="alert alert-danger") #{"crap"}
       form#uploadForm.circular(ref='uploadForm')
         .form-group
           label No Of Leave Days
@@ -44,21 +46,19 @@ block content
         var endmonth=parseInt(document.getElementById('dateOfResumingDuty').value.slice(5,7));
         var endyear=parseInt(document.getElementById('dateOfResumingDuty').value.slice(0,4));
         if(startyear<trueYear){
-          alert('wrong date1');
+          $('#changeThis').html('<div class="alert alert-danger">Wrong Date Of Commencing Leave</div>');
         }else if(startyear==trueYear && startmonth<trueMonth){
-          alert('wrong date2');
+          $('#changeThis').html('<div class="alert alert-danger">Wrong Date Of Commencing Leave</div>');
         }else if(startyear==trueYear && startmonth==trueMonth && startdate<=trueDate){
-          alert('wrong date3');
+          $('#changeThis').html('<div class="alert alert-danger">Wrong Date Of Commencing Leave</div>');
         }else if(endyear<startyear){
-          alert('wrong date4');
+          $('#changeThis').html('<div class="alert alert-danger">Wrong Date Of Resuming Duty</div>');
         }else if(startyear==endyear && endmonth<startmonth){
-          alert('wrong date5');
+          $('#changeThis').html('<div class="alert alert-danger">Wrong Date Of Resuming Duty</div>');
         }else if(startyear==endyear && endmonth==startmonth && enddate<startdate){
-          alert('wrong date6');
+          $('#changeThis').html('<div class="alert alert-danger">Wrong Date Of Resuming Duty</div>');
         }else{
           var formData = $("#uploadForm").serializeArray();
-          console.log(formData);
-          alert('ff');
           $.ajax('/teacher/processLeaveApp', {
             method: "POST",
             data: formData,
