@@ -3,22 +3,21 @@ block content
   .signup__container
     .container__child.signup__form
       #changeThis
-        //div(class="alert alert-danger") #{"crap"}
-      form#uploadForm.circular(ref='uploadForm')
+      form#uploadForm(ref='uploadForm')
         .form-group
-          label No Of Leave Days
+          label.blackText Leaves Taken 
+          input.form-control(type='text',value=user.leavesTaken ,readonly='')
+        .form-group
+          label.blackText No Of Leave Days
           input.form-control(type='number',min=0, id='noOfLeaveDays', name='noOfLeaveDays', required='true')
         .form-group
-          label Leaves Taken
-          input.form-control(type='number', id='leavesTaken', name='leavesTaken',required='true')
-        .form-group
-          label Date of Commencing Leave
+          label.blackText Date of Commencing Leave
           input.form-control(type='Date', id='dateOfCommencingLeave', name='dateOfCommencingLeave',required='true')
         .form-group
-          label Date of Resuming Duty
+          label.blackText Date of Resuming Duty
           input.form-control(type='Date', id='dateOfResumingDuty', name='dateOfResumingDuty',required='true')
         .form-group
-          label Reason
+          label.blackText Reason
           input.form-control(type='text', id='reason', name='reason',required='true')
         .m-t-lg
           ul.list-inline
@@ -27,8 +26,7 @@ block content
       form(action='/teacher/leaveMenu')
         .m-t-lg
           ul.list-inline
-            li
-              input.btn.btn--form(type='submit', value='Go Back')
+            input.btn.btn--form(type='submit', value='Go Back')
   script.
     $(document).ready(function () {
       var $form=$("#uploadForm");

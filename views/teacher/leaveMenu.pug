@@ -2,6 +2,8 @@ extends ../newLayout
 block content
   .signup__container
     .container__child.signup__form
+      #changeThis(style='display:none;')
+        div(class="alert alert-"+message.status) #{message.msg}
       .form-group
         .circularText
           .list-group
@@ -9,20 +11,44 @@ block content
               ul.list-group.list-group-flush
                 li.list-group-item=' Leave Date : '+val.dateOfCommencingLeave
                 li.list-group-item=' Approval : '+val.approved
-              .input-group-append
-                a.btn1.input-group-text.delete(href='#', id=val._id) Delete
-            .input-group-append
-              a.btn1.input-group-text(href='/teacher/applyLeave') Apply New Leave
-              a.btn1.input-group-text(href='/teacher') Go Back
-          script.
-            $(document).ready(function(){
-              $('.delete').on('click',function(){
-                  $.ajax({
-                      type:'DELETE',
-                      url:'/teacher/leaveApp/delete/'+this.id,
-                      success:function(){
-                        location.reload();
-                      }
-                    });
-                  });
-                });
+              br
+              form
+                .m-t-lg
+                  ul.list-inline
+                    input.delete.btn.btn--form(type='button', id=val._id, value='Delete')
+            form(action='/teacher/applyLeave')
+              .m-t-lg
+                ul.list-inline
+                  input.btn.btn--form(type='submit', value='Apply New Leave')
+            form(action='/teacher')
+              .m-t-lg
+                ul.list-inline
+                  input.btn.btn--form(type='submit', value='Go Back')
+            
+  script.
+    $(document).ready(function(){
+      $.ajax({
+        type:'GET',
+        url:'/teacher/leaveApp/getmsg',
+        success:function(data){
+          if(data.message.status!=''){
+            $('#changeThis').css({
+              display:"block"
+            });
+            $.ajax({
+              type:"GET",
+              url:"/teacher/msgs/reset"
+            });
+          }
+        }
+      });
+      $('.delete').on('click',function(){
+          $.ajax({
+              type:'DELETE',
+              url:'/teacher/leaveApp/delete/'+this.id,
+              success:function(){
+                location.reload();
+              }
+            });
+          });
+        });

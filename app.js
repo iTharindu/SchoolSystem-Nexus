@@ -9,6 +9,7 @@ const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const config = require('./config/database');
 const fileupload=require('express-fileupload');
+const MongoStore=require('connect-mongo')(session);
 
 mongoose.connect('mongodb://localhost/nodekb');
 let db = mongoose.connection;
@@ -36,10 +37,21 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname,'public')));
 
 
-app.use(session({
+/*app.use(session({
   secret: 'keyboard cat',
   resave: true,
   saveUninitialized: true,
+}));*/
+
+app.use(session({
+  secret:'foo',
+  store:new MongoStore({
+    host:'127.0.0.1',
+    port:'27017',
+    url: 'mongodb://localhost:27017/nodekb'
+  }),
+  resave: true,
+  saveUninitialized:true
 }));
 
 app.use(require('connect-flash')());

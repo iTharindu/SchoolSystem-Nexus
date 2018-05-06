@@ -16,8 +16,13 @@ var user={
  username: 'dilan',
  password: '123',
  __v: 0,
- grade: 5
+ grade: 5,
+ leavesTaken:0
 };
+var message={
+  status:'',
+  msg:''
+}
 
 router.get('/',function(req,res){
   res.render('teacher/teacher');
@@ -43,9 +48,18 @@ router.get('/leaveMenu',function(req,res){
     if(err){
       console.log(err);
     }else{
-      res.render('teacher/leaveMenu',{data:data});
+      res.render('teacher/leaveMenu',{data:data,message:message});
     }
   });
+});
+
+router.get('/msgs/reset',function(req,res){
+  message.status='';
+  message.msg='';
+});
+
+router.get('/leaveApp/getmsg',function(req,res){
+  res.status('200').send({message});
 });
 
 router.delete('/leaveApp/delete/:id',function(req,res){
@@ -53,14 +67,16 @@ router.delete('/leaveApp/delete/:id',function(req,res){
     if(err){
       console.log(err);
     }else{
-      req.flash('success','Delete successfull');
+      message.status='success';
+      message.msg='Deleted Successfully';
+      //res.status('200').send({data:"cra[]"});
       res.send('success');
     }
   });
 });
 
 router.get('/applyLeave',function(req,res){
-  res.render('teacher/leave-application');
+  res.render('teacher/leave-application',{user:user});
 });
 
 router.post('/processLeaveApp',function(req,res){
@@ -68,18 +84,20 @@ router.post('/processLeaveApp',function(req,res){
   leavedata.teacherName=user.name;
   leavedata.designation=user.designation;
   leavedata.noOfLeaveDays=req.body.noOfLeaveDays;
-  leavedata.leavesTaken=req.body.leavesTaken;
+  leavedata.leavesTaken=user.leavesTaken;
   leavedata.dateOfCommencingLeave=req.body.dateOfCommencingLeave;
   leavedata.dateOfResumingLeave=req.body.dateOfResumingDuty;
   leavedata.reason=req.body.reason;
   leavedata.approved="Not Yet Decided";
+  user.leavesTaken=user.leavesTaken+parseInt(req.body.noOfLeaveDays);
   leavedata.save(function(err){
     if(err){
       console.log(err);
       req.flash('danger','There is an error with the data you entered');
       res.send('error');
     }else{
-      req.flash('success','Leave Request Sent');
+      message.status='success';
+      message.msg='Leave Request Sent';
       res.send('success');
     }
   });
