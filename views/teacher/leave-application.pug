@@ -9,7 +9,7 @@ block content
           input.form-control(type='text',value=user.leavesTaken ,readonly='')
         .form-group
           label.blackText No Of Leave Days
-          input.form-control(type='number',min=0, id='noOfLeaveDays', name='noOfLeaveDays', required='true')
+          input.form-control(type='number',min=1, id='noOfLeaveDays', name='noOfLeaveDays', required='true')
         .form-group
           label.blackText Date of Commencing Leave
           input.form-control(type='Date', id='dateOfCommencingLeave', name='dateOfCommencingLeave',required='true')
@@ -28,7 +28,7 @@ block content
           ul.list-inline
             input.btn.btn--form(type='submit', value='Go Back')
   script.
-    $(document).ready(function () {
+    $(document).ready(function(){
       var $form=$("#uploadForm");
       $form.on("submit", function (e) {
         e.preventDefault();
@@ -43,17 +43,16 @@ block content
         var enddate=parseInt(document.getElementById('dateOfResumingDuty').value.slice(8,10));
         var endmonth=parseInt(document.getElementById('dateOfResumingDuty').value.slice(5,7));
         var endyear=parseInt(document.getElementById('dateOfResumingDuty').value.slice(0,4));
-        if(startyear<trueYear){
+        var a=(startyear<trueYear)||(startyear==trueYear && startmonth<trueMonth)||(startyear==trueYear && startmonth==trueMonth && startdate<=trueDate);
+        var b=(endyear<trueYear)||(endyear==trueYear && endmonth<trueMonth)||(endyear==trueYear && endmonth==trueMonth && enddate<=trueDate);
+        var c=(endyear<startyear)||(startyear==endyear && endmonth<startmonth)||(startyear==endyear && endmonth==startmonth && enddate<=startdate);
+        if(a && b){
+          $('#changeThis').html('<div class="alert alert-danger">Wrong Date Of Commencing Leave</div><div class="alert alert-danger">Wrong Date Of Resuming Duty</div>');
+        }else if(a){
           $('#changeThis').html('<div class="alert alert-danger">Wrong Date Of Commencing Leave</div>');
-        }else if(startyear==trueYear && startmonth<trueMonth){
-          $('#changeThis').html('<div class="alert alert-danger">Wrong Date Of Commencing Leave</div>');
-        }else if(startyear==trueYear && startmonth==trueMonth && startdate<=trueDate){
-          $('#changeThis').html('<div class="alert alert-danger">Wrong Date Of Commencing Leave</div>');
-        }else if(endyear<startyear){
+        }else if(b){
           $('#changeThis').html('<div class="alert alert-danger">Wrong Date Of Resuming Duty</div>');
-        }else if(startyear==endyear && endmonth<startmonth){
-          $('#changeThis').html('<div class="alert alert-danger">Wrong Date Of Resuming Duty</div>');
-        }else if(startyear==endyear && endmonth==startmonth && enddate<startdate){
+        }else if(c){
           $('#changeThis').html('<div class="alert alert-danger">Wrong Date Of Resuming Duty</div>');
         }else{
           var formData = $("#uploadForm").serializeArray();

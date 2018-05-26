@@ -29,7 +29,7 @@ block content
     $(document).ready(function(){
       $.ajax({
         type:'GET',
-        url:'/teacher/leaveApp/getmsg',
+        url:'/teacher/getmsg',
         success:function(data){
           if(data.message.status!=''){
             $('#changeThis').css({

@@ -3,6 +3,9 @@ block content
   .signup__container
     .container__child.signup__form
       .circularText
+        #changeThis
+        #change(style='display:none;')
+          div(class="alert alert-"+message.status) #{message.msg}
         form#editForm(enctype='multipart/form-data')
           .input-group
             .custom-file
@@ -11,41 +14,75 @@ block content
             .input-group-append
               button.btn.btn-outline-secondary(type='button') Upload
           .form-group
-            label(for='formGroupExampleInput') Year
+            label.blackText(for='formGroupExampleInput') Year
             input.form-control(type='text', placeholder=data.year, required='true', id='year')
-            label(for='formGroupExampleInput2') Grade
+            label.blackText(for='formGroupExampleInput2') Grade
             input.form-control(type='text', placeholder=data.grade, required='true', id='grade')
           .input-group-append
-            input.input-group-text(type='submit', value='Save')
-            a.input-group-text(href='/teacher/schemes') Cancel
+            .m-t-lg
+              ul.list-inline
+                li
+                  input.btn.btn--form(type='submit', value='Save')
+        form(action='/teacher/schemes')
+          .m-t-lg
+            ul.list-inline
+              input.btn.btn--form(type='submit', value='Cancel')
           br
             
   script.
     $(document).ready(function () {
       const fileElement = $("#sampleFile")[0];
       const $form = $("#editForm");
-
-      $form.on("submit", function (e) {
-        e.preventDefault();
-        const file = fileElement.files[0];
-        const formData = new FormData();
-        const name=document.getElementById('mylabel').textContent;
-
-        formData.set("year", document.getElementById('year').value);
-        formData.set("grade", document.getElementById('grade').value);
-        formData.set("pho", file);
-        $.ajax('/teacher/schemes/edit-data/'+name, {
-          method: "POST",
-          cache: false,
-          contentType: false,
-          processData: false,
-          data: formData,
-          success:function(){
-            location.href="/teacher/schemes";
-          },
-          error:function(){
-            location.replace('/teacher/schemes/upload');
+      
+      $.ajax({
+        type:'GET',
+        url:'/teacher/getmsg',
+        success:function(data){
+          if(data.message.status!=''){
+            $('#change').css({
+              display:"block"
+            });
+            $.ajax({
+              type:"GET",
+              url:"/teacher/msgs/reset"
+            });
           }
-        });
+        }
       });
+
+      $form.on("submit",function(e){
+        e.preventDefault();
+        var today=new Date();
+        var date=document.getElementById('year').value;
+        var grade=document.getElementById('grade').value;
+        if(date>today.getFullYear() && (grade<1 || grade>13)){
+          $('#changeThis').html('<div class="alert alert-danger">Invalid Year</div><div class="alert alert-danger">Invalid Grade</div>');
+        }else if(date>today.getFullYear()){
+          $('#changeThis').html('<div class="alert alert-danger">Invalid Year</div>');
+        }else if(grade<1 || grade>13){
+          $('#changeThis').html('<div class="alert alert-danger">Invalid Grade</div>');
+        }else{
+          const file = fileElement.files[0];
+          const formData = new FormData();
+          const name=document.getElementById('mylabel').textContent;
+
+          formData.set("year", document.getElementById('year').value);
+          formData.set("grade", document.getElementById('grade').value);
+          formData.set("pho", file);
+          $.ajax('/teacher/schemes/edit-data/'+name, {
+            method: "POST",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            success:function(){
+              location.href="/teacher/schemes";
+            },
+            error:function(){
+              location.reload();
+            }
+          });
+        }
+      });
+        
     });

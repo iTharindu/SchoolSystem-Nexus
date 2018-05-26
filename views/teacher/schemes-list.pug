@@ -9,12 +9,22 @@ block content
               li.list-group-item= 'Filename : '+val.fileName
               li.list-group-item= 'Year : '+val.year
               li.list-group-item= 'Grade : '+val.grade 
+            br
             .input-group-append
-              a.btn1.input-group-text(href='/teacher/scheme/'+i) Edit
-              a.input-group-text.delete(id=val._id, href='#') Delete
-              a.input-group-text(href='/uploads/schemes/'+val.fileName, download='') Download
-        .input-group-append
-          a.input-group-text(href='/teacher/schemes') Go Back
+              form(action='/teacher/scheme/'+i)
+                .m-t-lg
+                  ul.list-inline
+                    input.btn.btn--form(type='submit', value='Edit')
+              .m-t-lg
+                ul.list-inline
+                  button.delete.btn.btn--form(id=val._id) Delete
+              .m-t-lg
+                ul.list-inline
+                  a.btn.btn--form(href='/uploads/schemes/'+val.fileName, download='') Download
+        form(action='/teacher/schemes')
+          .m-t-lg
+            ul.list-inline
+              input.btn.btn--form(type='submit', value='Go Back')
   script.
     $(document).ready(function(){
       $('.delete').on('click',function(){

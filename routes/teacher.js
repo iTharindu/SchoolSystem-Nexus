@@ -58,7 +58,7 @@ router.get('/msgs/reset',function(req,res){
   message.msg='';
 });
 
-router.get('/leaveApp/getmsg',function(req,res){
+router.get('/getmsg',function(req,res){
   res.status('200').send({message});
 });
 
@@ -66,6 +66,9 @@ router.delete('/leaveApp/delete/:id',function(req,res){
   leaveData.findOneAndRemove({_id:req.params.id},function(err,data){
     if(err){
       console.log(err);
+      message.status='danger';
+      message.msg='Delete Failed';
+      res.send('success');
     }else{
       message.status='success';
       message.msg='Deleted Successfully';
@@ -106,14 +109,13 @@ router.post('/processLeaveApp',function(req,res){
 //schemes...................................................................
 
 router.get('/schemes',function(req,res){
-  res.render('teacher/schemes-teacher');
+  res.render('teacher/schemes-teacher',{message:message});
 });
 
 router.get('/schemes/upload',function(req,res){
   res.render('teacher/schemes-upload');
 });
 
-//var cpUpload = upload.fields([{ name: 'avatar', maxCount: 1 }, { name: 'gallery', maxCount: 8 }])
 router.post('/schemes/upload',fileupload(),function(req,res){
   if(!req.files.pho.name){
     return res.status(400).send('No files were uploaded.');
@@ -138,7 +140,9 @@ router.post('/schemes/upload',fileupload(),function(req,res){
                 if(err){
                   return res.status(500).send(err);
                 }else{
-                  req.flash('success','File uploaded successfully');
+                  //req.flash('success','File uploaded successfully');
+                  message.status='success';
+                  message.msg='Scheme Data Saved Successfully';
                   res.send('success');
                 }
               });
@@ -167,7 +171,7 @@ router.get('/schemes/view-previous',function(req,res){
 router.get('/scheme/:index',function(req,res){
   schemeData.find({author:user.name},function(err,data){
     res.locals.scheme=data[req.params.index];
-    res.render('teacher/edit-scheme',{data:res.locals.scheme});
+    res.render('teacher/edit-scheme',{data:res.locals.scheme,message:message});
   });
 });
 
@@ -194,7 +198,9 @@ router.post('/schemes/edit-data/:fname',fileupload(),function(req,res){
             if(err){
               return res.status(500).send(err);
             }else{
-              req.flash('success','Scheme Data saved successfully');
+              //req.flash('success','Scheme Data saved successfully');
+              message.status='success';
+              message.msg='Scheme Data Edited Successfully pula';
               res.send('success');
             }
           });
@@ -213,15 +219,19 @@ router.post('/schemes/edit-data/:fname',fileupload(),function(req,res){
           if(err){
             return res.status(500).send(err);
           }else{
-            req.flash('success','Scheme Data saved successfully');
+            //req.flash('success','Scheme Data saved successfully');
+            message.status='success';
+            message.msg='Scheme Data Edited Successfully hula';
             res.send('success');
           }
         });
       });
     }else{
-      req.flash('success','Another file with this name already exists.');
-      console.log('Another file with this name already exists.');
-      res.send('failure');
+      //req.flash('success','Another file with this name already exists.');
+      message.status='danger';
+      message.msg='Another file with this name already exists';
+      console.log('Another file with this name exists.');
+      res.status(500).send('error');
     }
   });
 });
