@@ -9,12 +9,14 @@ let assignmentSchema = mongoose.Schema({
     type : String,
     required : true
   },
-  due_date : {
+  uploaded_date:{
     type : String,
-    required : true
+  },
+  due_date : {
+    type : Date
   },
   marks_allocated : {
-    type : String,
+    type : Number,
     required : true
   },
   body_assignment : {

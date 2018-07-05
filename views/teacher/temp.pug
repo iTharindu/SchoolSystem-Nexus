@@ -1,0 +1,42 @@
+#form_Info
+  form(method = 'POST', action = '/assignments/add')
+    != messages('message', locals)
+    if errors
+      each error, i in errors
+        div(class="alert alert-danger") #{error.msg}
+    #form-group
+      label(style = "font-family: 'Roboto', sans-serif; color :#fff") Title:
+      input.form-control(name = 'title', type = 'text', placeholder='Add the title of the Assignment', required  = '')
+      br
+    #form-group
+      label(style = "font-family: 'Roboto', sans-serif; color :#fff") Due_Date:     
+      span.k-widget.k-datepicker.k-header.form-control(style = "font-family: 'Roboto', sans-serif; color :#fff")
+        span.k-picker-wrap.k-state-default
+          input#field3.form-control.k-input(name= 'due_date', type="date", data-role="date", role="textbox", aria-haspopup="true", aria-expanded="false", aria-owns="field3_dateview", aria-disabled="false", aria-readonly="false", aria-label="Current focused date is null", data-error-container="#errfield3", style="width: 100%;", required="required", data-parsley-errors-container="#errId3")
+          span.k-select(unselectable="on", role="button", aria-controls="field3_dateview")
+
+        span#errId3.error
+    #form-group
+      label(style = "font-family: 'Roboto', sans-serif; color :#fff") Marks Allocated:
+      input.form-control(name = 'marks_allocated', type = 'text', placeholder='Marks allocated' ,required  = '')
+      br
+    #form-group
+      label(style = "font-family: 'Roboto', sans-serif; color :#fff") Assignment Type:
+      input.form-control(name = 'assignment_type', type = 'text', placeholder='Whether its a quiz or a exercise or just homework' ,required  = '')
+    br
+    #form-group
+      label(style = "font-family: 'Roboto', sans-serif; color :#fff") Has to upload a File 
+      .btn-group.btn-group-toggle(data-toggle='buttons')
+        label.btn(style="margin-left:5em").btn-secondary
+          input#option1(type='radio', name='has_to_upload_a_file', value='1', autocomplete='off')
+          | Yes
+        label.btn.btn-secondary
+          input#option2(type='radio', name='has_to_upload_a_file', value='2', autocomplete='off')
+          | No                
+
+
+    #form-group
+      label(style = "font-family: 'Roboto', sans-serif; color :#fff") Body:
+      textarea.form-control(name = 'body_assignment', placeholder='Assignment details',rows='8',  required  = '')
+      br
+      input.btn.btn-primary(type = 'submit', value = 'Submit')

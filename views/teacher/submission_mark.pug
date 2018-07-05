@@ -14,16 +14,18 @@ html(lang='en')
     link(rel='stylesheet', href= '/css/submission_btn.css')
     link(rel='stylesheet', href= '/css/normalize.css')
     link(rel='stylesheet', href= '/css/main.css')
-    link(rel='stylesheet', href= '/css/btn_edit_delete.css')
     link(rel='stylesheet', href= '/css/logout.css')
-    link(rel='stylesheet', href='/css/background.css')
+    link(rel='stylesheet', href='/css/background_new.css')
     link(rel='stylesheet', href= '/css/menu.css')
+    link(rel='stylesheet', href= '/css/clock.css')
+    link(rel='stylesheet', href= '/css/registration.css')
     script(type='text/javascript', async='', src='/js/ga.js.download')
     script(src='/js/modernizr.custom.js.download')
-
-
+    //script(src='/js/clock.js')
   body
     // particles.js container
+    script(type="text/javascript", language="JavaScript").
+      initializeClock('clockdiv', new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000));
     header
       nav#mainnav(role='navigation')
         ul
@@ -71,78 +73,52 @@ html(lang='en')
         br
 
 
-    #particles-js(ng-class="{'blur-view': showModal, 'particles-semi-transparent': viewIsCreationsOrPress}")
-      canvas.particles-js-canvas-el(style='width: 100%; height: 100%;', width='1910', height='1500')
+    #particles-js(ng-class="{'blur-view': showModal, 'particles-semi-transparent': viewIsCreationsOrPress}", style = "height : 150%")
+      canvas.particles-js-canvas-el(style='width: 100%; height: 200%;', width='1910', height='3000')
     // ngView:
     .ng-scope(ng-view='', ng-class="{'blur-view': showPlayerView || showModal || showQuoteView}", style='')
       .introduction.ng-scope
-    #titles(style = "top:5%;width:100%").ng-scope
+    #titles(style = "top:5%;width : 100%").ng-scope
       h1(style = "margin-left:70px")= assignment.title
-      h3(style = "margin-left:70px")= assignment.body
-    #titles(style = "top:25% ; width:100%").ng-scope
+    #titles(style = "top:15%;width: 80%;margin-left:150px").ng-scope
+      .tbl-content(style = "height:200px")
+        table(cellpadding='0', cellspacing='0', border='0')
+          tbody
+            tr
+              td(style= "color:#fff; text-decoration: none; font-size: 1.25em")= assignment.body_assignment
+  
+    #titles(style = "top:55%;width: 80%;margin-left:150px").ng-scope
+      .tbl-content(style = "height:200px")
+        table(cellpadding='0', cellspacing='0', border='0')
+          tbody
+            tr
+              td(style= "color:#fff; text-decoration: none; font-size: 1.25em")= submission.assignment_submission
+
+    #titles(style = "top:110%;width:100%").ng-scope
       // <canvas id="canvas" class="title-animated" ng-show="loaded"></canvas>
-
-      #table_info_details
-        .tbl-header
-          table(cellpadding='0', cellspacing='0', border='0')
-            thead
-              tr
-                th 
-                th Details
-
-        .tbl-content(style = "height:300px")
-          table(cellpadding='0', cellspacing='0', border='0')
-            tbody
-              tr
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Subission Satus
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) No Submission
-              tr
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Due Date
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.due_date
-              tr
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Uploaded Date
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" )
-              tr
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Marks Allocated
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.marks_allocated
-              tr
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Assignment Type
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.assignment_type
-              tr
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Has to Upload a File
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.has_to_upload_a_file
-              tr
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Marks
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) 0.0
-          br
-          br
-      #titles(style = "top:110% ;width :10%").ng-scope
-        form(action='/assignments/edit/'+assignment._id)
-          .container-login100-form-btn-edit.p-t-10
-            button.login100-form-btn
-              | Edit
-      #titles(style = "top:110% ; width :10%").ng-scope
-        form(action='/',data-id=assignment._id)
-          .container-login100-form-btn-delete.p-t-10
-            button.login100-form-btn.delete-assignment
-              | Delete
-      #titles(style = "top:110% ; width :20%").ng-scope
-        form(action='/')
-          .container-login100-form-btn-submission.p-t-10
-            button.login100-form-btn-submission
-              | Submissions
-
-
-
+      .signup__container
+        //.container__child.signup__thumbnail
+        //  .signup__overlay
+        .container__child.signup__form
+          form(method='POST', action='/assignments/add')
+            .form-group
+              label(for='marks_allocated') Marks Allocated
+              input.form-control(type='text', name='marks_allocated', placeholder='marks', required='')
+            .form-group
+              label(for='body_assignment') Comments
+              textarea.form-control(name = 'body_assignment', placeholder='Assignment details',rows='4',  required  = '')
         
                     
     script(src='/js/particles.min.js.download')
     //script(src='/js/stats.min.js.download')
     script(src='/js/background.js')
+    //script(src='/js/clock.js')
     script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
     script(src='/js/jquery.js')
+    script(src='/js/classie.js.download')
+    script(src='/js/uiMorphingButton_fixed.js.download')
+    script(src='/js/submission.js')
     script(src='/js/navigator.js')
     div(style='position: absolute; top: 0px; left: 0px; cursor: pointer; opacity: 0.9; z-index: 10000;')
       canvas(width='80', height='48', style='width: 80px; height: 48px; display: block;')
-      canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')
       canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')

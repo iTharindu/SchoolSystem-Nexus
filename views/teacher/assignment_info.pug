@@ -1,4 +1,3 @@
-// saved from url=(0088)
 html(lang='en')
   head
     meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
@@ -8,11 +7,20 @@ html(lang='en')
     link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/font-awesome.css')
     link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/icon-font.min.css')
     link(rel='stylesheet', href= '/css/table_assignment.css')
-    link(rel='stylesheet', href= '/css/logout.css')
     link(rel='stylesheet', href= '/css/modal.css')
+    link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
+    link(rel='stylesheet', href= '/css/submission.css')
+    link(rel='stylesheet', href= '/css/submission_style.css')
+    link(rel='stylesheet', href= '/css/submission_btn.css')
+    link(rel='stylesheet', href= '/css/normalize.css')
     link(rel='stylesheet', href= '/css/main.css')
+    link(rel='stylesheet', href= '/css/btn_edit_delete.css')
+    link(rel='stylesheet', href= '/css/logout.css')
     link(rel='stylesheet', href='/css/background.css')
     link(rel='stylesheet', href= '/css/menu.css')
+    script(type='text/javascript', async='', src='/js/ga.js.download')
+    script(src='/js/modernizr.custom.js.download')
+
 
   body
     // particles.js container
@@ -64,36 +72,68 @@ html(lang='en')
 
 
     #particles-js(ng-class="{'blur-view': showModal, 'particles-semi-transparent': viewIsCreationsOrPress}")
-      canvas.particles-js-canvas-el(style='width: 100%; height: 100%;')
+      canvas.particles-js-canvas-el(style='width: 100%; height: 100%;', width='1910', height='1500')
     // ngView:
     .ng-scope(ng-view='', ng-class="{'blur-view': showPlayerView || showModal || showQuoteView}", style='')
       .introduction.ng-scope
-    #titles(style = "top:20% ;width :100%").ng-scope
+    #titles(style = "top:5%;width:100%").ng-scope
+      h1(style = "margin-left:70px")= assignment.title
+      h3(style = "margin-left:70px")= assignment.body_assignment
+    #titles(style = "top:25% ; width:100%").ng-scope
       // <canvas id="canvas" class="title-animated" ng-show="loaded"></canvas>
 
-      #table_info
+      #table_info_details
         .tbl-header
           table(cellpadding='0', cellspacing='0', border='0')
             thead
               tr
-                th Title
-                th Due Date
-                th Marks Allocated
-                th Assignment Type
-        .tbl-content
+                th 
+                th Details
+
+        .tbl-content(style = "height:306px")
           table(cellpadding='0', cellspacing='0', border='0')
             tbody
-              each assignment, i in assignments
-                tr
-                  td
-                    a(href="/assignments/submission/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.title
-                  td
-                    a(href="/assignments/submission/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.due_date
-                  td
-                    a(href="/assignments/submission/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.marks_allocated
-                  td
-                    a(href="/assignments/submission/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.assignment_type
-                
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Subission Satus
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) No Submission
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Due Date
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.due_date
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Uploaded Date
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Marks Allocated
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.marks_allocated
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Assignment Type
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.assignment_type
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Has to Upload a File
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.has_to_upload_a_file
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Marks
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) 0.0
+    
+      #titles(style = "top:110% ;width :10%").ng-scope
+        form(action='/assignments/edit/'+assignment._id)
+          .container-login100-form-btn-edit.p-t-10
+            button.login100-form-btn
+              | Edit
+      #titles(style = "top:110% ; width :10%").ng-scope
+        form(action='/',data-id=assignment._id)
+          .container-login100-form-btn-delete.p-t-10
+            button.login100-form-btn.delete-assignment
+              | Delete
+      #titles(style = "top:110% ; width :20%").ng-scope
+        form(action='/assignments/submissions/'+assignment._id)
+          .container-login100-form-btn-submission.p-t-10
+            button.login100-form-btn-submission
+              | Submissions
+
+
+
+        
                     
     script(src='/js/particles.min.js.download')
     //script(src='/js/stats.min.js.download')

@@ -7,15 +7,13 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
-const config = require('./config/database');
-const fileupload=require('express-fileupload');
-const MongoStore=require('connect-mongo')(session);
+const config = require('./config/database')
 
 mongoose.connect('mongodb://localhost/nodekb');
 let db = mongoose.connection;
 
 db.once('open',function(){
-  console.log('server connected');
+  console.log('server connectedd');
 });
 
 db.on('error',function(err){
@@ -24,7 +22,7 @@ db.on('error',function(err){
 
 const app = express();
 
-let Student = require('./models/student');
+//let Student = require('./models/student');
 let Assignment = require('./models/assignment');
 
 app.set('views',path.join(__dirname,'views'));
@@ -37,21 +35,10 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname,'public')));
 
 
-/*app.use(session({
+app.use(session({
   secret: 'keyboard cat',
   resave: true,
   saveUninitialized: true,
-}));*/
-
-app.use(session({
-  secret:'foo',
-  store:new MongoStore({
-    host:'127.0.0.1',
-    port:'27017',
-    url: 'mongodb://localhost:27017/nodekb'
-  }),
-  resave: true,
-  saveUninitialized:true
 }));
 
 app.use(require('connect-flash')());
@@ -130,56 +117,6 @@ app.post('/add/teacher',function(req,res){
 
 });
 
-app.post('/add/student',function(req,res){
-  const username = req.body.username;
-  const email = req.body.email;
-  const password = req.body.password;
-  const passwordRepeat = req.body.passwordRepeat;
-
-  req.checkBody('username','name is required').notEmpty();
-  req.checkBody('email','email is required').notEmpty();
-  req.checkBody('email','email is incorrect').isEmail();
-  req.checkBody('password','password is required').notEmpty();
-  req.checkBody('passwordRepeat','passwordRepeat is required').notEmpty();
-  req.checkBody('passwordRepeat','passwords do not match').equals(req.body.password);
-
-  let errors = req.validationErrors();
-
-  if(errors){
-    res.render('add_teacher',{
-      errors:errors
-    });
-  }else{
-      let student = new Student({
-        username:username,
-        email:email,
-        password:password
-      });
-      Student.createStudent(student, function(err, user){
-			  if(err) throw err;
-			  console.log(student);
-	    });
-
-      res.redirect('/add/teacher');
-  }
-
-});
-
-app.get('/user/login',function(req,res){
-  res.render('login');
-});
-
-app.post('/user/login',passport.authenticate('local'),function(req,res,next){
-/*  passport.authenticate('local',{
-    successRedirect:'/main',
-    failureRedirect:'/'
-  })(req,res,next);*/
-      if(req.user.designation=='Teacher'){
-        res.redirect('/teacher');
-      }else if(req.user.designation=='Principal'){
-        res.redirect('/principal');
-      }
-});
 
 app.get('/user/logincheck',function(req,res){
   res.render('logincheck');
@@ -203,11 +140,11 @@ app.get('/',function(req,res){
 let assignments = require('./routes/assignments');
 app.use('/assignments',assignments);
 
-var teacher=require(__dirname+'/routes/teacher');
-app.use('/teacher',teacher);
+let users = require('./routes/users');
+app.use('/users',users);
 
-var principal=require(__dirname+'/routes/principal');
-app.use('/principal',principal);
+let teacher = require('./routes/teacher');
+app.use('/teacher',teacher);
 
 app.listen(3000,function(){
     console.log("Server started on port 3000");

@@ -27,13 +27,17 @@ html(lang='en')
     .limiter
       .container-login100(style="background-image: url('/images/LoginImage.png');")
         .wrap-login100.p-t-190.p-b-30
-          form(method='POST', action='/user/login')
+          != messages('message', locals)
+          if errors
+            each error, i in errors
+              div(class="alert alert-danger") #{error.msg}
+          form(method='POST', action='/users/login')
+
             .wrap-input100.validate-input.m-b-10(data-validate='Username is required')
               input.input100(type='text', name='username', placeholder='Username')
               span.focus-input100
               span.symbol-input100
                 i.fa.fa-user
-            
             .wrap-input100.validate-input.m-b-10(data-validate='Password is required')
               input.input100(type='password', name='password', placeholder='Password')
               span.focus-input100

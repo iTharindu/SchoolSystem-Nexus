@@ -12,6 +12,7 @@ html(lang='en')
     link(rel='stylesheet', href= '/css/main.css')
     link(rel='stylesheet', href='/css/background.css')
     link(rel='stylesheet', href= '/css/menu.css')
+    link(rel='stylesheet', href= '/css/btn_add_assignment.css')
 
   body
     // particles.js container
@@ -67,46 +68,37 @@ html(lang='en')
     // ngView:
     .ng-scope(ng-view='', ng-class="{'blur-view': showPlayerView || showModal || showQuoteView}", style='')
       .introduction.ng-scope
-    #titles(style = "top:5%").ng-scope
-      h1(style = "margin-left:70px")= assignment.title
-      h3(style = "margin-left:70px")= assignment.body
-    #titles(style = "top:30%").ng-scope
+    #titles(style = "top:20%;width:100%").ng-scope
       // <canvas id="canvas" class="title-animated" ng-show="loaded"></canvas>
 
-      #table_info_details
+      #table_info
         .tbl-header
           table(cellpadding='0', cellspacing='0', border='0')
             thead
               tr
-                th 
-                th Details
-
-        .tbl-content(style = "height:300px")
+                th Title
+                th Due Date
+                th Marks Allocated
+                th Assignment Type
+        .tbl-content
           table(cellpadding='0', cellspacing='0', border='0')
             tbody
-              tr
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Subission Satus
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) No Submission
-              tr
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Due Date
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.due_date
-              tr
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Uploaded Date
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" )
-              tr
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Marks Allocated
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.marks_allocated
-              tr
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Assignment Type
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.assignment_type
-              tr
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Has to Upload a File
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.has_to_upload_a_file
-              tr
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Marks
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) 0.0
-        br
-        br
+              each assignment, i in assignments
+                tr
+                  td
+                    a(href="/assignments/info/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.title
+                  td
+                    a(href="/assignments/info/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.due_date
+                  td
+                    a(href="/assignments/info/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.marks_allocated
+                  td
+                    a(href="/assignments/info/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.assignment_type
+              
+      #titles(style = "top:120%;width:100%").ng-scope
+        form(action='/assignments/add')
+          .container-login100-form-btn.p-t-10
+            button.login100-form-btn
+              | Add Assignment 
                 
                     
     script(src='/js/particles.min.js.download')

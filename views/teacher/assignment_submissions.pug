@@ -1,4 +1,3 @@
-// saved from url=(0088)https://s.codepen.io/boomerang/iFrameKey-7f703396-49b6-7b91-0d61-8f4a6e3e8e5c/index.html
 html(lang='en')
   head
     meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
@@ -77,29 +76,17 @@ html(lang='en')
           table(cellpadding='0', cellspacing='0', border='0')
             thead
               tr
-                th Title
-                th Due Date
-                th Marks Allocated
-                th Assignment Type
+                th Submisions
         .tbl-content
           table(cellpadding='0', cellspacing='0', border='0')
             tbody
-              each assignment, i in assignments
+              each submission, i in submissions
                 tr
                   td
-                    a(href="/assignments/info/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.title
+                    a(href="/assignments/submission_mark/"+submission._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= submission.assignment_id
                   td
-                    a(href="/assignments/info/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.due_date
-                  td
-                    a(href="/assignments/info/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.marks_allocated
-                  td
-                    a(href="/assignments/info/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.assignment_type
+                    a(href="/assignments/submission_mark/"+submission._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= submission.assignment_submission 
               
-      #titles(style = "top:120%;width:100%").ng-scope
-        form(action='/assignments/add')
-          .container-login100-form-btn.p-t-10
-            button.login100-form-btn
-              | Add Assignment 
                 
                     
     script(src='/js/particles.min.js.download')

@@ -1,5 +1,4 @@
-// saved from url=(0088)
-html(lang='en')
+html
   head
     meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
     //script(src='/css/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js.download')
@@ -8,11 +7,19 @@ html(lang='en')
     link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/font-awesome.css')
     link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/icon-font.min.css')
     link(rel='stylesheet', href= '/css/table_assignment.css')
-    link(rel='stylesheet', href= '/css/logout.css')
     link(rel='stylesheet', href= '/css/modal.css')
+    link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
+    link(rel='stylesheet', href= '/css/submission.css')
+    link(rel='stylesheet', href= '/css/submission_style.css')
+    link(rel='stylesheet', href= '/css/submission_btn.css')
+    link(rel='stylesheet', href= '/css/normalize.css')
     link(rel='stylesheet', href= '/css/main.css')
-    link(rel='stylesheet', href='/css/background.css')
+    link(rel='stylesheet', href= '/css/logout.css')
+    link(rel='stylesheet', href='/css/background_new.css')
     link(rel='stylesheet', href= '/css/menu.css')
+    script(type='text/javascript', async='', src='/js/ga.js.download')
+    script(src='/js/modernizr.custom.js.download')
+
 
   body
     // particles.js container
@@ -64,42 +71,69 @@ html(lang='en')
 
 
     #particles-js(ng-class="{'blur-view': showModal, 'particles-semi-transparent': viewIsCreationsOrPress}")
-      canvas.particles-js-canvas-el(style='width: 100%; height: 100%;')
+      canvas.particles-js-canvas-el(style='width: 100%; height: 150%;', width='1910', height='3000')
     // ngView:
     .ng-scope(ng-view='', ng-class="{'blur-view': showPlayerView || showModal || showQuoteView}", style='')
       .introduction.ng-scope
-    #titles(style = "top:20% ;width :100%").ng-scope
+    #titles(style = "top:5%;width : 100%").ng-scope
+      h1(style = "margin-left:70px")= assignment.title
+      h3(style = "margin-left:70px")= assignment.body_assignment
+    #titles(style = "top:25%;width : 100%").ng-scope
       // <canvas id="canvas" class="title-animated" ng-show="loaded"></canvas>
 
-      #table_info
+      #table_info_details
         .tbl-header
           table(cellpadding='0', cellspacing='0', border='0')
             thead
               tr
-                th Title
-                th Due Date
-                th Marks Allocated
-                th Assignment Type
-        .tbl-content
+                th 
+                th Details
+
+        .tbl-content(style = "height:305px")
           table(cellpadding='0', cellspacing='0', border='0')
             tbody
-              each assignment, i in assignments
-                tr
-                  td
-                    a(href="/assignments/submission/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.title
-                  td
-                    a(href="/assignments/submission/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.due_date
-                  td
-                    a(href="/assignments/submission/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.marks_allocated
-                  td
-                    a(href="/assignments/submission/"+assignment._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= assignment.assignment_type
-                
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Subission Satus
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) No Submission
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Due Date
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.due_date
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Uploaded Date
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.uploaded_date
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Marks Allocated
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.marks_allocated
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Assignment Type
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.assignment_type
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Has to Upload a File
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.has_to_upload_a_file
+              tr
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Marks
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) 0.0
+
+      #titles(style = "top:110%; width:70%; margin-left:200px").ng-scope
+        #form-group
+          form(method = 'POST', action = '/assignments/details/'+assignment._id)
+            label(style = "font-family: 'Roboto', sans-serif; color :#fff") Body:
+            textarea.form-control(name = 'assignment_submission', placeholder='Assignment details',rows='8',  required  = '')
+            br
+            input.btn.btn-primary(type = 'submit', value = 'Submit')
+
+
+
+        
                     
     script(src='/js/particles.min.js.download')
     //script(src='/js/stats.min.js.download')
     script(src='/js/background.js')
     script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
     script(src='/js/jquery.js')
+    script(src='/js/classie.js.download')
+    script(src='/js/uiMorphingButton_fixed.js.download')
+    script(src='/js/submission.js')
     script(src='/js/navigator.js')
     div(style='position: absolute; top: 0px; left: 0px; cursor: pointer; opacity: 0.9; z-index: 10000;')
       canvas(width='80', height='48', style='width: 80px; height: 48px; display: block;')
