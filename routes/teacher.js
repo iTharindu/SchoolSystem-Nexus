@@ -70,7 +70,7 @@ router.delete('/leaveApp/delete/:id',function(req,res){
       message.msg='Delete Failed';
       res.send('success');
     }else{
-      message.status='success';
+      message.status='danger';
       message.msg='Deleted Successfully';
       //res.status('200').send({data:"cra[]"});
       res.send('success');
@@ -163,7 +163,7 @@ router.get('/schemes/view-previous',function(req,res){
     if(err){
       console.log(err);
     }else{
-      res.render('teacher/schemes-list',{data});
+      res.render('teacher/schemes-list',{data:data,message:message});
     }
   });
 });
@@ -200,7 +200,7 @@ router.post('/schemes/edit-data/:fname',fileupload(),function(req,res){
             }else{
               //req.flash('success','Scheme Data saved successfully');
               message.status='success';
-              message.msg='Scheme Data Edited Successfully pula';
+              message.msg='Scheme Data Edited Successfully';
               res.send('success');
             }
           });
@@ -221,7 +221,7 @@ router.post('/schemes/edit-data/:fname',fileupload(),function(req,res){
           }else{
             //req.flash('success','Scheme Data saved successfully');
             message.status='success';
-            message.msg='Scheme Data Edited Successfully hula';
+            message.msg='Scheme Data Edited Successfully';
             res.send('success');
           }
         });
@@ -237,13 +237,19 @@ router.post('/schemes/edit-data/:fname',fileupload(),function(req,res){
 });
 
 router.delete('/schemes/delete/:id',function(req,res){
+  //console.log("1");
   schemeData.findOneAndRemove({_id:req.params.id},function(err,data){
+    //console.log("2");
     var fpath=path.join(__dirname,'../public/uploads/schemes/'+data.fileName);
     fs.unlink(fpath,function(errr){
+      //console.log("3");
       if(errr){
+        //console.log("4");
         console.log(err);
       }else{
-        req.flash('success','Deleted Successfully');
+        //console.log("5");
+        message.status='success';
+        message.msg='Deleted Successfully';
         res.send('success');
       }
     });
