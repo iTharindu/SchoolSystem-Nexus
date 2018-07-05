@@ -12,7 +12,8 @@ block content
               a.input-group-text.delete(id=val._id, href='#') Delete
               a.input-group-text(href='/uploads/circulars/'+val.fileName, download='') Download
         .input-group-append
-          a.input-group-text(href='/principal/circulars') Go Back
+          a.input-group-text(href='/principal/circulars/upload') Upload New Circular
+          a.input-group-text(href='/principal/') Go Back
   script.
     $(document).ready(function(){
       $('.delete').on('click',function(){

@@ -2,6 +2,8 @@ extends ../newLayout
 block content
   .signup__container
     .container__child.signup__form
+      #changeThis(style='display:none;')
+        div(class="alert alert-"+message.status) #{message.msg}
       .circularText
         div
           each val,i in data
@@ -27,6 +29,21 @@ block content
               input.btn.btn--form(type='submit', value='Go Back')
   script.
     $(document).ready(function(){
+      $.ajax({
+        type:'GET',
+        url:'/teacher/getmsg',
+        success:function(data){
+          if(data.message.status!=''){
+            $('#changeThis').css({
+              display:"block"
+            });
+            $.ajax({
+              type:"GET",
+              url:"/teacher/msgs/reset"
+            });
+          }
+        }
+      });
       $('.delete').on('click',function(){
         $.ajax({
           type:'DELETE',

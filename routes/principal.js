@@ -23,14 +23,16 @@ var user={
  grade: 5
 };
 
+var message={
+  status:'',
+  msg:''
+}
+
 router.get('/',function(req,res){
-  res.render('principal/principal');
+  res.render('principal/principal',{message:message});
 });
 
 //circulars/////////////////////////////////////////////////////////////////////
-router.get('/circulars',function(req,res){
-  res.render('principal/circularsMenu');
-});
 
 router.get('/circulars/upload',function(req,res){
   res.render('principal/circularsUpload');
@@ -74,9 +76,9 @@ router.post('/circulars/upload',fileupload(),function(req,res){
   }
 });
 
-router.get('/circulars/view-previous',function(req,res){
+router.get('/circulars/',function(req,res){
   circularData.find({},function(err,data){
-    res.render('principal/circularsPrevious',{data:data});
+    res.render('principal/circulars',{data:data});
   });
 });
 
