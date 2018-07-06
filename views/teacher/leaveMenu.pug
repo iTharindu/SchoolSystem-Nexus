@@ -16,11 +16,11 @@ block content
                 .m-t-lg
                   ul.list-inline
                     input.delete.btn.btn--form(type='button', id=val._id, value='Delete')
-            form(action='/teacher/applyLeave')
+            form(action='/leaves/applyLeave')
               .m-t-lg
                 ul.list-inline
                   input.btn.btn--form(type='submit', value='Apply New Leave')
-            form(action='/teacher')
+            form(action='/leaves')
               .m-t-lg
                 ul.list-inline
                   input.btn.btn--form(type='submit', value='Go Back')
@@ -29,7 +29,7 @@ block content
     $(document).ready(function(){
       $.ajax({
         type:'GET',
-        url:'/teacher/getmsg',
+        url:'/leaves/getmsg',
         success:function(data){
           if(data.message.status!=''){
             $('#changeThis').css({
@@ -37,7 +37,7 @@ block content
             });
             $.ajax({
               type:"GET",
-              url:"/teacher/msgs/reset"
+              url:"/leaves/msgs/reset"
             });
           }
         }
@@ -45,7 +45,7 @@ block content
       $('.delete').on('click',function(){
           $.ajax({
               type:'DELETE',
-              url:'/teacher/leaveApp/delete/'+this.id,
+              url:'/leaves/leaveApp/delete/'+this.id,
               success:function(){
                 location.reload();
               }

@@ -146,6 +146,18 @@ app.use('/users',users);
 let teacher = require('./routes/teacher');
 app.use('/teacher',teacher);
 
+let principal = require('./routes/principal');
+app.use('/principal',principal);
+
+let leaves = require('./routes/leaves');
+app.use('/leaves',leaves);
+
+let schemes = require('./routes/schemes');
+app.use('/schemes',schemes);
+
+let circulars = require('./routes/circulars');
+app.use('/circulars',circulars);
+
 app.listen(3000,function(){
     console.log("Server started on port 3000");
 });

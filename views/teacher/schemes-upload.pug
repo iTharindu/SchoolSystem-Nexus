@@ -20,7 +20,7 @@ block content
             .input-group-append
               input.input-group-text(type='submit')
               li.input-group-text
-                a(href='/teacher/schemes') Go Back
+                a(href='/schemes') Go Back
   script.
     $(document).ready(function () {
       const fileElement = $("#sampleFile")[0];
@@ -35,17 +35,17 @@ block content
         formData.set("grade", document.getElementById('grade').value);
         formData.set("pho", file);
 
-        $.ajax('/teacher/schemes/upload', {
+        $.ajax('/schemes/schemes/upload', {
           method: "POST",
           cache: false,
           contentType: false,
           processData: false,
           data: formData,
           success:function(){
-            location.href="/teacher/schemes";
+            location.href="/schemes/schemes";
           },
           error:function(){
-            location.replace('/teacher/schemes/upload');
+            location.replace('/schemes/schemes/upload');
           }
         });
       });

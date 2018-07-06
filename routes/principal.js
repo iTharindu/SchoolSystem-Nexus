@@ -33,7 +33,7 @@ router.get('/',function(req,res){
 });
 
 //circulars/////////////////////////////////////////////////////////////////////
-
+/*
 router.get('/circulars/upload',function(req,res){
   res.render('principal/circularsUpload');
 });
@@ -99,7 +99,7 @@ router.delete('/circulars/delete/:id',function(req,res){
     }
   });
 });
-
+/*
 //leaveApp///////////////////////////////////////////////////////////////////
 router.get('/leaveApps',function(req,res){
   leaveDB.find({},function(err,data){
@@ -133,8 +133,9 @@ router.post('/leave/approval/:id',function(req,res){
     }
   });
 });
-
+*/
 ///schemes//////////////////////////////////////////////////////////////////////////////////////////////
+/*
 router.get('/schemes',function(req,res){
   schemeDB.find({},function(err,data){
     if(err){
@@ -162,6 +163,7 @@ router.delete('/schemes/delete/:id',function(req,res){
     }
   });
 });
+*/
 
 router.get('/logout',function(req,res){
   req.logout();
