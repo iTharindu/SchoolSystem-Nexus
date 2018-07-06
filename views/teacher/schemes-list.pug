@@ -13,7 +13,7 @@ block content
               li.list-group-item= 'Grade : '+val.grade 
             br
             .input-group-append
-              form(action='/teacher/scheme/'+i)
+              form(action='/schemes/scheme/'+i)
                 .m-t-lg
                   ul.list-inline
                     input.btn.btn--form(type='submit', value='Edit')
@@ -23,7 +23,7 @@ block content
               .m-t-lg
                 ul.list-inline
                   a.btn.btn--form(href='/uploads/schemes/'+val.fileName, download='') Download
-        form(action='/teacher/schemes')
+        form(action='/schemes/schemes')
           .m-t-lg
             ul.list-inline
               input.btn.btn--form(type='submit', value='Go Back')
@@ -31,7 +31,7 @@ block content
     $(document).ready(function(){
       $.ajax({
         type:'GET',
-        url:'/teacher/getmsg',
+        url:'/schemes/getmsg',
         success:function(data){
           if(data.message.status!=''){
             $('#changeThis').css({
@@ -39,7 +39,7 @@ block content
             });
             $.ajax({
               type:"GET",
-              url:"/teacher/msgs/reset"
+              url:"/schemes/msgs/reset"
             });
           }
         }
@@ -47,7 +47,7 @@ block content
       $('.delete').on('click',function(){
         $.ajax({
           type:'DELETE',
-          url:'/teacher/schemes/delete/'+this.id,
+          url:'/schemes/delete/'+this.id,
           success:function(){
             location.reload();
           }

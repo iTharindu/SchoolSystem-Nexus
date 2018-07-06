@@ -3,7 +3,7 @@ block content
   .signup__container
     .container__child.signup__form
       .circularText
-        form#uploadForm.circular(ref='uploadForm', action='/principal/circulars/upload', method='POST', enctype='multipart/form-data')
+        form#uploadForm.circular(ref='uploadForm', action='/circulars/upload', method='POST', enctype='multipart/form-data')
           input#sampleFile.upload(type='file', name='sampleFile')
           br
           br
@@ -14,7 +14,7 @@ block content
           .input-group-append
             input.input-group-text(type='submit', value='Upload')
         .input-group-append
-          a.input-group-text(href='/principal/circulars') Go Back
+          a.input-group-text(href='/circulars') Go Back
 
   script.
     $(document).ready(function () {
@@ -29,17 +29,17 @@ block content
         formData.set("grade", document.getElementById('grade').value);
         formData.set("pho", file);
 
-        $.ajax('/principal/circulars/upload', {
+        $.ajax('/circulars/upload', {
           method: "POST",
           cache: false,
           contentType: false,
           processData: false,
           data: formData,
           success:function(){
-            location.href="/principal/circulars";
+            location.href="/circulars";
           },
           error:function(){
-            location.replace('/principal/circulars/upload');
+            location.replace('/circulars/upload');
           }
         });
       });

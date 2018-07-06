@@ -12,7 +12,7 @@ let submissionSchema = mongoose.Schema({
   comments_on_submission:{
     type : String,
     required : false
-  }
+  },
   marks_given:{
     type : Number,
     required : false

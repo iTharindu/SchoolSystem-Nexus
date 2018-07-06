@@ -6,8 +6,8 @@ block content
         ul.list-group
           each val, i in data
             li.list-group-item
-              a(href='/principal/leaveDetails/'+val._id)=val.teacherName
+              a(href='/leaves/leaveDetails/'+val._id)=val.teacherName
               br
-              a(href='/principal/leaveDetails/'+val._id)=val.dateOfCommencingLeave+' to '+ val.dateOfResumingLeave
+              a(href='/leaves/leaveDetails/'+val._id)=val.dateOfCommencingLeave+' to '+ val.dateOfResumingLeave
         .list-group
           a.list-group-item.list-group-item-action(href='/principal/') Go Back
