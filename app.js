@@ -158,6 +158,13 @@ app.use('/schemes',schemes);
 let circulars = require('./routes/circulars');
 app.use('/circulars',circulars);
 
+let marks = require('./routes/marks');
+app.use('/marks',marks);
+
+let reports = require('./routes/reports');
+app.use('/reports',reports);
+
+
 app.listen(3000,function(){
     console.log("Server started on port 3000");
 });
