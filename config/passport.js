@@ -1,5 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy;
-const Student = require('../models/student');
+const User = require('../models/user');
 const config = require('../config/database');
 const bcrypt = require('bcryptjs');
 
@@ -7,7 +7,7 @@ module.exports = function(passport){
   passport.use(new LocalStrategy(function(username, password, done){
 
     let query = {username:username};
-    Student.findOne(query,function(err,user){
+    User.findOne(query,function(err,user){
       if (err) throw err;
       if(!user){
         return done(null, false, {message: 'Unknown User'});
@@ -28,7 +28,7 @@ module.exports = function(passport){
   });
 
   passport.deserializeUser(function(id, done) {
-    Student.getUserById(id, function(err, user) {
+    User.getUserById(id, function(err, user) {
       done(err, user);
   });
 });

@@ -1,0 +1,113 @@
+extends ./newLayout
+
+block content
+    h1 Timetable
+    form(method='post', action='/timetable/add')
+      #container.col
+        table(style='width:100%')
+          tr
+            td  Class
+            td
+              | :  
+              input(type='text', name='class', placeholder='eg:12D')
+      
+          tr
+            th Monday
+            th Tuesday
+            th Wednesday
+            th Thursday
+            th Friday
+          tr
+            td
+              input(type='text', name='monday_first')
+            td
+              input(type='text', name='tuesday_first')
+            td
+              input(type='text', name='wednesday_first')
+            td
+              input(type='text', name='thursday_first')
+            td
+              input(type='text', name='friday_first')
+          tr
+            td
+              input(type='text', name='monday_second')
+            td
+              input(type='text', name='tuesday_second')
+            td
+              input(type='text', name='wednesday_second')
+            td
+              input(type='text', name='thursday_second')
+            td
+              input(type='text', name='friday_second')
+          tr
+            td
+              input(type='text', name='monday_third')
+            td
+              input(type='text', name='tuesday_third')
+            td
+              input(type='text', name='wednesday_third')
+            td
+              input(type='text', name='thursday_third')
+            td
+              input(type='text', name='friday_third')
+          tr
+            td
+              input(type='text', name='monday_fourth')
+            td
+              input(type='text', name='tuesday_fourth')
+            td
+              input(type='text', name='wednesday_fourth')
+            td
+              input(type='text', name='thursday_fourth')
+            td
+              input(type='text', name='friday_fourth')
+          tr
+            td
+          tr
+            td
+              input(type='text', name='monday_fifth')
+            td
+              input(type='text', name='tuesday_fifth')
+            td
+              input(type='text', name='wednesday_fifth')
+            td
+              input(type='text', name='thursday_fifth')
+            td
+              input(type='text', name='friday_fifth')
+          tr
+            td
+              input(type='text', name='monday_sixth')
+            td
+              input(type='text', name='tuesday_sixth')
+            td
+              input(type='text', name='wednesday_sixth')
+            td
+              input(type='text', name='thursday_sixth')
+            td
+              input(type='text', name='friday_sixth')
+          tr
+            td
+              input(type='text', name='monday_seventh')
+            td
+              input(type='text', name='tuesday_seventh')
+            td
+              input(type='text', name='wednesday_seventh')
+            td
+              input(type='text', name='thursday_seventh')
+            td
+              input(type='text', name='friday_seventh')
+          tr
+            td
+              input(type='text', name='monday_eighth')
+            td
+              input(type='text', name='tuesday_eighth')
+            td
+              input(type='text', name='wednesday_eighth')
+            td
+              input(type='text', name='thursday_eighth')
+            td
+              input(type='text', name='friday_eighth')
+          tr
+            td
+              input(type='submit', value='Submit')
+      

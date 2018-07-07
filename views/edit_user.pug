@@ -24,19 +24,19 @@ html(lang='en')
           if errors
             each error, i in errors
               div(class="alert alert-danger") #{error.msg}
-          form(method='POST', action='/users/student')
+          form(method='POST', action='/users/adduser')
             .form-group
               label(for='username') Username
-              input.form-control(type='text', name='username', placeholder='james.bond', required='')
+              input.form-control(type='text', name='username', required='')
             .form-group
               label(for='email') Email
-              input.form-control(type='text', name='email', placeholder='james.bond@spectre.com', required='')
+              input.form-control(type='text', name='email', required='')
             .form-group
               label(for='password') Password
-              input.form-control(type='password', name='password', placeholder='********', required='')
+              input.form-control(type='password', name='password', required='')
             .form-group
               label(for='passwordRepeat') Repeat Password
-              input.form-control(type='password', name='passwordRepeat', placeholder='********', required='')
+              input.form-control(type='password', name='passwordRepeat', required='')
             .m-t-lg
               ul.list-inline
                 li

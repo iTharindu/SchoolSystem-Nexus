@@ -107,14 +107,14 @@ html(lang='en')
             actions
               a(href='#settings') settings
               |  
-              a(href='#logout') logout
+              a(href='/users/logout') logout
         br
         br
         br
         br
 
 
-    #particles-js(ng-class="{'blur-view': showModal, 'particles-semi-transparent': viewIsCreationsOrPress}" style = "height:150%")
+    #particles-js(ng-class="{'blur-view': showModal, 'particles-semi-transparent': viewIsCreationsOrPress}" style = "height:200%")
       canvas.particles-js-canvas-el(style='width: 100%; height: 200%;', width='1910', height='3000')
     // ngView:
     .ng-scope(ng-view='', ng-class="{'blur-view': showPlayerView || showModal || showQuoteView}", style='')
@@ -160,12 +160,9 @@ html(lang='en')
                 th 
                 th Details
 
-        .tbl-content(style = "height:305px")
+        .tbl-content(style = "height:300px")
           table(cellpadding='0', cellspacing='0', border='0')
             tbody
-              tr
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Subission Satus
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) No Submission
               tr
                 td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Due Date
                 td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.due_date
@@ -181,25 +178,66 @@ html(lang='en')
               tr
                 td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Has to Upload a File
                 td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.has_to_upload_a_file
-              tr
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Marks
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) 0.0
+                
+      #titles(style = "top:125%;width : 100%").ng-scope
+        // <canvas id="canvas" class="title-animated" ng-show="loaded"></canvas>
+  
+        #table_info_details
+          .tbl-header
+            table(cellpadding='0', cellspacing='0', border='0')
+              thead
+                tr
+                  th 
+                  th Submission Details
+          .tbl-content(style = "height:100px")
+            table(cellpadding='0', cellspacing='0', border='0')
+              tbody
+                if submission !== null
+                  tr
+                    td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Submission Satus
+                    td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Submitted
+                  if submission.marks_given !== null
+                    tr
+                      td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Marks
+                      td(style= "color:#fff; text-decoration: none; font-size: 1em" )= submission.marks_given
+                  else 
+                    tr
+                      td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Marks
+                      td(style= "color:#fff; text-decoration: none; font-size: 1em" ) 0.0
+                else
+                  tr
+                    td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Submission Satus
+                    td(style= "color:#fff; text-decoration: none; font-size: 1em" ) No Submission
+                  tr
+                    td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Marks
+                    td(style= "color:#fff; text-decoration: none; font-size: 1em" ) 0.0
 
-      #titles(style = "top:110%;width:100%").ng-scope
+      #titles(style = "top:210%;width:100%").ng-scope
         section
           .mockup-content
             .morph-button.morph-button-modal.morph-button-modal-2.morph-button-fixed
-              button(type='button') submission
-              .morph-content(style='left: 433.7px; top: 444.238px;')
-                div
-                  .content-style-form.content-style-form-1
-                    span(style =	"top: 0;right: 0").fa.fa-close 
-                    h2 Submission
-                    #form-group
-                      form(method = 'POST', action = '/assignments/submission/'+assignment._id)
-                        textarea.form-control(name = 'assignment_submission', placeholder='Submissions',rows='6',  required  = '')
-                        input.btn.btn-danger(type = 'submit', value = 'Submit')
-
+              if submission === null
+                button(type='button') submission
+                .morph-content(style='left: 433.7px; top: 444.238px;')
+                  div
+                    .content-style-form.content-style-form-1
+                      span(style =	"top: 0;right: 0").fa.fa-close 
+                      h2 Submission
+                      #form-group
+                        form(method = 'POST', action = '/assignments/submission/'+assignment._id)
+                          textarea.form-control(name = 'assignment_submission',rows='6',  required  = '') Submission
+                          input.btn.btn-danger(type = 'submit', value = 'Submit')
+              else
+                button(type='button') Edit
+                .morph-content(style='left: 433.7px; top: 444.238px;')
+                  div
+                    .content-style-form.content-style-form-1
+                      span(style =	"top: 0;right: 0").fa.fa-close 
+                      h2 Submission
+                      #form-group
+                        form(method = 'POST', action = '/assignments/submissionedit/'+assignment._id)
+                          textarea.form-control(name = 'assignment_submission',rows='6',  required  = '')= submission.assignment_submission
+                          input.btn.btn-danger(type = 'submit', value = 'Save')            
 
 
 

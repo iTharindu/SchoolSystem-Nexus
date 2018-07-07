@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 var bcrypt = require('bcryptjs')
 
-const studentSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
   username : {
     type : String,
     required : true
@@ -13,20 +13,24 @@ const studentSchema = mongoose.Schema({
   password : {
     type : String,
     required : true
+  },
+  type : {
+    type : String,
+    required : true
   }
 });
 
-const Student = module.exports = mongoose.model('Student',studentSchema)
+const User = module.exports = mongoose.model('User',userSchema)
 
-module.exports.createStudent = function(newStudent, callback){
+module.exports.createUser = function(newUser, callback){
 	bcrypt.genSalt(10, function(err, salt) {
-	  bcrypt.hash(newStudent.password, salt, function(err, hash) {
-	     newStudent.password = hash;
-	     newStudent.save(callback);
+	  bcrypt.hash(newUser.password, salt, function(err, hash) {
+	     newUser.password = hash;
+	     newUser.save(callback);
 	    });
 	});
 }
 
 module.exports.getUserById = function(id, callback){
-	Student.findById(id, callback);
+	User.findById(id, callback);
 }
