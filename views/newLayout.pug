@@ -28,16 +28,18 @@ html(lang='en')
               |  
               a(href='#logout') logout
     // particles.js container
-    #particles-js
+    //#particles-js
       canvas.particles-js-canvas-el
+    #particles-js(ng-class="{'blur-view': showModal, 'particles-semi-transparent': viewIsCreationsOrPress}" style = "height:150%")
+      canvas.particles-js-canvas-el(style='width: 100%; height: 200%;', width='1910', height='3000')
     #titles.ng-scope
       br
       br
       br
       br
       br
-      .container
-        != messages('message',locals)
+      .container(style='box-sizing:content-box;width: 300px;padding: 30px;')
+        //!= messages('message',locals)
         block content
       
       nav#mainnav(role='navigation')
@@ -81,7 +83,7 @@ html(lang='en')
     script(src='/js/jquery.js')
     script(src='/js/navigator.js')
     div(style='position: absolute; top: 0px; left: 0px; cursor: pointer; opacity: 0.9; z-index: 10000;')
-    canvas(width='80', height='48', style='width: 80px; height: 48px; display: block;')
-    canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')
-    canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')
+      canvas(width='80', height='48', style='width: 80px; height: 48px; display: block;')
+      canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')
+      canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')
     

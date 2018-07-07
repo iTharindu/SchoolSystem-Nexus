@@ -1,6 +1,6 @@
 extends ../newLayout
 block content
-  .signup__container
+  .signup__container(style='box-sizing:content-box;padding: 30px;')
     .container__child.signup__form
       #changeThis(style='display:none;')
         div(class="alert alert-"+message.status) #{message.msg}
@@ -23,7 +23,7 @@ block content
               .m-t-lg
                 ul.list-inline
                   a.btn.btn--form(href='/uploads/schemes/'+val.fileName, download='') Download
-        form(action='/schemes/schemes')
+        form(action='/schemes/schemes ')
           .m-t-lg
             ul.list-inline
               input.btn.btn--form(type='submit', value='Go Back')

@@ -137,17 +137,19 @@ app.get('/',function(req,res){
   });
 });
 
+app.get('/teacher',function(req,res){
+  res.render('teacher/teacher');
+});
+
+app.get('/principal',function(req,res){
+  res.render('principal/principal');
+});
+
 let assignments = require('./routes/assignments');
 app.use('/assignments',assignments);
 
 let users = require('./routes/users');
 app.use('/users',users);
-
-let teacher = require('./routes/teacher');
-app.use('/teacher',teacher);
-
-let principal = require('./routes/principal');
-app.use('/principal',principal);
 
 let leaves = require('./routes/leaves');
 app.use('/leaves',leaves);
@@ -157,6 +159,12 @@ app.use('/schemes',schemes);
 
 let circulars = require('./routes/circulars');
 app.use('/circulars',circulars);
+
+let marks = require('./routes/marks');
+app.use('/marks',marks);
+
+let reports = require('./routes/reports');
+app.use('/reports',reports);
 
 app.listen(3000,function(){
     console.log("Server started on port 3000");
