@@ -33,7 +33,7 @@ record.get('/add',function(req,res){
 // submit post Route
 record.post('/add',function(req,res){
   req.checkBody('StudentID','Student ID is required').notEmpty();
-  req.checkBody('StudentID','StudeID used previously').mapped();
+  //req.checkBody('StudentID','StudeID used previously').mapped();
   req.checkBody('Subject1','Subject1 is required').notEmpty();
   req.checkBody('Marks1','Marks1 is required').notEmpty();
   req.checkBody('Marks1','Marks1 should be between 0-100!').isInt({min:0,max:100});
