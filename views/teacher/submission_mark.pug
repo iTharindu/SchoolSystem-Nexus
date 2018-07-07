@@ -6,6 +6,7 @@ html(lang='en')
     meta(name='robots', content='noindex')
     link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/font-awesome.css')
     link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/icon-font.min.css')
+    link(rel = "stylesheet" href = "/css/registration.css")
     link(rel='stylesheet', href= '/css/table_assignment.css')
     link(rel='stylesheet', href= '/css/modal.css')
     link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
@@ -18,7 +19,6 @@ html(lang='en')
     link(rel='stylesheet', href='/css/background_new.css')
     link(rel='stylesheet', href= '/css/menu.css')
     link(rel='stylesheet', href= '/css/clock.css')
-    link(rel='stylesheet', href= '/css/registration.css')
     script(type='text/javascript', async='', src='/js/ga.js.download')
     script(src='/js/modernizr.custom.js.download')
     //script(src='/js/clock.js')
@@ -66,7 +66,7 @@ html(lang='en')
             actions
               a(href='#settings') settings
               |  
-              a(href='#logout') logout
+              a(href='users/logout') logout
         br
         br
         br
@@ -80,33 +80,37 @@ html(lang='en')
       .introduction.ng-scope
     #titles(style = "top:5%;width : 100%").ng-scope
       h1(style = "margin-left:70px")= assignment.title
-    #titles(style = "top:15%;width: 80%;margin-left:150px").ng-scope
-      .tbl-content(style = "height:200px")
+    #titles(style = "top:15%;width: 75%;margin-left:150px").ng-scope
+      .tbl-content(style = "height:160px")
         table(cellpadding='0', cellspacing='0', border='0')
           tbody
             tr
               td(style= "color:#fff; text-decoration: none; font-size: 1.25em")= assignment.body_assignment
   
-    #titles(style = "top:55%;width: 80%;margin-left:150px").ng-scope
-      .tbl-content(style = "height:200px")
+    #titles(style = "top:45%;width: 75%;margin-left:150px").ng-scope
+      .tbl-content(style = "height:160px")
         table(cellpadding='0', cellspacing='0', border='0')
           tbody
             tr
               td(style= "color:#fff; text-decoration: none; font-size: 1.25em")= submission.assignment_submission
 
-    #titles(style = "top:110%;width:100%").ng-scope
+    #titles(style = "top:100%;width:80% ; margin-left:100px").ng-scope
       // <canvas id="canvas" class="title-animated" ng-show="loaded"></canvas>
       .signup__container
         //.container__child.signup__thumbnail
         //  .signup__overlay
         .container__child.signup__form
-          form(method='POST', action='/assignments/add')
+          form(method='POST', action='/assignments/submission_mark/'+submission._id)
             .form-group
-              label(for='marks_allocated') Marks Allocated
-              input.form-control(type='text', name='marks_allocated', placeholder='marks', required='')
+              label(for='marks_allocated') Marks 
+              input.form-control(type='text', name='marks_given', placeholder='marks', required='')
             .form-group
               label(for='body_assignment') Comments
-              textarea.form-control(name = 'body_assignment', placeholder='Assignment details',rows='4',  required  = '')
+              textarea.form-control(name = 'comments_on_submission', placeholder='Comments',rows='4')
+            .m-t-lg
+              ul.list-inline
+                li
+                  input.btn.btn--form(type='submit', value='Save')
         
                     
     script(src='/js/particles.min.js.download')

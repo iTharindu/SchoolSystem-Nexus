@@ -7,7 +7,7 @@ $(document).ready(function(){
       url:'/assignments/'+id,
       success: function(response){
         alert('Deleting assignment');
-        window.location.href = '/';
+        window.location.href = '/assignments/teacher';
       },
       error: function(err){
         console.log(err);

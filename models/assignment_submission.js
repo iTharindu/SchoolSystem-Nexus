@@ -9,17 +9,21 @@ let submissionSchema = mongoose.Schema({
     type : String,
     required : true
   },
+  marks_given : {
+    type : Number,
+    required : false
+  },
   comments_on_submission:{
     type : String,
     required : false
-  }
-  marks_given:{
-    type : Number,
-    required : false
-  }
-  /*student_id :{
+  },
+  student_id: {
     type : String,
     required : true
-  }*/
+  },
+  student_name: {
+    type : String,
+    required : true
+  }
 });
 var Submission = module.exports = mongoose.model('Submission',submissionSchema);

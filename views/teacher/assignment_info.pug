@@ -64,7 +64,7 @@ html(lang='en')
             actions
               a(href='#settings') settings
               |  
-              a(href='#logout') logout
+              a(href='/users/logout') logout
         br
         br
         br
@@ -94,14 +94,11 @@ html(lang='en')
           table(cellpadding='0', cellspacing='0', border='0')
             tbody
               tr
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Subission Satus
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" ) No Submission
-              tr
                 td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Due Date
                 td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.due_date
               tr
                 td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Uploaded Date
-                td(style= "color:#fff; text-decoration: none; font-size: 1em" )
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.uploaded_date
               tr
                 td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Marks Allocated
                 td(style= "color:#fff; text-decoration: none; font-size: 1em" )= assignment.marks_allocated
@@ -121,9 +118,9 @@ html(lang='en')
             button.login100-form-btn
               | Edit
       #titles(style = "top:110% ; width :10%").ng-scope
-        form(action='/',data-id=assignment._id)
+        form
           .container-login100-form-btn-delete.p-t-10
-            button.login100-form-btn.delete-assignment
+            button.login100-form-btn.delete-assignment(action='#',data-id=assignment._id)
               | Delete
       #titles(style = "top:110% ; width :20%").ng-scope
         form(action='/assignments/submissions/'+assignment._id)
@@ -134,13 +131,16 @@ html(lang='en')
 
 
         
-                    
+    script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+    script(src='/bower_components/jquery/dist/jquery.js')              
     script(src='/js/particles.min.js.download')
+    script(src='/js/main.js')
     //script(src='/js/stats.min.js.download')
     script(src='/js/background.js')
     script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
     script(src='/js/jquery.js')
     script(src='/js/navigator.js')
+    
     div(style='position: absolute; top: 0px; left: 0px; cursor: pointer; opacity: 0.9; z-index: 10000;')
       canvas(width='80', height='48', style='width: 80px; height: 48px; display: block;')
       canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')

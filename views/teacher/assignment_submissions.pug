@@ -56,7 +56,7 @@ html(lang='en')
             actions
               a(href='#settings') settings
               |  
-              a(href='#logout') logout
+              a(href='/users/logout') logout
         br
         br
         br
@@ -68,7 +68,7 @@ html(lang='en')
     // ngView:
     .ng-scope(ng-view='', ng-class="{'blur-view': showPlayerView || showModal || showQuoteView}", style='')
       .introduction.ng-scope
-    #titles(style = "top:20%;width:100%").ng-scope
+    #titles(style = "top:15%;width:60% ; margin-left : 360px").ng-scope
       // <canvas id="canvas" class="title-animated" ng-show="loaded"></canvas>
 
       #table_info
@@ -77,16 +77,19 @@ html(lang='en')
             thead
               tr
                 th Submisions
-        .tbl-content
+        .tbl-content(style = "height: 550px")
           table(cellpadding='0', cellspacing='0', border='0')
             tbody
               each submission, i in submissions
                 tr
                   td
-                    a(href="/assignments/submission_mark/"+submission._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= submission.assignment_id
-                  td
-                    a(href="/assignments/submission_mark/"+submission._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= submission.assignment_submission 
-              
+                    a(href="/assignments/submission_mark/"+submission._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= submission.student_name
+                  if submission.marks_given !== null
+                    td
+                      a(href="/assignments/submission_mark/"+submission._id style= "color:#fff; text-decoration: none; font-size: 1.5em" )= submission.marks_given
+                  else
+                    td
+                      a(href="/assignments/submission_mark/"+submission._id style= "color:#fff; text-decoration: none; font-size: 1.5em" ) Not marked 
                 
                     
     script(src='/js/particles.min.js.download')
