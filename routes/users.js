@@ -59,6 +59,7 @@ router.get('/edit',function(req,res){
   User.findById(req.user._id,function(err,user){
     res.render('edit_user',{
       user:user
+      console.log(user.address);
     });
   });
 });

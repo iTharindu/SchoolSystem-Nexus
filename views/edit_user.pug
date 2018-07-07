@@ -27,15 +27,19 @@ html(lang='en')
           form(method='POST', action='/users/edit')
             .form-group
               label(for='username') Username
-              input.form-control(type='text', name='username', required='')
+              input.form-control(type='text', name='username', required='')= user.username
             .form-group
               label(for='email') Email
-              input.form-control(type='text', name='email', required='')
+              input.form-control(type='text', name='email', required='')= user.email
+            .m-t-lg
+              ul.list-inline
+                li
+                  input.btn.btn--form(type='submit',formaction = "/" value='Change password')   
             .form-group
-              label(for='password') Address
-              input.form-control(type='text', name='address', required='')
+              label(for='address') Address
+              input.form-control(type='text', name='address')
             .form-group
-              label(for='due_date') Date of Birth
+              label(for='date_of_birth') Date of Birth
               span.k-widget.k-datepicker.k-header.form-control(style = "font-family: 'Roboto', sans-serif; color :#fff")
                 span.k-picker-wrap.k-state-default
                   input#field3.form-control.k-input(name= 'due_date', type="date", data-role="date", role="textbox", aria-haspopup="true", aria-expanded="false", aria-owns="field3_dateview", aria-disabled="false", aria-readonly="false", aria-label="Current focused date is null", data-error-container="#errfield3", style="width: 100%;", required="required", data-parsley-errors-container="#errId3")
@@ -44,15 +48,10 @@ html(lang='en')
                 span#errId3.error   
             .form-group
               label(for='passwordRepeat') Guardians Name
-              input.form-control(type='text', name='guardians_name', required='')
+              input.form-control(type='text', name='guardians_name')
             .form-group
               label(for='passwordRepeat') Telephone number 
-              input.form-control(input type='number', name='telephone_no', required='')
-            
-            .m-t-lg
-              ul.list-inline
-                li
-                  input.btn.btn--form(type='submit',formaction = "/" value='Change password')        
+              input.form-control(input type='number', name='telephone_no')     
             .m-t-lg
               ul.list-inline
                 li
