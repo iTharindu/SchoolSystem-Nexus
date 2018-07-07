@@ -1,0 +1,8 @@
+extends ../newLayout
+
+block content
+      h1 #{title}
+      ul.list-group
+        each mark, i in marks
+          li.list-group-item
+            a(href="/marks/"+mark._id)=mark.StudentID

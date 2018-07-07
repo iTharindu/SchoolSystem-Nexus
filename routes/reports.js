@@ -11,7 +11,7 @@ record.get('/',function(req,res){
     if(err){
       console.log(err);
     }else{
-      res.render('mark/report',{
+      res.render('mark/recordbook',{
         title:"Marks",
         marks:marks
       });
@@ -19,5 +19,7 @@ record.get('/',function(req,res){
   });
 
 });
+
+
 
 module.exports=record;

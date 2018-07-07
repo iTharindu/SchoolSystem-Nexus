@@ -1,0 +1,45 @@
+extends ../newLayout
+block content
+  #particles-js(ng-class="{'blur-view': showModal, 'particles-semi-transparent': viewIsCreationsOrPress}")
+    canvas.particles-js-canvas-el(style='width: 100%; height: 150%;', width='1910', height='3000')
+  // ngView:
+  .ng-scope(ng-view='', ng-class="{'blur-view': showPlayerView || showModal || showQuoteView}", style='')
+    .introduction.ng-scope
+  #titles(style = "top:5%;width : 100%").ng-scope
+    h1(style = "margin-left:70px")
+    h3(style = "margin-left:70px")
+  #titles(style = "top:25%;width : 100%").ng-scope
+    // <canvas id="canvas" class="title-animated" ng-show="loaded"></canvas>
+
+    #table_info_details
+      .tbl-header
+        table(cellpadding='0', cellspacing='0', border='0')
+          thead
+            tr
+              th 
+              th Details
+
+      .tbl-content(style = "height:305px")
+        table(cellpadding='0', cellspacing='0', border='0')
+          tbody
+            tr
+              td(style= "color:#fff; text-decoration: none; font-size: 1em" ) StudentID
+              td(style= "color:#fff; text-decoration: none; font-size: 1em" )=mark.StudentID
+            tr
+              td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Subject1
+              td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Subject1
+            tr
+              td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Marks1
+              td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks1
+            tr
+              td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Subject2
+              td(style= "color:#fff; text-decoration: none; font-size: 1em" )= amark.Subject2
+            tr
+              td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Marks2
+              td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks2
+            tr
+              td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Subject3
+              td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Subject3
+            tr
+              td(style= "color:#fff; text-decoration: none; font-size: 1em" ) Marks3
+              td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks3

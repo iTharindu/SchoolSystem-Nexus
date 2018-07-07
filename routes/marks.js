@@ -6,7 +6,19 @@ const record = express.Router();
 let Mark=require('../models/marks');
 
 
+record.get('/',function(req,res){
+  Mark.find({}, function(err,marks){
+    if(err){
+      console.log(err);
+    }else{
+      res.render('mark/Home',{
+        title:"Marks",
+        marks:marks
+      });
+    }
+  });
 
+});
 
 
 // Add Route
@@ -21,6 +33,7 @@ record.get('/add',function(req,res){
 // submit post Route
 record.post('/add',function(req,res){
   req.checkBody('StudentID','Student ID is required').notEmpty();
+  req.checkBody('StudentID','StudeID used previously').mapped();
   req.checkBody('Subject1','Subject1 is required').notEmpty();
   req.checkBody('Marks1','Marks1 is required').notEmpty();
   req.checkBody('Marks1','Marks1 should be between 0-100!').isInt({min:0,max:100});
@@ -55,7 +68,7 @@ record.post('/add',function(req,res){
           return;
         }else{
           req.flash('success','Marks Added')
-          res.redirect('/');
+          res.redirect('./add');
         }
       });
   }
@@ -111,8 +124,9 @@ record.post('/edit:id',function(req,res){
           console.log(err);
           return;
         }else{
+          res.redirect('./');
           req.flash('success','Marks Updated')
-          res.redirect('/');
+
         }
       });
   }
