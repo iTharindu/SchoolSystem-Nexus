@@ -11,8 +11,6 @@ block content
             .custom-file
               input#sampleFile.custom-file-input(type='file', required='true', name='sampleFile')
               label#mylabel.custom-file-label(for='inputGroupFile04')= data.fileName
-            .input-group-append
-              button.btn.btn-outline-secondary(type='button') Upload
           .form-group
             label.blackText(for='formGroupExampleInput') Year
             input.form-control(type='text', placeholder=data.year, required='true', id='year')
@@ -23,7 +21,7 @@ block content
               ul.list-inline
                 li
                   input.btn.btn--form(type='submit', value='Save')
-        form(action='/teacher/schemes')
+        form(action='/schemes/view-previous')
           .m-t-lg
             ul.list-inline
               input.btn.btn--form(type='submit', value='Cancel')
@@ -36,7 +34,7 @@ block content
       
       $.ajax({
         type:'GET',
-        url:'/teacher/getmsg',
+        url:'/schemes/getmsg',
         success:function(data){
           if(data.message.status!=''){
             $('#change').css({
@@ -44,7 +42,7 @@ block content
             });
             $.ajax({
               type:"GET",
-              url:"/teacher/msgs/reset"
+              url:"/schemes/msgs/reset"
             });
           }
         }
@@ -69,14 +67,14 @@ block content
           formData.set("year", document.getElementById('year').value);
           formData.set("grade", document.getElementById('grade').value);
           formData.set("pho", file);
-          $.ajax('/teacher/schemes/edit-data/'+name, {
+          $.ajax('/schemes/schemes/edit-data/'+name, {
             method: "POST",
             cache: false,
             contentType: false,
             processData: false,
             data: formData,
             success:function(){
-              location.href="/teacher/schemes";
+              location.href="/schemes/view-previous";
             },
             error:function(){
               location.reload();

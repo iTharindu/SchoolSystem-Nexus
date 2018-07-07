@@ -5,15 +5,15 @@ block content
       #changeThis(style='display:none;')
         div(class="alert alert-"+message.status) #{message.msg}
       .list-group
-        a.list-group-item.list-group-item-action(href='/teacher/schemes/upload') Upload New Scheme
-        a.list-group-item.list-group-item-action(href='/teacher/schemes/view-previous') View Previous Schemes
+        a.list-group-item.list-group-item-action(href='/schemes/schemes/upload') Upload New Scheme
+        a.list-group-item.list-group-item-action(href='/schemes/view-previous') View Previous Schemes
         a.list-group-item.list-group-item-action(href='/teacher') Go Back
 
   script.
     $(document).ready(function(){
       $.ajax({
         type:'GET',
-        url:'/teacher/getmsg',
+        url:'/schemes/getmsg',
         success:function(data){
           if(data.message.status!=''){
             $('#changeThis').css({
@@ -21,7 +21,7 @@ block content
             });
             $.ajax({
               type:"GET",
-              url:"/teacher/msgs/reset"
+              url:"/schemes/msgs/reset"
             });
           }
         }

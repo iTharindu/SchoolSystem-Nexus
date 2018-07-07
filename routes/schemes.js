@@ -4,9 +4,7 @@ var fileupload=require('express-fileupload');
 var path=require('path');
 var fs=require('fs');
 
-var leaveData=require('../models/teacher-leaves');
 var schemeData=require('../models/data-schemes');
-var circularData=require('../models/data-circular');
 
 var user={
   _id: '5ac6fbb3c348ca4134fef9e7',
@@ -24,91 +22,7 @@ var message={
   msg:''
 }
 
-router.get('/',function(req,res){
-  res.render('teacher/teacher');
-});
 
-//circulars...................................................................
-/*
-router.get('/circulars',function(req,res){
-  circularData.find({grade:user.grade},function(err,data){
-    if(err){
-      console.log(err);
-    }else{
-      res.render('teacher/circulars',{data:data});
-    }
-  });
-});
-
-router.get('/msgs/reset',function(req,res){
-  message.status='';
-  message.msg='';
-});
-
-router.get('/getmsg',function(req,res){
-  res.status('200').send({message});
-});
-
-*/
-//leave app...................................................................
-/*
-router.get('/leaveMenu',function(req,res){
-  leaveData.find({teacherName:user.name},function(err,data){
-    if(err){
-      console.log(err);
-    }else{
-      res.render('teacher/leaveMenu',{data:data,message:message});
-    }
-  });
-});
-
-
-router.delete('/leaveApp/delete/:id',function(req,res){
-  leaveData.findOneAndRemove({_id:req.params.id},function(err,data){
-    if(err){
-      console.log(err);
-      message.status='danger';
-      message.msg='Delete Failed';
-      res.send('success');
-    }else{
-      message.status='danger';
-      message.msg='Deleted Successfully';
-      //res.status('200').send({data:"cra[]"});
-      res.send('success');
-    }
-  });
-});
-
-router.get('/applyLeave',function(req,res){
-  res.render('teacher/leave-application',{user:user});
-});
-
-router.post('/processLeaveApp',function(req,res){
-  var leavedata=new leaveData();
-  leavedata.teacherName=user.name;
-  leavedata.designation=user.designation;
-  leavedata.noOfLeaveDays=req.body.noOfLeaveDays;
-  leavedata.leavesTaken=user.leavesTaken;
-  leavedata.dateOfCommencingLeave=req.body.dateOfCommencingLeave;
-  leavedata.dateOfResumingLeave=req.body.dateOfResumingDuty;
-  leavedata.reason=req.body.reason;
-  leavedata.approved="Not Yet Decided";
-  user.leavesTaken=user.leavesTaken+parseInt(req.body.noOfLeaveDays);
-  leavedata.save(function(err){
-    if(err){
-      console.log(err);
-      req.flash('danger','There is an error with the data you entered');
-      res.send('error');
-    }else{
-      message.status='success';
-      message.msg='Leave Request Sent';
-      res.send('success');
-    }
-  });
-});
-*/
-//schemes...................................................................
-/*
 router.get('/schemes',function(req,res){
   res.render('teacher/schemes-teacher',{message:message});
 });
@@ -159,7 +73,7 @@ router.post('/schemes/upload',fileupload(),function(req,res){
   }
 });
 
-router.get('/schemes/view-previous',function(req,res){
+router.get('/view-previous',function(req,res){
   schemeData.find({author:user.name},function(err,data){
     if(err){
       console.log(err);
@@ -256,14 +170,37 @@ router.delete('/schemes/delete/:id',function(req,res){
     });
   });
 });
-*/
-function ensureAuthenticated(req,res,next){
-  if(req.isAuthenticated() && (req.user.designation=='Teacher')){
-    return next();
-  }else{
-    req.logout();
-    req.flash('success','You are now logged out');
-    res.redirect('/user/login');
-  }
-}
+
+//////////////////////////////////////////////////////////////
+//principal/////////////////////////////////////////////////////////
+
+router.get('/view',function(req,res){
+  schemeData.find({},function(err,data){
+    if(err){
+      console.log(err);
+    }else{
+      res.render('principal/schemes',{data:data});
+    }
+  });
+});
+
+router.delete('/delete/:id',function(req,res){
+  schemeData.findOneAndRemove({_id:req.params.id},function(err,data){
+    if(err){
+      console.log(err);
+    }else{
+      var fpath=path.join(__dirname,'../public/uploads/schemes/'+data.fileName);
+      fs.unlink(fpath,function(errr){
+        if(errr){
+          console.log(err);
+        }else{
+          req.flash('success','Deleted Successfully');
+          res.send('success');
+        }
+      });
+    }
+  });
+});
+
+
 module.exports=router;

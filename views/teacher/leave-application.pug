@@ -56,14 +56,14 @@ block content
           $('#changeThis').html('<div class="alert alert-danger">Wrong Date Of Resuming Duty</div>');
         }else{
           var formData = $("#uploadForm").serializeArray();
-          $.ajax('/teacher/processLeaveApp', {
+          $.ajax('/leaves/processLeaveApp', {
             method: "POST",
             data: formData,
             success:function(){
-              location.href="/teacher/leaveMenu";
+              location.href="/leaves/leaveMenu";
             },
             error:function(){
-              location.replace('/teacher/applyLeave');
+              location.replace('/leaves/applyLeave');
             }
           });
         }

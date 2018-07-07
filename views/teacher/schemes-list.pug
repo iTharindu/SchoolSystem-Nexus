@@ -1,7 +1,9 @@
 extends ../newLayout
 block content
   .signup__container
-    .container__child.signup__form
+    .container__child.signup__form(style='box-sizing:content-box;height:500px;overflow: scroll;')
+      #changeThis(style='display:none;')
+        div(class="alert alert-"+message.status) #{message.msg}
       .circularText
         div
           each val,i in data
@@ -11,7 +13,7 @@ block content
               li.list-group-item= 'Grade : '+val.grade 
             br
             .input-group-append
-              form(action='/teacher/scheme/'+i)
+              form(action='/schemes/scheme/'+i)
                 .m-t-lg
                   ul.list-inline
                     input.btn.btn--form(type='submit', value='Edit')
@@ -21,16 +23,31 @@ block content
               .m-t-lg
                 ul.list-inline
                   a.btn.btn--form(href='/uploads/schemes/'+val.fileName, download='') Download
-        form(action='/teacher/schemes')
+        form(action='/schemes/schemes ')
           .m-t-lg
             ul.list-inline
               input.btn.btn--form(type='submit', value='Go Back')
   script.
     $(document).ready(function(){
+      $.ajax({
+        type:'GET',
+        url:'/schemes/getmsg',
+        success:function(data){
+          if(data.message.status!=''){
+            $('#changeThis').css({
+              display:"block"
+            });
+            $.ajax({
+              type:"GET",
+              url:"/schemes/msgs/reset"
+            });
+          }
+        }
+      });
       $('.delete').on('click',function(){
         $.ajax({
           type:'DELETE',
-          url:'/teacher/schemes/delete/'+this.id,
+          url:'/schemes/delete/'+this.id,
           success:function(){
             location.reload();
           }

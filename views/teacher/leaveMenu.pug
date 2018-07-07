@@ -1,7 +1,7 @@
 extends ../newLayout
 block content
   .signup__container
-    .container__child.signup__form
+    .container__child.signup__form(style='box-sizing:content-box;height:500px;overflow: scroll;')
       #changeThis(style='display:none;')
         div(class="alert alert-"+message.status) #{message.msg}
       .form-group
@@ -16,7 +16,7 @@ block content
                 .m-t-lg
                   ul.list-inline
                     input.delete.btn.btn--form(type='button', id=val._id, value='Delete')
-            form(action='/teacher/applyLeave')
+            form(action='/leaves/applyLeave')
               .m-t-lg
                 ul.list-inline
                   input.btn.btn--form(type='submit', value='Apply New Leave')
@@ -29,7 +29,7 @@ block content
     $(document).ready(function(){
       $.ajax({
         type:'GET',
-        url:'/teacher/getmsg',
+        url:'/leaves/getmsg',
         success:function(data){
           if(data.message.status!=''){
             $('#changeThis').css({
@@ -37,7 +37,7 @@ block content
             });
             $.ajax({
               type:"GET",
-              url:"/teacher/msgs/reset"
+              url:"/leaves/msgs/reset"
             });
           }
         }
@@ -45,7 +45,7 @@ block content
       $('.delete').on('click',function(){
           $.ajax({
               type:'DELETE',
-              url:'/teacher/leaveApp/delete/'+this.id,
+              url:'/leaves/leaveApp/delete/'+this.id,
               success:function(){
                 location.reload();
               }

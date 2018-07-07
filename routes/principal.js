@@ -23,15 +23,17 @@ var user={
  grade: 5
 };
 
+var message={
+  status:'',
+  msg:''
+}
+
 router.get('/',function(req,res){
-  res.render('principal/principal');
+  res.render('principal/principal',{message:message});
 });
 
 //circulars/////////////////////////////////////////////////////////////////////
-router.get('/circulars',function(req,res){
-  res.render('principal/circularsMenu');
-});
-
+/*
 router.get('/circulars/upload',function(req,res){
   res.render('principal/circularsUpload');
 });
@@ -74,9 +76,9 @@ router.post('/circulars/upload',fileupload(),function(req,res){
   }
 });
 
-router.get('/circulars/view-previous',function(req,res){
+router.get('/circulars/',function(req,res){
   circularData.find({},function(err,data){
-    res.render('principal/circularsPrevious',{data:data});
+    res.render('principal/circulars',{data:data});
   });
 });
 
@@ -97,7 +99,7 @@ router.delete('/circulars/delete/:id',function(req,res){
     }
   });
 });
-
+/*
 //leaveApp///////////////////////////////////////////////////////////////////
 router.get('/leaveApps',function(req,res){
   leaveDB.find({},function(err,data){
@@ -131,8 +133,9 @@ router.post('/leave/approval/:id',function(req,res){
     }
   });
 });
-
+*/
 ///schemes//////////////////////////////////////////////////////////////////////////////////////////////
+/*
 router.get('/schemes',function(req,res){
   schemeDB.find({},function(err,data){
     if(err){
@@ -160,6 +163,7 @@ router.delete('/schemes/delete/:id',function(req,res){
     }
   });
 });
+*/
 
 router.get('/logout',function(req,res){
   req.logout();

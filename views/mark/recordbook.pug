@@ -1,0 +1,115 @@
+html(lang='en')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    //script(src='/css/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js.download')
+    //script(src='/css/css_live_reload_init-890dc39bb89183d4642d58b1ae5376a0193342f9aed88ea04330dc14c8d52f55.js.download')
+    meta(name='robots', content='noindex')
+    link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/font-awesome.css')
+    link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/icon-font.min.css')
+    link(rel='stylesheet', href= '/css/table_assignment.css')
+    link(rel='stylesheet', href= '/css/logout.css')
+    link(rel='stylesheet', href= '/css/modal.css')
+    link(rel='stylesheet', href= '/css/main.css')
+    link(rel='stylesheet', href='/css/background.css')
+    link(rel='stylesheet', href= '/css/menu.css')
+
+  body
+    // particles.js container
+    header
+      nav#mainnav(role='navigation')
+        ul
+          li.invisible
+            a(href='#')
+              i.fa.fa-home
+              span Home
+          li.invisible
+            a(href='#')
+              i.fa.fa-th-large
+              span Dashboard
+          li.invisible
+            a(href='#')
+              i.fa.fa-book
+              span Subjects
+          li.invisible
+            a(href='#')
+              i.fa.fa-smile-o
+              span About Me
+          li.invisible
+            a(href='#')
+              i.fa.fa-bell
+              span Notification
+          li.invisible
+            a(href='#')
+              i.fa.fa-envelope
+              span Messaging
+          li
+            a(href='#')
+              i.fa.fa-bars
+      
+    section(style = 'margin=10px')
+      user#user
+        section
+          img(src='/images/userpic/Emma Watson.jpg')
+          section(style = 'margin=10px')
+            name Emma Watson
+            actions
+              a(href='#settings') settings
+              |  
+              a(href='#logout') logout
+        br
+        br
+        br
+        br
+
+
+    #particles-js(ng-class="{'blur-view': showModal, 'particles-semi-transparent': viewIsCreationsOrPress}")
+      canvas.particles-js-canvas-el(style='width: 100%; height: 100%;', width='2200', height='2007')
+    // ngView:
+    .ng-scope(ng-view='', ng-class="{'blur-view': showPlayerView || showModal || showQuoteView}", style='')
+      .introduction.ng-scope
+    #titles(style = "top:5%").ng-scope
+      //h1(style = "margin-left:70px")
+      //h3(style = "margin-left:70px")
+    #titles(style = "top:30%").ng-scope
+      // <canvas id="canvas" class="title-animated" ng-show="loaded"></canvas>
+
+      #table_info_details
+        .tbl-header
+          table(cellpadding='0', cellspacing='0', border='0')
+            thead
+              tr
+                th Student ID :
+                th Subject 1:
+                th Subject 2:
+                th Subject 3:
+                td Total
+                td Average
+        .tbl-content(style = "height:300px")
+          table(cellpadding='0', cellspacing='0', border='0')
+            tbody
+              each mark, i in marks
+                tr
+                  td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.StudentID
+                  td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks1
+                  td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks3
+                  td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks3
+                  td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks1+mark.Marks2+mark.Marks3
+                  td(style= "color:#fff; text-decoration: none; font-size: 1em" )= (mark.Marks1+mark.Marks2+mark.Marks3)/3
+                  
+                
+            
+        br
+        br
+                
+                    
+    script(src='/js/particles.min.js.download')
+    //script(src='/js/stats.min.js.download')
+    script(src='/js/background.js')
+    script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
+    script(src='/js/jquery.js')
+    script(src='/js/navigator.js')
+    script(src='/js/main1.js')
+    div(style='position: absolute; top: 0px; left: 0px; cursor: pointer; opacity: 0.9; z-index: 10000;')
+      canvas(width='80', height='48', style='width: 80px; height: 48px; display: block;')
+      canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')
+      canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')

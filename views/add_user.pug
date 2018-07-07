@@ -1,0 +1,67 @@
+html(lang='en')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    //script(src='/css/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js.download')
+    //script(src='/css/css_live_reload_init-890dc39bb89183d4642d58b1ae5376a0193342f9aed88ea04330dc14c8d52f55.js.download')
+    meta(name='robots', content='noindex')
+    link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/font-awesome.css')
+    link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/icon-font.min.css')
+    link(rel = "stylesheet" href = "/css/registration.css")
+    link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
+    link(rel='stylesheet', href= '/css/logout.css')
+    link(rel='stylesheet', href='/css/background.css')
+    link(rel='stylesheet', href= '/css/menu.css')
+  body
+    // particles.js container
+    #particles-js
+      canvas.particles-js-canvas-el(style='width: 100%; height: 100%;', width='1402', height='752')
+    #titles(style = "top:20%").ng-scope
+      .signup__container
+        //.container__child.signup__thumbnail
+        //  .signup__overlay
+        .container__child.signup__form
+          != messages('message', locals)
+          if errors
+            each error, i in errors
+              div(class="alert alert-danger") #{error.msg}
+          form(method='POST', action='/users/adduser')
+            .form-group
+              label(for='username') Username
+              input.form-control(type='text', name='username', placeholder='james.bond', required='')
+            .form-group
+              label(for='email') Email
+              input.form-control(type='text', name='email', placeholder='james.bond@spectre.com', required='')
+            .form-group
+              label(for='type') Type of the User
+              .btn-group.btn-group-toggle(data-toggle='buttons')
+                label.btn(style="margin-left:5em").btn-secondary
+                  input#option1(type='radio', name='type', value='1', autocomplete='off')
+                  | Teacher
+                label.btn.btn-secondary
+                  input#option2(type='radio', name='type', value='2', autocomplete='off')
+                  | Student
+                label.btn.btn-secondary
+                  input#option2(type='radio', name='type', value='3', autocomplete='off')
+                  | Principal  
+            .form-group
+              label(for='password') Password
+              input.form-control(type='password', name='password', placeholder='********', required='')
+            .form-group
+              label(for='passwordRepeat') Repeat Password
+              input.form-control(type='password', name='passwordRepeat', placeholder='********', required='')
+            .m-t-lg
+              ul.list-inline
+                li
+                  input.btn.btn--form(type='submit', value='Register')
+    script(src = '/bower_components/jquery/dist/jquery.js')
+    script(src = '/bower_components/bootstrap/dist/js/bootstrap.js')
+    script(src='/js/particles.min.js.download')
+    //script(src='/js/stats.min.js.download')
+    script(src='/js/background.js')
+    script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
+    script(src='/js/jquery.js')
+    script(src='/js/navigator.js')
+    div(style='position: absolute; top: 0px; left: 0px; cursor: pointer; opacity: 0.9; z-index: 10000;')
+      canvas(width='80', height='48', style='width: 80px; height: 48px; display: block;')
+      canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')
+      canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')
