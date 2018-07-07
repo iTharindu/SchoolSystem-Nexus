@@ -172,6 +172,9 @@ app.use('/timetable',timetable);
 let payment = require('./routes/payments');
 app.use('/payment',payment);
 
+let approvedmarks = require('./routes/approvedmarks');
+app.use('/approvedmarks',approvedmarks);
+
 app.listen(3000,function(){
     console.log("Server started on port 3000");
 });
