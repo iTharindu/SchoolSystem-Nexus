@@ -1,0 +1,27 @@
+extends ./newLayout
+
+block content
+    h2 Payments
+    form(method='post', action='/payment/add')
+      table
+        tr
+          td  Student name
+          td
+            | :  
+            input(type='text', name='student', placeholder='eg:John Doe')
+        tr
+          td
+            | Description
+          td
+            | : 
+            input(type='text', name='description', placeholder='Payment details')
+        tr
+          td
+            | Amount
+          td
+            | : 
+            input(type='text', name='amount', placeholder='Rs:')
+        tr
+        tr
+          td
+            input(type='submit', value='Submit')

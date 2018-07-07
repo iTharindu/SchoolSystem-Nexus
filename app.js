@@ -166,6 +166,12 @@ app.use('/marks',marks);
 let reports = require('./routes/reports');
 app.use('/reports',reports);
 
+let timetable = require('./routes/timetable');
+app.use('/timetable',timetable);
+
+let payment = require('./routes/payments');
+app.use('/payment',payment);
+
 app.listen(3000,function(){
     console.log("Server started on port 3000");
 });
