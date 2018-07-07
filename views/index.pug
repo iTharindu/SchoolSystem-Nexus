@@ -9,45 +9,73 @@ html
     //link(rel='shortcut icon', type='image/x-icon', href='https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico')
     //link(rel='mask-icon', type='', href='https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg', color='#111')
     //link(rel='canonical', href='https://codepen.io/trhino/pen/wBpcI')
-  
-    //link(rel='stylesheet prefetch', href='js/normalize.css')
-    //script(src='index_data/prefixfree.js')
     link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/font-awesome.css')
     link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/icon-font.min.css')
-    link(rel='stylesheet', href= '/css/menu.css')
+    //link(rel='stylesheet prefetch', href='js/normalize.css')
+    //script(src='index_data/prefixfree.js')
+    //link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
+    link(rel='stylesheet', href='/css/background.css')
+    link(rel='stylesheet', href= '/css/menu_navigator.css')
     link(rel='stylesheet', href= '/css/logout.css')  
+    
   body(style = "background: -webkit-linear-gradient(left, #404040, #FFCC00);background: linear-gradient(to right, #404040, #FFCC00)")
-    header
-      nav#mainnav(role='navigation')
-        ul
-          li.invisible
-            a(href='#')
-              i.fa.fa-home
-              span Home
-          li.invisible
-            a(href='/assignments/student')
-              i.fa.fa-th-large
-              span Dashboard
-          li.invisible
-            a(href='#')
-              i.fa.fa-book
-              span Subjects
-          li.invisible
-            a(href='#')
-              i.fa.fa-smile-o
-              span About Me
-          li.invisible
-            a(href='#')
-              i.fa.fa-bell
-              span Notification
-          li.invisible
-            a(href='#')
-              i.fa.fa-envelope
-              span Messaging
-          li
-            a(href='#')
-              i.fa.fa-bars
-      
+    input#hamburger.hamburger(checked="checked", type="checkbox")
+    label.hamburger(for="hamburger")
+      i
+      |   
+      text
+        close close
+        |       
+        open menu
+    |   
+    nav.primnav
+      ul
+        li
+          a(title="Dashboard", href="#dashboard")
+            svg.icon
+              use(xlink:href="#icon-th-large")
+            |  Dashboard
+        |       
+        li
+          a(title="Mail", href="#mail")
+            svg.icon
+              use(xlink:href="#icon-mail_outline")
+            |  Mail
+            |           
+            .tag 53
+          |         
+          ul.secnav
+            li
+              a(title="Inbox", href="#inbox") Inbox
+            |           
+            li
+              a(title="Sent", href="#sent") Sent
+        |       
+        li
+          a(title="Notifications", href="#notifications")
+            svg.icon
+              use(xlink:href="#icon-bell2")
+            |  Notifications
+            |           
+            .tag 17
+        |       
+        li
+          a(title="System Administration", href="#sysadmin")
+            svg.icon
+              use(xlink:href="#icon-equalizer")
+            |  System Administration
+          |         
+          ul.secnav
+            li
+              a(title="Users", href="#users") Users
+            |           
+            li
+              a(title="Lists", href="#lists") Lists
+            |           
+            li
+              a(title="Calendar", href="#calendar") Calendar
+
+    
     section
       user#user
         section
@@ -58,8 +86,31 @@ html
               a(href='#settings') settings
               |  
               a(href='/users/logout') logout
+              
+    #particles-js(ng-class="{'blur-view': showModal, 'particles-semi-transparent': viewIsCreationsOrPress}" style = "height:150%")
+      canvas.particles-js-canvas-el(style='width: 100%; height: 200%;', width='1910', height='2007')
+    #title.ng-scope
+      br
+      br
+      br
+      br
+      br
+      .container
+        //!= messages('message',locals)
+        block content  
+                    
 
-    script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
+    // ngView:
+    .ng-scope(ng-view='', ng-class="{'blur-view': showPlayerView || showModal || showQuoteView}", style='')
+      .introduction.ng-scope
+
+    script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+    script(src='/bower_components/jquery/dist/jquery.js')
+    script(src='/js/radio_button.js')                
+    script(src='/js/particles.min.js.download')
+    //script(src='/js/stats.min.js.download')
+    script(src='/js/background.js')
+    //script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
     script(src='/js/jquery.js')
-    script(src='/js/navigator.js')
+    script(src='/js/background.js')
       

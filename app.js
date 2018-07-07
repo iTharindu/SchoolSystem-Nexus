@@ -132,7 +132,7 @@ app.get('/',function(req,res){
       console.log(err);
       return;
     } else{
-      res.render('layoutpage.pug');
+      res.render('newLayout');
     }
   });
 });

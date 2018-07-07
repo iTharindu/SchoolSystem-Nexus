@@ -17,19 +17,11 @@ let submissionSchema = mongoose.Schema({
     type : String,
     required : false
   },
-<<<<<<< HEAD
   student_id: {
     type : String,
     required : true
   },
   student_name: {
-=======
-  marks_given:{
-    type : Number,
-    required : false
-  }
-  /*student_id :{
->>>>>>> 09f2777f173c1d7276eee5da1555840a192a8559
     type : String,
     required : true
   }
