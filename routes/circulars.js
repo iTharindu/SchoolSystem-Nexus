@@ -6,24 +6,13 @@ var fs=require('fs');
 
 var circularData=require('../models/data-circular');
 
-var user={
-  _id: '5ac6fbb3c348ca4134fef9e7',
- name: 'Dilan',
- designation: 'Teacher',
- email: 'dilan@123.com',
- username: 'dilan',
- password: '123',
- __v: 0,
- grade: 5,
- leavesTaken:0
-};
 var message={
   status:'',
   msg:''
 }
 
 router.get('/circulars',ensureAuthenticatedTeacher,function(req,res){
-  circularData.find({grade:user.grade},function(err,data){
+  circularData.find({},function(err,data){
     if(err){
       console.log(err);
     }else{
