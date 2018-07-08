@@ -1,0 +1,69 @@
+extends ../newLayoutTeacher
+block content
+  .signup__container
+    .container__child.signup__form
+      .circularText
+        #changeMe
+        #changeThis(style='display:none;')
+          div(class="alert alert-"+message.status) #{message.msg}
+        form#uploadForm.circular(ref='uploadForm', action='/material/upload', method='POST', enctype='multipart/form-data')
+          input#sampleFile.upload(type='file', name='sampleFile', required='true')
+          br
+          br
+          label Grade : 
+          input#grade(type='text', name='grade', required='true')
+          br
+          br
+          .input-group-append
+            input.input-group-text(type='submit', value='Upload')
+        .input-group-append
+          a.input-group-text(href='/material') Go Back
+
+  script.
+    $(document).ready(function () {
+      $.ajax({
+        type:'GET',
+        url:'/material/getmsg',
+        success:function(data){
+          if(data.message.status!=''){
+            $('#changeThis').css({
+              display:"block"
+            });
+            $.ajax({
+              type:"GET",
+              url:"/circulars/msgs/reset"
+            });
+          }
+        }
+      });
+      const fileElement = $("#sampleFile")[0];
+      const $form = $("#uploadForm");
+
+      $form.on("submit", function (e) {
+        e.preventDefault();
+        var grade=document.getElementById('grade').value;
+        if(isNaN(grade) || grade<1 || grade>13){
+          $('#changeMe').html('<div class="alert alert-danger">Enter a valid grade</div>');
+        }else{
+          const file = fileElement.files[0];
+          const formData = new FormData();
+
+          formData.set("grade", grade);
+          formData.set("pho", file);
+
+          $.ajax('/material/upload', {
+            method: "POST",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            success:function(){
+              location.href="/material";
+            },
+            error:function(){
+              location.replace('/material/upload');
+            }
+          });
+        }
+      });
+    });

@@ -1,4 +1,4 @@
-extends ../newLayoutTeacher
+extends ../index
 block content
   .signup__container
     .container__child.signup__form
@@ -9,6 +9,6 @@ block content
               li.list-group-item= 'Filename : '+val.fileName
               li.list-group-item= 'Grade : '+val.grade
             .input-group-append
-              a.input-group-text(href='/uploads/circulars/'+val.fileName, download='') Download
+              a.input-group-text(href='/uploads/material/'+val.fileName, download='') Download
         .input-group-append
           a.input-group-text(href='/') Go Back

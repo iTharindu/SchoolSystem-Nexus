@@ -1,10 +1,10 @@
-extends ../newLayoutPrincipal
+extends ../newLayoutTeacher
 block content
   .signup__container
     .container__child.signup__form(style='height:500px;overflow: scroll;')
       #changeThis(style='display:none;')
         div(class="alert alert-"+message.status) #{message.msg}
-      .circularText
+      .materialText
         div
           each val, i in data
             ul.list-group.list-group-flush
@@ -14,13 +14,13 @@ block content
               a.input-group-text.delete(id=val._id, href='#') Delete
               a.input-group-text(href='/uploads/circulars/'+val.fileName, download='') Download
         .input-group-append
-          a.input-group-text(href='/circulars/upload') Upload New Circular
-          a.input-group-text(href='/') Go Back
+          a.input-group-text(href='/material/upload') Upload New Circular
+          a.input-group-text(href='/teacher') Go Back
   script.
     $(document).ready(function(){
       $.ajax({
         type:'GET',
-        url:'/circulars/getmsg',
+        url:'/material/getmsg',
         success:function(data){
           if(data.message.status!=''){
             $('#changeThis').css({
@@ -28,7 +28,7 @@ block content
             });
             $.ajax({
               type:"GET",
-              url:"/circulars/msgs/reset"
+              url:"/material/msgs/reset"
             });
           }
         }
@@ -37,7 +37,7 @@ block content
       $('.delete').on('click',function(){
         $.ajax({
           type:'DELETE',
-          url:'/circulars/delete/'+this.id,
+          url:'/material/delete/'+this.id,
           success:function(){
             location.reload();
           }

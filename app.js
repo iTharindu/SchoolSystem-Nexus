@@ -126,7 +126,7 @@ app.get('/menu',function(req,res){
   res.render('index');
 });
 
-app.get('/',function(req,res){
+app.get('/',ensureAuthenticated,function(req,res){
   if(req.user.type=="Student"){
     res.render('index');
   }else if(req.user.type=="Teacher"){
@@ -171,6 +171,18 @@ app.use('/approvedmarks',approvedmarks);
 let myresults = require('./routes/myresults');
 app.use('/myresults',myresults);
 
+let material = require('./routes/material');
+app.use('/material',circulars);
+
+function ensureAuthenticated(req,res,next){
+  if(req.isAuthenticated()){
+    return next();
+  }else{
+    req.logout();
+    req.flash('success','You are now logged out');
+    res.redirect('/users/login');
+  }
+}
 
 app.listen(3000,function(){
     console.log("Server started on port 3000");
