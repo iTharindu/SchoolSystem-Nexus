@@ -2,7 +2,7 @@ extends ../newLayout
 block content
   .signup__container
     .container__child.signup__form
-      .circularText
+      .circularText(style='font:black;')
         form#uploadForm.circular
           label= 'Name : '+data.teacherName
           br
@@ -23,6 +23,9 @@ block content
           br
           br
           label= 'Reason : '+data.reason
+          br
+          br
+          label= 'Approval : '+data.approved
           br
           br
           #changeThis
