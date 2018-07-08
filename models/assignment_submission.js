@@ -1,5 +1,7 @@
 let mongoose = require('mongoose');
 
+let mongoose = require('mongoose');
+
 let submissionSchema = mongoose.Schema({
   assignment_submission : {
     type : String,

@@ -60,6 +60,10 @@ router.get('/edit',function(req,res){
     console.log(user.address);
     res.render('edit_user',{
       user:user
+<<<<<<< HEAD
+=======
+    //  console.log(user.address);
+>>>>>>> bfbfd85332b394581a092e7135d298f22b2aa467
     });
   });
 });

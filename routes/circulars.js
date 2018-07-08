@@ -22,7 +22,7 @@ var message={
   msg:''
 }
 
-router.get('/circulars',function(req,res){
+router.get('/circulars',ensureAuthenticatedTeacher,function(req,res){
   circularData.find({grade:user.grade},function(err,data){
     if(err){
       console.log(err);
@@ -45,8 +45,8 @@ router.get('/getmsg',function(req,res){
 //////////////////////////////////////////////////////////////
 //principal/////////////////////////////////////////////////////////
 
-router.get('/upload',function(req,res){
-  res.render('principal/circularsUpload');
+router.get('/upload',ensureAuthenticatedPrincipal,function(req,res){
+  res.render('principal/circularsUpload',{message:message});
 });
 
 router.post('/upload',fileupload(),function(req,res){
@@ -71,14 +71,16 @@ router.post('/upload',fileupload(),function(req,res){
                 if(err){
                   return res.status(500).send(err);
                 }else{
-                  req.flash('success','File Uploaded Successfully');
+                  message.status='success';
+                  message.msg='File uploaded successfully';
                   res.send('success');
                 }
               });
             }
           });
         }else{
-          req.flash('success','File already exists');
+          message.status='danger';
+          message.msg='File already exists';
           console.log('File already exists');
           res.status(500).send(err);
         }
@@ -87,13 +89,13 @@ router.post('/upload',fileupload(),function(req,res){
   }
 });
 
-router.get('/',function(req,res){
+router.get('/',ensureAuthenticatedPrincipal,function(req,res){
   circularData.find({},function(err,data){
-    res.render('principal/circulars',{data:data});
+    res.render('principal/circulars',{data:data,message:message});
   });
 });
 
-router.delete('/delete/:id',function(req,res){
+router.delete('/delete/:id',ensureAuthenticatedPrincipal,function(req,res){
   circularData.findOneAndRemove({_id:req.params.id},function(err,data){
     if(err){
       console.log(err);
@@ -103,12 +105,33 @@ router.delete('/delete/:id',function(req,res){
         if(errr){
           console.log(errr);
         }else{
-          req.flash('success','Deleted Successfully');
+          message.status='success';
+          message.msg='File deleted successfully';
           res.send('success');
         }
       });
     }
   });
 });
+
+function ensureAuthenticatedTeacher(req,res,next){
+  if(req.isAuthenticated() && (req.user.type=='Teacher')){
+    return next();
+  }else{
+    req.logout();
+    req.flash('success','You are now logged out');
+    res.redirect('/users/login');
+  }
+}
+
+function ensureAuthenticatedPrincipal(req,res,next){
+  if(req.isAuthenticated() && (req.user.type=='Principal')){
+    return next();
+  }else{
+    req.logout();
+    req.flash('success','You are now logged out');
+    res.redirect('/users/login');
+  }
+}
 
 module.exports=router;

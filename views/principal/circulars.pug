@@ -1,7 +1,9 @@
 extends ../newLayout
 block content
   .signup__container
-    .container__child.signup__form
+    .container__child.signup__form(style='box-sizing:content-box;height:500px;overflow: scroll;')
+      #changeThis(style='display:none;')
+        div(class="alert alert-"+message.status) #{message.msg}
       .circularText
         div
           each val, i in data
@@ -13,11 +15,26 @@ block content
               a.input-group-text(href='/uploads/circulars/'+val.fileName, download='') Download
         .input-group-append
           a.input-group-text(href='/circulars/upload') Upload New Circular
-          a.input-group-text(href='/circulars') Go Back
+          a.input-group-text(href='/principal') Go Back
   script.
     $(document).ready(function(){
+      $.ajax({
+        type:'GET',
+        url:'/circulars/getmsg',
+        success:function(data){
+          if(data.message.status!=''){
+            $('#changeThis').css({
+              display:"block"
+            });
+            $.ajax({
+              type:"GET",
+              url:"/circulars/msgs/reset"
+            });
+          }
+        }
+      });
+    
       $('.delete').on('click',function(){
-        alert(this.id);
         $.ajax({
           type:'DELETE',
           url:'/circulars/delete/'+this.id,
