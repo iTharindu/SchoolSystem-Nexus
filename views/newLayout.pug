@@ -1,0 +1,170 @@
+html(lang='en')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    script(src='/css/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js.download')
+    script(src='/css/css_live_reload_init-890dc39bb89183d4642d58b1ae5376a0193342f9aed88ea04330dc14c8d52f55.js.download')
+    meta(name='robots', content='noindex')
+    link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/font-awesome.css')
+    link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/icon-font.min.css')
+<<<<<<< HEAD
+    //link(rel='stylesheet prefetch', href='js/normalize.css')
+    //script(src='index_data/prefixfree.js')
+    //link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
+    link(rel='stylesheet', href='/css/background.css')
+    link(rel='stylesheet', href= '/css/menu_navigator.css')
+    link(rel='stylesheet', href= '/css/logout.css')  
+=======
+    link(rel='stylesheet prefetch', href='js/normalize.css')
+    script(src='index_data/prefixfree.js')
+    link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
+    link(rel='stylesheet', href='/css/background.css')
+    link(rel='stylesheet', href= '/css/menu_navigator.css')
+    link(rel='stylesheet', href= '/css/logout.css')
+    link(rel = "stylesheet" href = "/css/registration.css")
+    link(rel='stylesheet', href= '/css/menu.css')
+    link(rel='stylesheet', href='/css/styles.css')
+>>>>>>> 3690bbe340117ae79b04405efda3d01ca0078c0b
+  body
+    input#hamburger.hamburger(checked="checked", type="checkbox")
+    label.hamburger(for="hamburger")
+      i
+      |   
+      text
+        close close
+        |       
+        open menu
+    |   
+    nav.primnav
+      ul
+        li
+<<<<<<< HEAD
+          a(title="Dashboard", href="#dashboard")
+            svg.icon
+              use(xlink:href="#icon-th-large")
+            |  Dashboard
+        |       
+        li
+          a(title="Mail", href="#mail")
+            svg.icon
+              use(xlink:href="#icon-mail_outline")
+            |  Mail
+            |           
+            .tag 53
+          |         
+          ul.secnav
+            li
+              a(title="Inbox", href="#inbox") Inbox
+            |           
+            li
+              a(title="Sent", href="#sent") Sent
+=======
+          a(title="Home", href="/")
+            svg.icon
+              use(fa.fa-home)
+            |  Home
+        |
+        li
+          a(title="Dashboard", href="/assignments/student")
+            svg.icon
+              use(fa.fa-home)
+            |  Dashboard
+        |       
+        li
+          a(title="Subject data", href="#mail")
+            svg.icon
+              use(xlink:href="#icon-mail_outline")
+            |  Subject
+            |           
+          |         
+          ul.secnav
+            li
+              a(title="study materials", href="#inbox") Study Materials
+            |           
+            li
+              a(title="Report card", href="#sent") Report
+>>>>>>> 3690bbe340117ae79b04405efda3d01ca0078c0b
+        |       
+        li
+          a(title="Notifications", href="#notifications")
+            svg.icon
+              use(xlink:href="#icon-bell2")
+            |  Notifications
+<<<<<<< HEAD
+            |           
+            .tag 17
+        |       
+        li
+          a(title="System Administration", href="#sysadmin")
+            svg.icon
+              use(xlink:href="#icon-equalizer")
+            |  System Administration
+          |         
+          ul.secnav
+            li
+              a(title="Users", href="#users") Users
+            |           
+            li
+              a(title="Lists", href="#lists") Lists
+            |           
+            li
+              a(title="Calendar", href="#calendar") Calendar
+=======
+
+        |       
+        li
+          a(title="About me", href="#sysadmin")
+            svg.icon
+              use(xlink:href="#icon-equalizer")
+            |  About Me
+          |         
+          ul.secnav
+            li
+              a(title="Edit user data", href="/users/edit") Edit User
+            |           
+            li
+              a(title="change password", href="/users/changepassword") Change Password
+            |           
+
+
+>>>>>>> 3690bbe340117ae79b04405efda3d01ca0078c0b
+    section
+      user#user
+        section
+          img(src='/images/userpic/Emma Watson.jpg')
+          section
+            name Emma Watson
+            actions
+              a(href='#settings') settings
+              |  
+              a(href='/users/logout') logout
+    // particles.js container
+    //#particles-js
+      canvas.particles-js-canvas-el
+    #particles-js(ng-class="{'blur-view': showModal, 'particles-semi-transparent': viewIsCreationsOrPress}" style = "height:100%")
+      canvas.particles-js-canvas-el(style='width: 100%; height: 200%;', width='1910', height='3000')
+    #titles.ng-scope
+      br
+      br
+      br
+      br
+      br
+<<<<<<< HEAD
+      .container
+        //!= messages('message',locals)
+        block content  
+=======
+      .container(style='width:750px;')
+        block content
+>>>>>>> 3690bbe340117ae79b04405efda3d01ca0078c0b
+
+    script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+    script(src='/bower_components/jquery/dist/jquery.js')
+    script(src='/js/radio_button.js')                
+    script(src='/js/particles.min.js.download')
+    script(src='/js/stats.min.js.download')
+    script(src='/js/background.js')
+    //script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
+    script(src='/js/jquery.js')
+    script(src='/js/background.js')
+
+    
