@@ -32,7 +32,7 @@ router.get('/getmsg',function(req,res){
 
 //teacher//////////////////////////////////////////
 
-router.get('/leaveMenu',function(req,res){
+router.get('/leaveMenu',ensureAuthenticatedTeacher,function(req,res){
   leaveData.find({teacherName:user.name},function(err,data){
     if(err){
       console.log(err);
@@ -42,7 +42,7 @@ router.get('/leaveMenu',function(req,res){
   });
 });
 
-router.delete('/leaveApp/delete/:id',function(req,res){
+router.delete('/leaveApp/delete/:id',ensureAuthenticatedTeacher,function(req,res){
   leaveData.findOneAndRemove({_id:req.params.id},function(err,data){
     if(err){
       console.log(err);
@@ -58,11 +58,11 @@ router.delete('/leaveApp/delete/:id',function(req,res){
   });
 });
 
-router.get('/applyLeave',function(req,res){
+router.get('/applyLeave',ensureAuthenticatedTeacher,function(req,res){
   res.render('teacher/leave-application',{user:user});
 });
 
-router.post('/processLeaveApp',function(req,res){
+router.post('/processLeaveApp',ensureAuthenticatedTeacher,function(req,res){
   var leavedata=new leaveData();
   leavedata.teacherName=user.name;
   leavedata.designation=user.designation;
@@ -88,13 +88,13 @@ router.post('/processLeaveApp',function(req,res){
 //////////////////////////////////////////////////////////////
 //principal/////////////////////////////////////////////////////////
 
-router.get('/leaveApps',function(req,res){
+router.get('/leaveApps',ensureAuthenticatedPrincipal,function(req,res){
   leaveData.find({},function(err,data){
     res.render('principal/leaveList',{data});
   });
 });
 
-router.get('/leaveDetails/:id',function(req,res){
+router.get('/leaveDetails/:id',ensureAuthenticatedPrincipal,function(req,res){
   leaveData.findById(req.params.id,function(err,data){
     if(err){
       console.log(err);
@@ -104,7 +104,7 @@ router.get('/leaveDetails/:id',function(req,res){
   });
 });
 
-router.post('/leave/approval/:id',function(req,res){
+router.post('/leave/approval/:id',ensureAuthenticatedPrincipal,function(req,res){
   var approved;
   if(req.body.approval=='Approve'){
     approved="Approved";
@@ -121,5 +121,24 @@ router.post('/leave/approval/:id',function(req,res){
   });
 });
 
+function ensureAuthenticatedTeacher(req,res,next){
+  if(req.isAuthenticated() && (req.user.type=='Teacher')){
+    return next();
+  }else{
+    req.logout();
+    req.flash('success','You are now logged out');
+    res.redirect('/users/login');
+  }
+}
+
+function ensureAuthenticatedPrincipal(req,res,next){
+  if(req.isAuthenticated() && (req.user.type=='Principal')){
+    return next();
+  }else{
+    req.logout();
+    req.flash('success','You are now logged out');
+    res.redirect('/users/login');
+  }
+}
 
 module.exports=router;

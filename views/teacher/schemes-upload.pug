@@ -3,6 +3,7 @@ block content
   .signup__container
     .container__child.signup__form
       .circularText
+        #changeThis
         form#uploadForm(ref='uploadForm', enctype='multipart/form-data')
           .input-group.mb-3
             .custom-file
@@ -28,25 +29,36 @@ block content
 
       $form.on("submit", function (e) {
         e.preventDefault();
+        var today=new Date();
+        var year=document.getElementById('year').value;
+        var grade=document.getElementById('grade').value;
         const file = fileElement.files[0];
         const formData = new FormData();
 
-        formData.set("year", document.getElementById('year').value);
-        formData.set("grade", document.getElementById('grade').value);
+        formData.set("year", year);
+        formData.set("grade", grade);
         formData.set("pho", file);
-
-        $.ajax('/schemes/schemes/upload', {
-          method: "POST",
-          cache: false,
-          contentType: false,
-          processData: false,
-          data: formData,
-          success:function(){
-            location.href="/schemes/schemes";
-          },
-          error:function(){
-            location.replace('/schemes/schemes/upload');
-          }
-        });
+        
+        if(isNaN(year)){
+          $('#changeThis').html('<div class="alert alert-danger">Enter a valid year</div>');
+        }else if(isNaN(grade) || grade<1 || grade>13){
+          $('#changeThis').html('<div class="alert alert-danger">Enter a valid grade</div>');
+        }else if(year>today.getFullYear()){
+          $('#changeThis').html('<div class="alert alert-danger">Invalid Year</div>');
+        }else{
+          $.ajax('/schemes/schemes/upload', {
+            method: "POST",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            success:function(){
+              location.href="/schemes/schemes";
+            },
+            error:function(){
+              location.replace('/schemes/schemes/upload');
+            }
+          });
+        }
       });
     });

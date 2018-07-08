@@ -17,17 +17,13 @@ let submissionSchema = mongoose.Schema({
     type : String,
     required : false
   },
-<<<<<<< HEAD
-=======
 //<<<<<<< HEAD
->>>>>>> 725a2b6290ecf40631655faa4c09852b5b47be49
+>>>>>>> 90f784390c853ced499f62fb0bd8c2274dcaa149
   student_id: {
     type : String,
     required : true
   },
-  student_name: {
-<<<<<<< HEAD
-=======
+  //student_name: {
 //=======
   marks_given:{
     type : Number,
@@ -39,5 +35,5 @@ let submissionSchema = mongoose.Schema({
     type : String,
     required : true
   }*/
-/*});
-var Submission = module.exports = mongoose.model('Submission',submissionSchema);*/
+});
+var Submission = module.exports = mongoose.model('Submission',submissionSchema);

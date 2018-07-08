@@ -22,12 +22,20 @@ var message={
   msg:''
 }
 
+router.get('/msgs/reset',function(req,res){
+  message.status='';
+  message.msg='';
+});
 
-router.get('/schemes',function(req,res){
+router.get('/getmsg',function(req,res){
+  res.status('200').send({message});
+});
+
+router.get('/schemes',ensureAuthenticatedTeacher,function(req,res){
   res.render('teacher/schemes-teacher',{message:message});
 });
 
-router.get('/schemes/upload',function(req,res){
+router.get('/schemes/upload',ensureAuthenticatedTeacher,function(req,res){
   res.render('teacher/schemes-upload');
 });
 
@@ -73,7 +81,7 @@ router.post('/schemes/upload',fileupload(),function(req,res){
   }
 });
 
-router.get('/view-previous',function(req,res){
+router.get('/view-previous',ensureAuthenticatedTeacher,function(req,res){
   schemeData.find({author:user.name},function(err,data){
     if(err){
       console.log(err);
@@ -83,7 +91,7 @@ router.get('/view-previous',function(req,res){
   });
 });
 
-router.get('/scheme/:index',function(req,res){
+router.get('/scheme/:index',ensureAuthenticatedTeacher,function(req,res){
   schemeData.find({author:user.name},function(err,data){
     res.locals.scheme=data[req.params.index];
     res.render('teacher/edit-scheme',{data:res.locals.scheme,message:message});
@@ -151,18 +159,14 @@ router.post('/schemes/edit-data/:fname',fileupload(),function(req,res){
   });
 });
 
-router.delete('/schemes/delete/:id',function(req,res){
-  //console.log("1");
+router.delete('/schemes/delete/:id',ensureAuthenticatedTeacher,function(req,res){
+  console.log('asdasd');
   schemeData.findOneAndRemove({_id:req.params.id},function(err,data){
-    //console.log("2");
     var fpath=path.join(__dirname,'../public/uploads/schemes/'+data.fileName);
     fs.unlink(fpath,function(errr){
-      //console.log("3");
       if(errr){
-        //console.log("4");
         console.log(err);
       }else{
-        //console.log("5");
         message.status='success';
         message.msg='Deleted Successfully';
         res.send('success');
@@ -174,7 +178,7 @@ router.delete('/schemes/delete/:id',function(req,res){
 //////////////////////////////////////////////////////////////
 //principal/////////////////////////////////////////////////////////
 
-router.get('/view',function(req,res){
+router.get('/view',ensureAuthenticatedPrincipal,function(req,res){
   schemeData.find({},function(err,data){
     if(err){
       console.log(err);
@@ -184,7 +188,7 @@ router.get('/view',function(req,res){
   });
 });
 
-router.delete('/delete/:id',function(req,res){
+router.delete('/delete/:id',ensureAuthenticatedPrincipal,function(req,res){
   schemeData.findOneAndRemove({_id:req.params.id},function(err,data){
     if(err){
       console.log(err);
@@ -202,5 +206,24 @@ router.delete('/delete/:id',function(req,res){
   });
 });
 
+function ensureAuthenticatedTeacher(req,res,next){
+  if(req.isAuthenticated() && (req.user.type=='Teacher')){
+    return next();
+  }else{
+    req.logout();
+    req.flash('success','You are now logged out');
+    res.redirect('/users/login');
+  }
+}
+
+function ensureAuthenticatedPrincipal(req,res,next){
+  if(req.isAuthenticated() && (req.user.type=='Principal')){
+    return next();
+  }else{
+    req.logout();
+    req.flash('success','You are now logged out');
+    res.redirect('/users/login');
+  }
+}
 
 module.exports=router;
