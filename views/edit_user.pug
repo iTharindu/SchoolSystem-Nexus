@@ -24,23 +24,38 @@ html(lang='en')
           if errors
             each error, i in errors
               div(class="alert alert-danger") #{error.msg}
-          form(method='POST', action='/users/adduser')
+          form(method='POST', action='/users/edit')
             .form-group
               label(for='username') Username
-              input.form-control(type='text', name='username', required='')
+              input.form-control(type='text', name='username', required='')= user.username
             .form-group
               label(for='email') Email
-              input.form-control(type='text', name='email', required='')
-            .form-group
-              label(for='password') Password
-              input.form-control(type='password', name='password', required='')
-            .form-group
-              label(for='passwordRepeat') Repeat Password
-              input.form-control(type='password', name='passwordRepeat', required='')
+              input.form-control(type='text', name='email', required='')= user.email
             .m-t-lg
               ul.list-inline
                 li
-                  input.btn.btn--form(type='submit', value='Register')
+                  input.btn.btn--form(type='submit',formaction = "/" value='Change password')   
+            .form-group
+              label(for='address') Address
+              input.form-control(type='text', name='address')
+            .form-group
+              label(for='date_of_birth') Date of Birth
+              span.k-widget.k-datepicker.k-header.form-control(style = "font-family: 'Roboto', sans-serif; color :#fff")
+                span.k-picker-wrap.k-state-default
+                  input#field3.form-control.k-input(name= 'due_date', type="date", data-role="date", role="textbox", aria-haspopup="true", aria-expanded="false", aria-owns="field3_dateview", aria-disabled="false", aria-readonly="false", aria-label="Current focused date is null", data-error-container="#errfield3", style="width: 100%;", required="required", data-parsley-errors-container="#errId3")
+                  span.k-select(unselectable="on", role="button", aria-controls="field3_dateview")
+  
+                span#errId3.error   
+            .form-group
+              label(for='passwordRepeat') Guardians Name
+              input.form-control(type='text', name='guardians_name')
+            .form-group
+              label(for='passwordRepeat') Telephone number 
+              input.form-control(input type='number', name='telephone_no')     
+            .m-t-lg
+              ul.list-inline
+                li
+                  input.btn.btn--form(type='submit', value='Save Changes')
     script(src = '/bower_components/jquery/dist/jquery.js')
     script(src = '/bower_components/bootstrap/dist/js/bootstrap.js')
     script(src='/js/particles.min.js.download')
