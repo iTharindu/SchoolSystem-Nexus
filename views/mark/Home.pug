@@ -1,45 +1,41 @@
 extends ../newLayoutTeacher
 block content
   .signup__container
-    .container__child.signup__form
-      #table_info_details
-        .tbl-header
-          table(cellpadding='0', cellspacing='0', border='0')
-            thead
+    #table_info_details(style = "width:60%")
+      .tbl-header
+        table(cellpadding='0', cellspacing='0', border='0')
+          thead
+            tr
+              th Student ID :
+              th Subject 1:
+              th Subject 2:
+              th Subject 3:
+              td Total
+              td Average
+      .tbl-content(style = "height:300px")
+        table(cellpadding='0', cellspacing='0', border='0')
+          tbody
+            each mark, i in marks
               tr
-                th Student ID :
-                th Subject 1:
-                th Subject 2:
-                th Subject 3:
-                td Total
-                td Average
-        .tbl-content(style = "height:300px")
-          table(cellpadding='0', cellspacing='0', border='0')
-            tbody
-              each mark, i in marks
-                tr
-                  td(style= "color:#fff; text-decoration: none; font-size: 1em" )
-                    a(href="/marks/"+mark._id)=mark.StudentID
-                  td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks1
-                  td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks3
-                  td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks3
-                  td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks1+mark.Marks2+mark.Marks3
-                  td(style= "color:#fff; text-decoration: none; font-size: 1em" )= (mark.Marks1+mark.Marks2+mark.Marks3)/3
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )
+                  a(href="/marks/"+mark._id)=mark.StudentID
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks1
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks3
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks3
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks1+mark.Marks2+mark.Marks3
+                td(style= "color:#fff; text-decoration: none; font-size: 1em" )= (mark.Marks1+mark.Marks2+mark.Marks3)/3
+                
+              
+          
+      br
+      br
+              
                   
-                
-            
-        br
-        br
-                
-                    
-    script(src='/js/particles.min.js.download')
-    //script(src='/js/stats.min.js.download')
-    script(src='/js/background.js')
-    script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
-    script(src='/js/jquery.js')
-    script(src='/js/navigator.js')
-    script(src='/js/main1.js')
-    div(style='position: absolute; top: 0px; left: 0px; cursor: pointer; opacity: 0.9; z-index: 10000;')
-      canvas(width='80', height='48', style='width: 80px; height: 48px; display: block;')
-      canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')
-      canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')
+  script(src='/js/particles.min.js.download')
+  //script(src='/js/stats.min.js.download')
+  script(src='/js/background.js')
+  script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
+  script(src='/js/jquery.js')
+  script(src='/js/navigator.js')
+  script(src='/js/main1.js')
+  

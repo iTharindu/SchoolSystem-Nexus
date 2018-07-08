@@ -35,6 +35,9 @@ record.post('/add',function(req,res){
   req.checkBody('StudentID','Student ID is required').notEmpty();
   //req.checkBody('StudentID','StudeID used previously').mapped();
   req.checkBody('Subject1','Subject1 is required').notEmpty();
+  req.checkBody('Subject1','Subject1 is a word').isAlpha();
+  req.checkBody('Subject2','Subject2 is a word').isAlpha();
+  req.checkBody('Subject3','Subject3 is a word').isAlpha();
   req.checkBody('Marks1','Marks1 is required').notEmpty();
   req.checkBody('Marks1','Marks1 should be between 0-100!').isInt({min:0,max:100});
   req.checkBody('Subject2','Subject2 is required').notEmpty();
