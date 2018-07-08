@@ -17,12 +17,12 @@ let timetableSchema = mongoose.Schema({
     monday_third: {
       type : String,
       required : true
-      
+
     },
     monday_fourth: {
       type : String,
       required : true
-      
+
     },
     monday_fifth: {
       type : String,
@@ -31,7 +31,7 @@ let timetableSchema = mongoose.Schema({
     monday_sixth: {
       type : String,
       required : true
-      
+
     },
     monday_seventh: {
       type : String,
@@ -54,12 +54,12 @@ let timetableSchema = mongoose.Schema({
     tuesday_third: {
       type : String,
       required : true
-      
+
     },
     tuesday_fourth: {
       type : String,
       required : true
-      
+
     },
     tuesday_fifth: {
       type : String,
@@ -68,7 +68,7 @@ let timetableSchema = mongoose.Schema({
     tuesday_sixth: {
       type : String,
       required : true
-      
+
     },
     tuesday_seventh: {
       type : String,
@@ -92,12 +92,12 @@ let timetableSchema = mongoose.Schema({
     wednesday_third: {
       type : String,
       required : true
-      
+
     },
     wednesday_fourth: {
       type : String,
       required : true
-      
+
     },
     wednesday_fifth: {
       type : String,
@@ -106,7 +106,7 @@ let timetableSchema = mongoose.Schema({
     wednesday_sixth: {
       type : String,
       required : true
-      
+
     },
     wednesday_seventh: {
       type : String,
@@ -131,12 +131,12 @@ let timetableSchema = mongoose.Schema({
     thursday_third: {
       type : String,
       required : true
-      
+
     },
     thursday_fourth: {
       type : String,
       required : true
-      
+
     },
     thursday_fifth: {
       type : String,
@@ -145,7 +145,7 @@ let timetableSchema = mongoose.Schema({
     thursday_sixth: {
       type : String,
       required : true
-      
+
     },
     thursday_seventh: {
       type : String,
@@ -155,9 +155,9 @@ let timetableSchema = mongoose.Schema({
       type : String,
       required : true
 
-    
+
   },
- 
+
     friday_first: {
       type : String,
       required : true
@@ -170,12 +170,12 @@ let timetableSchema = mongoose.Schema({
     friday_third: {
       type : String,
       required : true
-      
+
     },
     friday_fourth: {
       type : String,
       required : true
-      
+
     },
     friday_fifth: {
       type : String,
@@ -184,7 +184,7 @@ let timetableSchema = mongoose.Schema({
     friday_sixth: {
       type : String,
       required : true
-      
+
     },
     friday_seventh: {
       type : String,

@@ -6,21 +6,20 @@ html(lang='en')
     meta(name='robots', content='noindex')
     link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/font-awesome.css')
     link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/icon-font.min.css')
-    //link(rel='stylesheet prefetch', href='js/normalize.css')
-    //script(src='index_data/prefixfree.js')
-    //link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
-    link(rel='stylesheet', href='/css/background.css')
-    link(rel='stylesheet', href= '/css/menu_navigator.css')
-    link(rel='stylesheet', href= '/css/logout.css')  
     link(rel='stylesheet prefetch', href='js/normalize.css')
     script(src='index_data/prefixfree.js')
     link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
     link(rel='stylesheet', href='/css/background.css')
     link(rel='stylesheet', href= '/css/menu_navigator.css')
-    link(rel='stylesheet', href= '/css/logout.css')
+    link(rel='stylesheet', href= '/css/logout.css')  
+    link(rel='stylesheet', href='/css/background.css')
+    link(rel='stylesheet', href= '/css/menu_navigator.css')
     link(rel = "stylesheet" href = "/css/registration.css")
     link(rel='stylesheet', href= '/css/menu.css')
     link(rel='stylesheet', href='/css/styles.css')
+    script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
   body
     input#hamburger.hamburger(checked="checked", type="checkbox")
     label.hamburger(for="hamburger")
@@ -32,19 +31,19 @@ html(lang='en')
         open menu
     |   
     nav.primnav
-      ul
-        li
-          a(title="Dashboard", href="#dashboard")
-            svg.icon
-              use(xlink:href="#icon-th-large")
-            |  Dashboard
-        |       
+      ul    
         li
           a(title="Home", href="/")
             svg.icon
               use(fa.fa-home)
             |  Home
         |
+        li
+          a(title="Dashboard", href="#dashboard")
+            svg.icon
+              use(xlink:href="#icon-th-large")
+            |  Dashboard
+        | 
         li
           a(title="Subject data", href="#mail")
             svg.icon
@@ -65,7 +64,6 @@ html(lang='en')
               use(xlink:href="#icon-bell2")
             |  Time Table
             |           
-            .tag 17
         |       
         li
           a(title="Documents", href="#documents")
@@ -129,7 +127,7 @@ html(lang='en')
     script(src='/js/particles.min.js.download')
     script(src='/js/stats.min.js.download')
     script(src='/js/background.js')
-    //script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
+    script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
     script(src='/js/jquery.js')
     script(src='/js/background.js')
 

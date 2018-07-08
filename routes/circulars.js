@@ -84,7 +84,7 @@ router.get('/',ensureAuthenticatedPrincipal,function(req,res){
   });
 });
 
-router.delete('/delete/:id',ensureAuthenticatedPrincipal,function(req,res){
+router.delete('/delete/:id',function(req,res){
   circularData.findOneAndRemove({_id:req.params.id},function(err,data){
     if(err){
       console.log(err);
