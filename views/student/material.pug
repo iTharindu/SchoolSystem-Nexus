@@ -1,0 +1,14 @@
+extends ../index
+block content
+  .signup__container
+    .container__child.signup__form
+      .form-group
+        .circularText
+          each val, i in data
+            ul.list-group.list-group-flush
+              li.list-group-item= 'Filename : '+val.fileName
+              li.list-group-item= 'Grade : '+val.grade
+            .input-group-append
+              a.input-group-text(href='/uploads/material/'+val.fileName, download='') Download
+        .input-group-append
+          a.input-group-text(href='/') Go Back
