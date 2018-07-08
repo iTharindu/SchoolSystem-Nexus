@@ -24,12 +24,6 @@ let submissionSchema = mongoose.Schema({
   student_name: {
     type : String,
     required : true
-<<<<<<< HEAD
-  }*/
-//});
-//var Submission = module.exports = mongoose.model('Submission',submissionSchema);
-=======
   }
 });
 var Submission = module.exports = mongoose.model('Submission',submissionSchema);
->>>>>>> f6b3442811c2ee5ff7bb0809543e384e7f3614c5
