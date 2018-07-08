@@ -11,6 +11,7 @@ html(lang='en')
     link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
     link(rel='stylesheet', href='/css/background.css')
     link(rel='stylesheet', href= '/css/menu_navigator.css')
+    link(rel='stylesheet', href= '/css/table_assignment.css')
     link(rel='stylesheet', href= '/css/logout.css')  
     link(rel='stylesheet', href='/css/background.css')
     link(rel='stylesheet', href= '/css/menu_navigator.css')
@@ -31,6 +32,63 @@ html(lang='en')
           |       
           open menu
       |   
+      text
+        close close
+        |       
+        open menu
+    |   
+    nav.primnav
+      ul
+        li
+          a(title="Home", href="/")
+            svg.icon
+              use(fa.fa-home)
+            i.fa.fa-home.fa
+            span Home
+        |
+        li
+          a(title="Dashboard", href="/assignments/student")
+            svg.icon
+              use(fa.fa-home)
+            |  Dashboard
+        |       
+        li
+          a(title="Subject data", href="#mail")
+            svg.icon
+              use(xlink:href="#icon-mail_outline")
+            |  Subject
+            |           
+          |         
+          ul.secnav
+            li
+              a(title="study materials", href="#inbox") Study Materials
+            |           
+            li
+              a(title="Report card", href="/myresults") Report
+        |       
+        li
+          a(title="Notifications", href="#notifications")
+            svg.icon
+              use(xlink:href="#icon-bell2")
+            |  Time Table
+
+        |       
+        li
+          a(title="About me", href="#sysadmin")
+            svg.icon
+              use(xlink:href="#icon-equalizer")
+            |  About Me
+          |         
+          ul.secnav
+            li
+              a(title="Edit user data", href="/users/edit") Edit User
+            |           
+            li
+              a(title="change password", href="/users/changepassword") Change Password
+            |           
+
+
+
       nav.primnav
         ul
           li
@@ -86,6 +144,7 @@ html(lang='en')
                 a(title="change password", href="/users/changepassword") Change Password
               |           
   
+
     section
       user#user
         section

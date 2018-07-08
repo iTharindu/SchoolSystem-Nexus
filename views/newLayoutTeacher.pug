@@ -11,7 +11,8 @@ html(lang='en')
     link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
     link(rel='stylesheet', href='/css/background.css')
     link(rel='stylesheet', href= '/css/menu_navigator.css')
-    link(rel='stylesheet', href= '/css/logout.css')  
+    link(rel='stylesheet', href= '/css/logout.css') 
+    link(rel='stylesheet', href= '/css/table_assignment.css')  
     link(rel='stylesheet', href='/css/background.css')
     link(rel='stylesheet', href= '/css/menu_navigator.css')
     link(rel = "stylesheet" href = "/css/registration.css")
@@ -59,7 +60,10 @@ html(lang='en')
               a(title="study materials", href="/material") Study Materials
             |           
             li
-              a(title="Report card", href="#sent") Report
+              a(title="Report card", href="/marks") Report
+            |           
+            li
+              a(title="Report card", href="/marks/add") Add marks
         |      
         li
           a(title="Documents", href="#documents")
@@ -101,9 +105,7 @@ html(lang='en')
           img(src='/images/userpic/Emma Watson.jpg')
           section
             name Emma Watson
-            actions
-              a(href='#settings') settings
-              |  
+            actions 
               a(href='/users/logout') logout
     // particles.js container
     //#particles-js
