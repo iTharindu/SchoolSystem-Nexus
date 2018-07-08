@@ -1,4 +1,17 @@
 
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+}
+
 input.hamburger {
   display: none;
 }
@@ -96,6 +109,7 @@ html {
   font-family: 'Roboto', sans-serif;
 }
 
+
 ul {
   list-style: none;
   margin: 0;
@@ -113,7 +127,7 @@ ul {
   width: 100vw;
   font-size: .8em;
   text-transform: uppercase;
-  background-color: #DAA520;
+  background-color: #303030;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -145,7 +159,7 @@ ul {
   overflow-x: hidden;
 }
 .primnav li {
-  font-weight: 400;
+  font-weight: 600;
   position: relative;
 }
 .primnav li .tag {
@@ -177,7 +191,8 @@ ul {
   -ms-flex-negative: 0;
       flex-shrink: 0;
   width: 20px;
-  padding: 19px;
+  padding-left: 0px;
+  padding-top: 19px;
   margin-right: 5px;
   padding-bottom: 15px;
   color: #DAA520;
@@ -307,7 +322,7 @@ content {
 }
 @media (min-width: 650px) {
   content {
-    padding-left: 58px;
+    padding-left: 5px;
     padding-top: 0;
   }
 }
@@ -514,7 +529,7 @@ label.hamburger {
 }
 @media (min-width: 650px) {
   .tabs {
-    padding-left: calc(58px + .5rem);
+    padding-left: calc(5px + .5rem);
     top: calc(58px - 3em);
     background-color: #DAA520;
     border: 0;

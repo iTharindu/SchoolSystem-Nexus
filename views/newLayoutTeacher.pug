@@ -11,11 +11,15 @@ html(lang='en')
     link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
     link(rel='stylesheet', href='/css/background.css')
     link(rel='stylesheet', href= '/css/menu_navigator.css')
-    link(rel='stylesheet', href= '/css/logout.css')
+    link(rel='stylesheet', href= '/css/logout.css')  
+    link(rel='stylesheet', href='/css/background.css')
+    link(rel='stylesheet', href= '/css/menu_navigator.css')
     link(rel = "stylesheet" href = "/css/registration.css")
     link(rel='stylesheet', href= '/css/menu.css')
-    link(rel='stylesheet', href= '/css/table_assignment.css')
     link(rel='stylesheet', href='/css/styles.css')
+    script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
   body
     input#hamburger.hamburger(checked="checked", type="checkbox")
     label.hamburger(for="hamburger")
@@ -27,24 +31,26 @@ html(lang='en')
         open menu
     |   
     nav.primnav
-      ul
+      ul    
         li
           a(title="Home", href="/")
             svg.icon
               use(fa.fa-home)
-            i.fa.fa-home.fa
-            span Home
+            i(style = "padding-right:15px").fa.fa-home.fa-2x
+            |  Home
         |
         li
-          a(title="Dashboard", href="/assignments/student")
+          a(title="Dashboard", href="#dashboard")
             svg.icon
-              use(fa.fa-home)
+              use(xlink:href="#icon-th-large")
+            i(style = "padding-right:15px").fa.fa-th-large.fa-2x
             |  Dashboard
-        |       
+        | 
         li
           a(title="Subject data", href="#mail")
             svg.icon
               use(xlink:href="#icon-mail_outline")
+            i(style = "padding-right:15px").fa.fa.fa-book.fa-2x
             |  Subject
             |           
           |         
@@ -53,19 +59,39 @@ html(lang='en')
               a(title="study materials", href="#inbox") Study Materials
             |           
             li
-              a(title="Report card", href="/myresults") Report
+              a(title="Report card", href="#sent") Report
         |       
         li
-          a(title="Notifications", href="#notifications")
+          a(title="Time Table", href="#timetable")
             svg.icon
               use(xlink:href="#icon-bell2")
+            i(style = "padding-right:15px").fa.fa-table.fa-2x
             |  Time Table
+            |           
+        |       
+        li
+          a(title="Documents", href="#documents")
+            svg.icon
+              use(xlink:href="#icon-equalizer")
+            i(style = "padding-right:15px").fa.fa-file.fa-2x
+            |  Documents
+          |         
+          ul.secnav
+            li
+              a(title="Circulars", href="/circulars/circulars") Circulars
+            |           
+            li
+              a(title="Leave Applications", href="/leaves/leaveMenu") Leave Applications
+            |           
+            li
+              a(title="Schemes", href="/schemes/schemes") Schemes
 
         |       
         li
           a(title="About me", href="#sysadmin")
             svg.icon
               use(xlink:href="#icon-equalizer")
+            i(style = "padding-right:15px").fa.fa-smile-o.fa-2x
             |  About Me
           |         
           ul.secnav
@@ -90,7 +116,7 @@ html(lang='en')
     // particles.js container
     //#particles-js
       canvas.particles-js-canvas-el
-    #particles-js(ng-class="{'blur-view': showModal, 'particles-semi-transparent': viewIsCreationsOrPress}" style = "height:150%")
+    #particles-js(ng-class="{'blur-view': showModal, 'particles-semi-transparent': viewIsCreationsOrPress}" style = "height:100%")
       canvas.particles-js-canvas-el(style='width: 100%; height: 200%;', width='1910', height='3000')
     #titles.ng-scope
       br
