@@ -31,55 +31,52 @@ html
     nav.primnav
       ul
         li
-          a(title="Dashboard", href="/")
-            i.fa.fa-home
-              use(xlink:href="#icon-th-large")
+          a(title="Home", href="/")
+            svg.icon
+              use(fa.fa-home)
             |  Home
         |
         li
-          a(title="Dashboard", href="/assignments/mine")
-            i.fa.fa-th-large
-              use(xlink:href="#icon-th-large")
+          a(title="Dashboard", href="/assignments/student")
+            svg.icon
+              use(fa.fa-home)
             |  Dashboard
         |       
         li
-          a(title="Mail", href="#mail")
-            i.fa.fa-book
-              //use(xlink:href="#icon-mail_outline")
-            | Subject
+          a(title="Subject data", href="#mail")
+            svg.icon
+              use(xlink:href="#icon-mail_outline")
+            |  Subject
             |           
-            .tag 53
           |         
           ul.secnav
             li
-              a(title="Inbox", href="#inbox") Inbox
+              a(title="study materials", href="#inbox") Study Materials
             |           
             li
-              a(title="Sent", href="#sent") Sent
+              a(title="Report card", href="#sent") Report
         |       
         li
           a(title="Notifications", href="#notifications")
             svg.icon
               use(xlink:href="#icon-bell2")
             |  Notifications
-            |           
-            
+
         |       
         li
-          a(title="System Administration", href="#sysadmin")
+          a(title="About me", href="#sysadmin")
             svg.icon
               use(xlink:href="#icon-equalizer")
-            |  System Administration
+            |  About Me
           |         
           ul.secnav
             li
-              a(title="Users", href="#users") Users
+              a(title="Edit user data", href="#users") Edit User
             |           
             li
-              a(title="Lists", href="#lists") Lists
+              a(title="change password", href="#lists") Change Password
             |           
-            li
-              a(title="Calendar", href="#calendar") Calendar
+
 
     
     section
