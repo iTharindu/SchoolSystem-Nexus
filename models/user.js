@@ -22,6 +22,10 @@ const userSchema = mongoose.Schema({
     type : String,
     required : false
   },
+  telephone_no :{
+    type : Number,
+    required : false
+  },
   date_of_birth : {
     type : Date,
     required : false

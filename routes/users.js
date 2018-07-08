@@ -23,6 +23,8 @@ router.post('/adduser',function(req,res){
      type = "Student"
   }else if(req.body.type == "3"){
     type = "Principal"
+  }else if(req.body.type == "4"){
+    type = "Admin"
   }
   req.checkBody('username','name is required').notEmpty();
   req.checkBody('email','email is required').notEmpty();
@@ -55,7 +57,7 @@ router.post('/adduser',function(req,res){
 
 });
 
-router.get('/edit',function(req,res){
+router.get('/edit',ensureAuthenticated,function(req,res){
   User.findById(req.user._id,function(err,user){
     console.log(user.address);
     res.render('edit_user',{
@@ -64,6 +66,37 @@ router.get('/edit',function(req,res){
     });
   });
 });
+
+router.post('/edit',function(req,res){
+  let user = {};
+  var m = new Date();
+  user.username = req.body.username;
+  user.email = req.body.email;
+  req.checkBody('username','name is required').notEmpty();
+  req.checkBody('email','email is required').notEmpty();
+  req.checkBody('email','email is incorrect').isEmail();
+  user.address = req.body.address;
+  user.date_of_birth = req.body.date_of_birth;
+  var d = new Date(user.date_of_birth);
+  user.guardians_name = req.body.guardians_name;
+  user.telephone_no = req.body.telephone_no;
+  if(d.getTime() >= m.getTime()){
+    req.flash('failure','Date of birth is incorrect');
+    res.redirect('/users/edit');
+    return;
+  }
+  let query = {_id:req.user._id};
+  User.update(query,user,function(err){
+    if(err){
+      req.flash('failure','There are errors');
+      res.redirect('/users/edit');
+      return;
+    }else{
+      res.redirect('/')
+    }
+  });
+});
+
 
 // Login Form
 router.get('/login', function(req, res){
@@ -79,7 +112,9 @@ router.post('/login', function(req, res, next){
   })(req, res, next);
 });
 
-
+router.get('/changepassword', function(req, res){
+  res.render('change_password');
+});
 // logout
 router.get('/logout',function(req,res){
   req.logout();

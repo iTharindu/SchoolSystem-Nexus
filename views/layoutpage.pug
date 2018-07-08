@@ -25,51 +25,53 @@ html(lang='en')
     nav.primnav
       ul
         li
-          a(title="Dashboard", href="#dashboard")
+          a(title="Home", href="/")
             svg.icon
-              use(xlink:href="#icon-th-large")
+              use(fa.fa-home)
+            |  Home
+        |
+        li
+          a(title="Dashboard", href="/assignments/student")
+            svg.icon
+              use(fa.fa-home)
             |  Dashboard
         |       
         li
-          a(title="Mail", href="#mail")
+          a(title="Subject data", href="#mail")
             svg.icon
               use(xlink:href="#icon-mail_outline")
-            |  Mail
+            |  Subject
             |           
-            .tag 53
           |         
           ul.secnav
             li
-              a(title="Inbox", href="#inbox") Inbox
+              a(title="study materials", href="#inbox") Study Materials
             |           
             li
-              a(title="Sent", href="#sent") Sent
+              a(title="Report card", href="#sent") Report
         |       
         li
           a(title="Notifications", href="#notifications")
             svg.icon
               use(xlink:href="#icon-bell2")
             |  Notifications
-            |           
-            .tag 17
+
         |       
         li
-          a(title="System Administration", href="#sysadmin")
+          a(title="About me", href="#sysadmin")
             svg.icon
               use(xlink:href="#icon-equalizer")
-            |  System Administration
+            |  About Me
           |         
           ul.secnav
             li
-              a(title="Users", href="#users") Users
+              a(title="Edit user data", href="/users/edit") Edit User
             |           
             li
-              a(title="Lists", href="#lists") Lists
+              a(title="change password", href="/users/changepassword") Change Password
             |           
-            li
-              a(title="Calendar", href="#calendar") Calendar
-    // particles.js containe
-      
+
+    
     section(style = 'margin=10px')
       user#user
         section
