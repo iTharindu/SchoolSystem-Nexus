@@ -57,9 +57,10 @@ router.post('/adduser',function(req,res){
 
 router.get('/edit',function(req,res){
   User.findById(req.user._id,function(err,user){
+    console.log(user.address);
     res.render('edit_user',{
       user:user
-    //  console.log(user.address);
+
     });
   });
 });

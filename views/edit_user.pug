@@ -27,14 +27,14 @@ html(lang='en')
           form(method='POST', action='/users/edit')
             .form-group
               label(for='username') Username
-              input.form-control(type='text', name='username', required='')= user.username
+              input.form-control(type='text', name='username',value = user.username, required='')
             .form-group
               label(for='email') Email
-              input.form-control(type='text', name='email', required='')= user.email
+              input.form-control(type='text', name='email',value = user.email, required='')
             .m-t-lg
               ul.list-inline
                 li
-                  input.btn.btn--form(type='submit',formaction = "/" value='Change password')   
+                  a.btn.btn--form(href = "/") Change password   
             .form-group
               label(for='address') Address
               input.form-control(type='text', name='address')

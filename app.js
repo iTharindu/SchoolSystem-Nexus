@@ -132,7 +132,7 @@ app.get('/',function(req,res){
       console.log(err);
       return;
     } else{
-      res.render('newLayout');
+      res.render('index');
     }
   });
 });
@@ -174,10 +174,6 @@ app.use('/payment',payment);
 
 let approvedmarks = require('./routes/approvedmarks');
 app.use('/approvedmarks',approvedmarks);
-
-let myresults = require('./routes/myresults');
-app.use('/myresults',myresults);
-
 
 app.listen(3000,function(){
     console.log("Server started on port 3000");
