@@ -89,8 +89,8 @@ html(lang='en')
             tbody
               each mark, i in marks
                 tr
-                  td(style= "color:#fff; text-decoration: none; font-size: 1em" )
-                    a(href="/myresults/"+mark._id)=mark.StudentID
+                  td
+                    a(href="/myresults/"+mark._id,style= "color:#fff; text-decoration: none; font-size: 2em")=mark.StudentID
                   td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks1
                   td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks3
                   td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks3
