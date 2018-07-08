@@ -5,17 +5,6 @@ var fs=require('fs');
 
 var leaveData=require('../models/teacher-leaves');
 
-var user={
-  _id: '5ac6fbb3c348ca4134fef9e7',
- name: 'Dilan',
- designation: 'Teacher',
- email: 'dilan@123.com',
- username: 'dilan',
- password: '123',
- __v: 0,
- grade: 5,
- leavesTaken:0
-};
 var message={
   status:'',
   msg:''
@@ -33,7 +22,7 @@ router.get('/getmsg',function(req,res){
 //teacher//////////////////////////////////////////
 
 router.get('/leaveMenu',ensureAuthenticatedTeacher,function(req,res){
-  leaveData.find({teacherName:user.name},function(err,data){
+  leaveData.find({teacherName:req.user.username},function(err,data){
     if(err){
       console.log(err);
     }else{
@@ -52,37 +41,51 @@ router.delete('/leaveApp/delete/:id',ensureAuthenticatedTeacher,function(req,res
     }else{
       message.status='danger';
       message.msg='Deleted Successfully';
-      //res.status('200').send({data:"cra[]"});
       res.send('success');
     }
   });
 });
 
 router.get('/applyLeave',ensureAuthenticatedTeacher,function(req,res){
-  res.render('teacher/leave-application',{user:user});
+  leaveData.find({teacherName:req.user.username},function(err,data){
+    var dat=data.pop();
+    if(dat!=null){
+      var teacherData=dat;
+      var user={leavesTaken:(teacherData.leavesTaken+teacherData.noOfLeaveDays)};
+      res.render('teacher/leave-application',{user:user});
+    }else{
+      var user={leavesTaken:0}
+      res.render('teacher/leave-application',{user:user});
+    }
+  })
 });
 
 router.post('/processLeaveApp',ensureAuthenticatedTeacher,function(req,res){
-  var leavedata=new leaveData();
-  leavedata.teacherName=user.name;
-  leavedata.designation=user.designation;
-  leavedata.noOfLeaveDays=req.body.noOfLeaveDays;
-  leavedata.leavesTaken=user.leavesTaken;
-  leavedata.dateOfCommencingLeave=req.body.dateOfCommencingLeave;
-  leavedata.dateOfResumingLeave=req.body.dateOfResumingDuty;
-  leavedata.reason=req.body.reason;
-  leavedata.approved="Not Yet Decided";
-  user.leavesTaken=user.leavesTaken+parseInt(req.body.noOfLeaveDays);
-  leavedata.save(function(err){
-    if(err){
-      console.log(err);
-      req.flash('danger','There is an error with the data you entered');
-      res.send('error');
-    }else{
-      message.status='success';
-      message.msg='Leave Request Sent';
-      res.send('success');
+  leaveData.find({teacherName:req.user.username},function(err,data){
+    var user=data.pop();
+    if(user==null){
+      var user={leavesTaken:0,noOfLeaveDays:0}
     }
+    var leavedata=new leaveData();
+    leavedata.teacherName=req.user.username;
+    leavedata.designation=req.user.type;
+    leavedata.noOfLeaveDays=req.body.noOfLeaveDays;
+    leavedata.leavesTaken=user.leavesTaken+user.noOfLeaveDays;
+    leavedata.dateOfCommencingLeave=req.body.dateOfCommencingLeave;
+    leavedata.dateOfResumingLeave=req.body.dateOfResumingDuty;
+    leavedata.reason=req.body.reason;
+    leavedata.approved="Not Yet Decided";
+    leavedata.save(function(err){
+      if(err){
+        console.log(err);
+        req.flash('danger','There is an error with the data you entered');
+        res.send('error');
+      }else{
+        message.status='success';
+        message.msg='Leave Request Sent';
+        res.send('success');
+      }
+    });
   });
 });
 //////////////////////////////////////////////////////////////
@@ -115,8 +118,7 @@ router.post('/leave/approval/:id',ensureAuthenticatedPrincipal,function(req,res)
     if(err){
       console.log(err);
     }else{
-      //res.redirect('/principal/');
-      res.json({approval:approved});
+      res.json({approval:approved});////////////////////////////////////////////////////////////////////////////////////////////////////
     }
   });
 });

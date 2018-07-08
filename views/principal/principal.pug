@@ -1,14 +1,10 @@
 extends ../newLayout
 block content
-  .form-group
-    ul.list-group
-      li.list-group-item
-        a(href='/circulars') Circulars
-      li.list-group-item
-        a(href='/leaves/leaveApps') Leave Applications
-      li.list-group-item
-        a(href='/schemes/view') Scheme
-      li.list-group-item
-        a(href='#') Time Table
-      li.list-group-item
-        a(href='#') Exam Time Table
+  .signup__container
+    .container__child.signup__form(style='height:330px;')
+      .list-group
+        a.list-group-item.list-group-item-action(href='/circulars') Circulars
+        a.list-group-item.list-group-item-action(href='/leaves/leaveApps') Leave Applications
+        a.list-group-item.list-group-item-action(href='/schemes/view') Scheme
+        a.list-group-item.list-group-item-action(href='#') Time Table
+        a.list-group-item.list-group-item-action(href='#') Exam Time Table

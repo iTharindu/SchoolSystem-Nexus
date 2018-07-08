@@ -6,7 +6,7 @@ var fs=require('fs');
 
 var schemeData=require('../models/data-schemes');
 
-var user={
+/*var user={
   _id: '5ac6fbb3c348ca4134fef9e7',
  name: 'Dilan',
  designation: 'Teacher',
@@ -16,7 +16,7 @@ var user={
  __v: 0,
  grade: 5,
  leavesTaken:0
-};
+};*/
 var message={
   status:'',
   msg:''
@@ -40,6 +40,7 @@ router.get('/schemes/upload',ensureAuthenticatedTeacher,function(req,res){
 });
 
 router.post('/schemes/upload',fileupload(),function(req,res){
+  console.log(req.user.username);
   if(!req.files.pho.name){
     return res.status(400).send('No files were uploaded.');
   }else{
@@ -54,7 +55,7 @@ router.post('/schemes/upload',fileupload(),function(req,res){
           schemedata.fileName=sampleFile.name;
           schemedata.year=req.body.year,
           schemedata.grade=req.body.grade;
-          schemedata.author=user.name;
+          schemedata.author=req.user.username;
           schemedata.save(function(err){
             if(err){
               console.log(err);
@@ -82,7 +83,7 @@ router.post('/schemes/upload',fileupload(),function(req,res){
 });
 
 router.get('/view-previous',ensureAuthenticatedTeacher,function(req,res){
-  schemeData.find({author:user.name},function(err,data){
+  schemeData.find({author:req.user.username},function(err,data){
     if(err){
       console.log(err);
     }else{
@@ -92,7 +93,7 @@ router.get('/view-previous',ensureAuthenticatedTeacher,function(req,res){
 });
 
 router.get('/scheme/:index',ensureAuthenticatedTeacher,function(req,res){
-  schemeData.find({author:user.name},function(err,data){
+  schemeData.find({author:req.user.username},function(err,data){
     res.locals.scheme=data[req.params.index];
     res.render('teacher/edit-scheme',{data:res.locals.scheme,message:message});
   });

@@ -23,7 +23,7 @@ block content
           ul.list-inline
             li
               input.btn.btn--form(type='submit', value='Submit')  
-      form(action='/teacher/leaveMenu')
+      form(action='/leaves/leaveMenu')
         .m-t-lg
           ul.list-inline
             input.btn.btn--form(type='submit', value='Go Back')
@@ -32,7 +32,6 @@ block content
       var $form=$("#uploadForm");
       $form.on("submit", function (e) {
         e.preventDefault();
-        //alert(typeof $('#dateOfResumingDuty').val());
         var today=new Date();
         var trueDate=parseInt(today.getDate());
         var trueMonth=parseInt(today.getMonth())+1;

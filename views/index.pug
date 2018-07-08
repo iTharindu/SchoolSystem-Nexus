@@ -1,24 +1,22 @@
-html
+html(lang='en')
   head
-    title SchoolSystem
-    //meta(http-equiv='content-type', content='text/html; charset=UTF-8')
-    //script(src='index_data/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d5.js')
-    //script(src='index_data/css_live_reload_init-890dc39bb89183d4642d58b1ae5376a0193342f9.js')
-    //meta(charset='UTF-8')
-    //meta(name='robots', content='noindex')
-    //link(rel='shortcut icon', type='image/x-icon', href='https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico')
-    //link(rel='mask-icon', type='', href='https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg', color='#111')
-    //link(rel='canonical', href='https://codepen.io/trhino/pen/wBpcI')
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    script(src='/css/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js.download')
+    script(src='/css/css_live_reload_init-890dc39bb89183d4642d58b1ae5376a0193342f9aed88ea04330dc14c8d52f55.js.download')
+    meta(name='robots', content='noindex')
     link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/font-awesome.css')
     link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/icon-font.min.css')
-    //link(rel='stylesheet prefetch', href='js/normalize.css')
-    //script(src='index_data/prefixfree.js')
-    //link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
+    link(rel='stylesheet prefetch', href='js/normalize.css')
+    script(src='index_data/prefixfree.js')
+    link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
     link(rel='stylesheet', href='/css/background.css')
     link(rel='stylesheet', href= '/css/menu_navigator.css')
-    link(rel='stylesheet', href= '/css/logout.css')  
-    
-  body(style = "background: -webkit-linear-gradient(left, #404040, #FFCC00);background: linear-gradient(to right, #404040, #FFCC00)")
+    link(rel='stylesheet', href= '/css/logout.css')
+    link(rel = "stylesheet" href = "/css/registration.css")
+    link(rel='stylesheet', href= '/css/menu.css')
+    link(rel='stylesheet', href= '/css/table_assignment.css')
+    link(rel='stylesheet', href='/css/styles.css')
+  body
     input#hamburger.hamburger(checked="checked", type="checkbox")
     label.hamburger(for="hamburger")
       i
@@ -54,7 +52,7 @@ html
               a(title="study materials", href="#inbox") Study Materials
             |           
             li
-              a(title="Report card", href="#sent") Report
+              a(title="Report card", href="/approvedmarks") Report
         |       
         li
           a(title="Notifications", href="#notifications")
@@ -71,14 +69,13 @@ html
           |         
           ul.secnav
             li
-              a(title="Edit user data", href="#users") Edit User
+              a(title="Edit user data", href="/users/edit") Edit User
             |           
             li
-              a(title="change password", href="#lists") Change Password
+              a(title="change password", href="/users/changepassword") Change Password
             |           
 
 
-    
     section
       user#user
         section
@@ -89,31 +86,28 @@ html
               a(href='#settings') settings
               |  
               a(href='/users/logout') logout
-              
+    // particles.js container
+    //#particles-js
+      canvas.particles-js-canvas-el
     #particles-js(ng-class="{'blur-view': showModal, 'particles-semi-transparent': viewIsCreationsOrPress}" style = "height:150%")
-      canvas.particles-js-canvas-el(style='width: 100%; height: 200%;', width='1910', height='2007')
-    #title.ng-scope
+      canvas.particles-js-canvas-el(style='width: 100%; height: 200%;', width='1910', height='3000')
+    #titles.ng-scope
       br
       br
       br
       br
       br
-      .container
-        //!= messages('message',locals)
-        block content  
-                    
-
-    // ngView:
-    .ng-scope(ng-view='', ng-class="{'blur-view': showPlayerView || showModal || showQuoteView}", style='')
-      .introduction.ng-scope
+      .container(style='width:750px;')
+        block content
 
     script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
     script(src='/bower_components/jquery/dist/jquery.js')
     script(src='/js/radio_button.js')                
     script(src='/js/particles.min.js.download')
-    //script(src='/js/stats.min.js.download')
+    script(src='/js/stats.min.js.download')
     script(src='/js/background.js')
-    //script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
+    script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
     script(src='/js/jquery.js')
     script(src='/js/background.js')
-      
+
+    
