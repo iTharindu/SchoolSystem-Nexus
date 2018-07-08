@@ -6,68 +6,18 @@ html(lang='en')
     meta(name='robots', content='noindex')
     link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/font-awesome.css')
     link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/icon-font.min.css')
-    //link(rel='stylesheet prefetch', href='js/normalize.css')
-    //script(src='index_data/prefixfree.js')
-    //link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
+    link(rel = "stylesheet" href = "/css/registration.css")
+    link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
+    link(rel='stylesheet', href= '/css/logout.css')
     link(rel='stylesheet', href='/css/background.css')
-    link(rel='stylesheet', href= '/css/menu_navigator.css')
-    link(rel='stylesheet', href= '/css/logout.css')  
+    link(rel='stylesheet', href= '/css/menu.css')
+    link(rel='stylesheet', href='/css/styles.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
+    script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
   body
-    input#hamburger.hamburger(checked="checked", type="checkbox")
-    label.hamburger(for="hamburger")
-      i
-      |   
-      text
-        close close
-        |       
-        open menu
-    |   
-    nav.primnav
-      ul
-        li
-          a(title="Dashboard", href="#dashboard")
-            svg.icon
-              use(xlink:href="#icon-th-large")
-            |  Dashboard
-        |       
-        li
-          a(title="Mail", href="#mail")
-            svg.icon
-              use(xlink:href="#icon-mail_outline")
-            |  Mail
-            |           
-            .tag 53
-          |         
-          ul.secnav
-            li
-              a(title="Inbox", href="#inbox") Inbox
-            |           
-            li
-              a(title="Sent", href="#sent") Sent
-        |       
-        li
-          a(title="Notifications", href="#notifications")
-            svg.icon
-              use(xlink:href="#icon-bell2")
-            |  Notifications
-            |           
-            .tag 17
-        |       
-        li
-          a(title="System Administration", href="#sysadmin")
-            svg.icon
-              use(xlink:href="#icon-equalizer")
-            |  System Administration
-          |         
-          ul.secnav
-            li
-              a(title="Users", href="#users") Users
-            |           
-            li
-              a(title="Lists", href="#lists") Lists
-            |           
-            li
-              a(title="Calendar", href="#calendar") Calendar
+    
     section
       user#user
         section
@@ -91,16 +41,76 @@ html(lang='en')
       br
       .container
         //!= messages('message',locals)
-        block content  
+        block content
+    #title.ng-scope  
+        input#hamburger.hamburger(checked="checked", type="checkbox")
+        label.hamburger(for="hamburger")
+          i
+          |   
+          text
+            close close
+            |       
+            open menu
+        |   
+        nav.primnav
+          ul
+            li
+              a(title="Dashboard", href="#dashboard")
+                svg.icon
+                  use(xlink:href="#icon-th-large")
+                |  Dashboard
+            |       
+            li
+              a(title="Mail", href="#mail")
+                svg.icon
+                  use(xlink:href="#icon-mail_outline")
+                |  Mail
+                |           
+                .tag 53
+              |         
+              ul.secnav
+                li
+                  a(title="Inbox", href="#inbox") Inbox
+                |           
+                li
+                  a(title="Sent", href="#sent") Sent
+            |       
+            li
+              a(title="Notifications", href="#notifications")
+                svg.icon
+                  use(xlink:href="#icon-bell2")
+                |  Notifications
+                |           
+                .tag 17
+            |       
+            li
+              a(title="System Administration", href="#sysadmin")
+                svg.icon
+                  use(xlink:href="#icon-equalizer")
+                |  System Administration
+              |         
+              ul.secnav
+                li
+                  a(title="Users", href="#users") Users
+                |           
+                li
+                  a(title="Lists", href="#lists") Lists
+                |           
+                li
+                  a(title="Calendar", href="#calendar") Calendar
 
-    script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
-    script(src='/bower_components/jquery/dist/jquery.js')
-    script(src='/js/radio_button.js')                
+                    
+    script(src = '/bower_components/jquery/dist/jquery.js')
+    script(src = '/bower_components/bootstrap/dist/js/bootstrap.js')
     script(src='/js/particles.min.js.download')
     //script(src='/js/stats.min.js.download')
     script(src='/js/background.js')
-    //script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
+    script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
     script(src='/js/jquery.js')
-    script(src='/js/background.js')
-
+    script(src='/js/navigator.js')
+    script(src='/js/main1.js')
+    div(style='position: absolute; top: 0px; left: 0px; cursor: pointer; opacity: 0.9; z-index: 10000;')
+      canvas(width='80', height='48', style='width: 80px; height: 48px; display: block;')
+      canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')
+      canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')
     

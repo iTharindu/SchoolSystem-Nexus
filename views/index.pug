@@ -31,16 +31,22 @@ html
     nav.primnav
       ul
         li
-          a(title="Dashboard", href="#dashboard")
-            svg.icon
+          a(title="Dashboard", href="/")
+            i.fa.fa-home
+              use(xlink:href="#icon-th-large")
+            |  Home
+        |
+        li
+          a(title="Dashboard", href="/assignments/mine")
+            i.fa.fa-th-large
               use(xlink:href="#icon-th-large")
             |  Dashboard
         |       
         li
           a(title="Mail", href="#mail")
-            svg.icon
-              use(xlink:href="#icon-mail_outline")
-            |  Mail
+            i.fa.fa-book
+              use(xlink:href="#")
+            | Subject
             |           
             .tag 53
           |         
@@ -57,7 +63,7 @@ html
               use(xlink:href="#icon-bell2")
             |  Notifications
             |           
-            .tag 17
+            
         |       
         li
           a(title="System Administration", href="#sysadmin")
