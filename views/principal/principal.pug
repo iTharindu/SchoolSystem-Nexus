@@ -1,5 +1,146 @@
-extends ../newLayoutPrincipal
-block content
-  .signup__container
-    .container__child.signup__form
-      .list-group
+html(lang='en')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    script(src='/css/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js.download')
+    script(src='/css/css_live_reload_init-890dc39bb89183d4642d58b1ae5376a0193342f9aed88ea04330dc14c8d52f55.js.download')
+    meta(name='robots', content='noindex')
+    link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/font-awesome.css')
+    link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/icon-font.min.css')
+    //link(rel='stylesheet prefetch', href='js/normalize.css')
+    //script(src='index_data/prefixfree.js')
+    //link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
+    link(rel='stylesheet', href='/css/background.css')
+    link(rel='stylesheet', href= '/css/menu_navigator.css')
+    link(rel='stylesheet', href= '/css/logout.css')  
+    link(rel='stylesheet prefetch', href='js/normalize.css')
+    script(src='index_data/prefixfree.js')
+    link(rel = "stylesheet" href = "/bower_components/bootstrap/dist/css/bootstrap.css")
+    link(rel='stylesheet', href= '/css/logout.css')
+    link(rel = "stylesheet" href = "/css/registration.css")
+    link(rel='stylesheet', href= '/css/menu.css')
+    link(rel='stylesheet', href='/css/styles.css')
+    script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+  body
+    input#hamburger.hamburger(checked="checked", type="checkbox")
+    label.hamburger(for="hamburger")
+      i
+      |   
+      text
+        close close
+        |       
+        open menu
+    |   
+    nav.primnav
+      ul   
+        li
+          a(title="Home", href="/")
+            svg.icon
+              use(fa.fa-home)
+            i(style = "padding-right:15px").fa.fa-home.fa-2x
+            |  Home
+        |     
+        li
+          a(title="Time Table", href="/timetable/add")
+            svg.icon
+              use(xlink:href="#icon-bell2")
+            i(style = "padding-right:15px").fa.fa-table.fa-2x
+            |  Time Table
+            |           
+        |       
+        li
+          a(title="Documents", href="#documents")
+            svg.icon
+              use(xlink:href="#icon-equalizer")
+            i(style = "padding-right:15px").fa.fa-file.fa-2x
+            |  Documents
+          |         
+          ul.secnav
+            li
+              a(title="Circulars", href="/circulars") Circulars
+            |           
+            li
+              a(title="Leave Applications", href="/leaves/leaveApps") Leave Applications
+            |           
+            li
+              a(title="Schemes", href="/schemes/view") Schemes
+
+        |       
+        li
+          a(title="About me", href="#sysadmin")
+            svg.icon
+              use(xlink:href="#icon-equalizer")
+            i(style = "padding-right:15px").fa.fa-smile-o.fa-2x
+            |  About Me
+          |         
+          ul.secnav
+            li
+              a(title="Edit user data", href="/users/edit") Edit User
+            |           
+            li
+              a(title="change password", href="/users/changepassword") Change Password
+            |           
+
+
+    section
+      user#user
+        section
+          img(src='/images/userpic/Emma Watson.jpg')
+          section
+            name Emma Watson
+            actions
+              a(href='/users/logout') logout
+
+    #titles.ng-scope
+      br
+      br
+      br
+      br
+      br
+      .signup__container
+        .container
+          .w3-content.w3-display-container
+            img.mySlides(src='https://upload.wikimedia.org/wikipedia/commons/3/31/School_in_Badulla_District.jpg', style='width:100%')
+            img.mySlides(src='https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/2O0VXeG/kandy-sri-lanka-february-2014-the-view-of-local-school-girls-posing-in-the-botanical-garden-in-kandy-kandy-is-a-major-city-in-sri-lanka-second-biggest-after-colombo_v1auxfro__F0000.png', style='width:100%')
+            img.mySlides(src='http://www.vishakab.sch.lk/images/DSC01407.JPG', style='width:100%')
+            img.mySlides(src='http://blogs.worldbank.org/education/files/education/img_1866.jpg', style='width:100%')
+            img.mySlides(src='http://www.almayuda.org/wp-content/uploads/2015/09/DSC03456r.jpg', style='width:100%')
+
+  style.
+    body {
+      background-color: black;
+      background-image: url("http://odpublic.net/uploads/47/236685-34175.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+
+  script.
+    var slideIndex = 0;
+    carousel();
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none"; 
+        }
+        slideIndex++;
+        if (slideIndex > x.length) {slideIndex = 1} 
+        x[slideIndex-1].style.display = "block"; 
+        setTimeout(carousel, 3000);
+    }
+
+
+    script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+    script(src='/bower_components/jquery/dist/jquery.js')
+    script(src='/js/radio_button.js')                
+    script(src='/js/particles.min.js.download')
+    script(src='/js/stats.min.js.download')
+    script(src='/js/background.js')
+    //script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
+    script(src='/js/jquery.js')
+    script(src='/js/background.js')
+
+    
