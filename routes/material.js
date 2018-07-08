@@ -78,8 +78,8 @@ router.post('/upload',fileupload(),function(req,res){
   }
 });
 
-router.get('/',ensureAuthenticatedTeacher,function(req,res){
-  circularData.find({},function(err,data){
+router.get('/',function(req,res){
+  studyMaterial.find({},function(err,data){
     res.render('teacher/material',{data:data,message:message});
   });
 });
@@ -114,7 +114,7 @@ function ensureAuthenticatedStudent(req,res,next){
 }
 
 function ensureAuthenticatedTeacher(req,res,next){
-  if(req.isAuthenticated() && (req.user.type==='Teacher')){
+  if(req.isAuthenticated() && (req.user.type=='Teacher')){
     return next();
   }else{
     req.logout();

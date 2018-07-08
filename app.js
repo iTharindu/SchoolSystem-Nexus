@@ -172,7 +172,7 @@ let myresults = require('./routes/myresults');
 app.use('/myresults',myresults);
 
 let material = require('./routes/material');
-app.use('/material',circulars);
+app.use('/material',material);
 
 function ensureAuthenticated(req,res,next){
   if(req.isAuthenticated()){

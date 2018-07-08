@@ -6,11 +6,11 @@ block content
         #changeMe
         #changeThis(style='display:none;')
           div(class="alert alert-"+message.status) #{message.msg}
-        form#uploadForm.circular(ref='uploadForm', action='/material/upload', method='POST', enctype='multipart/form-data')
+        form#uploadForm.material(ref='uploadForm', action='/material/upload', method='POST', enctype='multipart/form-data')
           input#sampleFile.upload(type='file', name='sampleFile', required='true')
           br
           br
-          label Grade : 
+          label(style='color:#000000') Grade : 
           input#grade(type='text', name='grade', required='true')
           br
           br
@@ -31,7 +31,7 @@ block content
             });
             $.ajax({
               type:"GET",
-              url:"/circulars/msgs/reset"
+              url:"/material/msgs/reset"
             });
           }
         }
