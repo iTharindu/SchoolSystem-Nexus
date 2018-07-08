@@ -9,44 +9,73 @@ html(lang='en')
     link(rel='stylesheet prefetch', href='/fonts/font-awesome-4.7.0/css/icon-font.min.css')
     link(rel='stylesheet', href= '/css/table_assignment.css')
     link(rel='stylesheet', href= '/css/logout.css')
+    link(rel='stylesheet', href= '/css/menu_navigator.css')
     link(rel='stylesheet', href= '/css/modal.css')
     link(rel='stylesheet', href= '/css/main.css')
     link(rel='stylesheet', href='/css/background.css')
-    link(rel='stylesheet', href= '/css/menu.css')
+    
 
   body
     // particles.js container
-    header
-      nav#mainnav(role='navigation')
-        ul
-          li.invisible
-            a(href='#')
-              i.fa.fa-home
-              span Home
-          li.invisible
-            a(href='#')
-              i.fa.fa-th-large
-              span Dashboard
-          li.invisible
-            a(href='#')
-              i.fa.fa-book
-              span Subjects
-          li.invisible
-            a(href='#')
-              i.fa.fa-smile-o
-              span About Me
-          li.invisible
-            a(href='#')
-              i.fa.fa-bell
-              span Notification
-          li.invisible
-            a(href='#')
-              i.fa.fa-envelope
-              span Messaging
-          li
-            a(href='#')
-              i.fa.fa-bars
-      
+    input#hamburger.hamburger(checked="checked", type="checkbox")
+    label.hamburger(for="hamburger")
+      i
+      |   
+      text
+        close close
+        |       
+        open menu
+    |   
+    nav.primnav
+      ul
+        li
+          a(title="Home", href="/")
+            svg.icon
+              use(fa.fa-home)
+            |  Home
+        |
+        li
+          a(title="Dashboard", href="/assignments/student")
+            svg.icon
+              use(fa.fa-home)
+            |  Dashboard
+        |       
+        li
+          a(title="Subject data", href="#mail")
+            svg.icon
+              use(xlink:href="#icon-mail_outline")
+            |  Subject
+            |           
+          |         
+          ul.secnav
+            li
+              a(title="study materials", href="#inbox") Study Materials
+            |           
+            li
+              a(title="Report card", href="#sent") Report
+        |       
+        li
+          a(title="Notifications", href="#notifications")
+            svg.icon
+              use(xlink:href="#icon-bell2")
+            |  Notifications
+
+        |       
+        li
+          a(title="About me", href="#sysadmin")
+            svg.icon
+              use(xlink:href="#icon-equalizer")
+            |  About Me
+          |         
+          ul.secnav
+            li
+              a(title="Edit user data", href="/users/edit") Edit User
+            |           
+            li
+              a(title="change password", href="/users/changepassword") Change Password
+            |           
+
+
     section(style = 'margin=10px')
       user#user
         section
@@ -100,8 +129,4 @@ html(lang='en')
     script(src='/js/background.js')
     script(src='index_data/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26.js')
     script(src='/js/jquery.js')
-    script(src='/js/navigator.js')
-    div(style='position: absolute; top: 0px; left: 0px; cursor: pointer; opacity: 0.9; z-index: 10000;')
-      canvas(width='80', height='48', style='width: 80px; height: 48px; display: block;')
-      canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')
-      canvas(width='80', height='48', style='width: 80px; height: 48px; display: none;')
+    script(src='/js/menavigator.js')
