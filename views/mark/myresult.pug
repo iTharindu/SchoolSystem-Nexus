@@ -68,7 +68,7 @@ html(lang='en')
     .ng-scope(ng-view='', ng-class="{'blur-view': showPlayerView || showModal || showQuoteView}", style='')
       .introduction.ng-scope
     #titles(style = "top:5%").ng-scope
-      h1(style = "margin-left:70px") MARK SHEET
+      //h1(style = "margin-left:70px")
       //h3(style = "margin-left:70px")
     #titles(style = "top:30%").ng-scope
       // <canvas id="canvas" class="title-animated" ng-show="loaded"></canvas>
@@ -89,7 +89,8 @@ html(lang='en')
             tbody
               each mark, i in marks
                 tr
-                  td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.StudentID
+                  td(style= "color:#fff; text-decoration: none; font-size: 1em" )
+                    a(href="/myresults/"+mark._id)=mark.StudentID
                   td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks1
                   td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks3
                   td(style= "color:#fff; text-decoration: none; font-size: 1em" )= mark.Marks3
