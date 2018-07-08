@@ -128,7 +128,7 @@ app.get('/menu',function(req,res){
 
 app.get('/',function(req,res){
   if(req.user.type=="Student"){
-    res.render('student/student');
+    res.render('index');
   }else if(req.user.type=="Teacher"){
     res.render('teacher/teacher');
   }else if(req.user.type=="Principal"){
