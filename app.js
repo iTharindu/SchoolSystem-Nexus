@@ -127,22 +127,15 @@ app.get('/menu',function(req,res){
 });
 
 app.get('/',function(req,res){
-  Assignment.find(function(err,assignments){
-    if(err){
-      console.log(err);
-      return;
-    } else{
-      res.render('index');
-    }
-  });
-});
-
-app.get('/teacher',function(req,res){
-  res.render('teacher/teacher');
-});
-
-app.get('/principal',function(req,res){
-  res.render('principal/principal');
+  if(req.user.type=="Student"){
+    res.render('student/student');
+  }else if(req.user.type=="Teacher"){
+    res.render('teacher/teacher');
+  }else if(req.user.type=="Principal"){
+    res.render('principal/principal');
+  }else{
+    res.render();
+  }
 });
 
 let assignments = require('./routes/assignments');
