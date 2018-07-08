@@ -2,30 +2,30 @@ extends ../newLayoutPrincipal
 block content
   .signup__container
     .container__child.signup__form
-      .circularText(style='font:black;')
+      .circularText
         form#uploadForm.circular
-          label= 'Name : '+data.teacherName
+          label(style='color:black;')= 'Name : '+data.teacherName
           br
           br
-          label= 'Designation : '+data.designation
+          label(style='color:black;')= 'Designation : '+data.designation
           br
           br
-          label= 'Number of Leave Days : '+data.noOfLeaveDays
+          label(style='color:black;')= 'Number of Leave Days : '+data.noOfLeaveDays
           br
           br
-          label= 'Leaves Taken : '+data.leavesTaken
+          label(style='color:black;')= 'Leaves Taken : '+data.leavesTaken
           br
           br
-          label= 'Date of Commencing Leave : '+data.dateOfCommencingLeave
+          label(style='color:black;')= 'Date of Commencing Leave : '+data.dateOfCommencingLeave
           br
           br
-          label= 'Date of Resuming Duties : '+data.dateOfResumingLeave
+          label(style='color:black;')= 'Date of Resuming Duties : '+data.dateOfResumingLeave
           br
           br
-          label= 'Reason : '+data.reason
+          label(style='color:black;')= 'Reason : '+data.reason
           br
           br
-          label= 'Approval : '+data.approved
+          label(style='color:black;')= 'Approval : '+data.approved
           br
           br
           #changeThis
