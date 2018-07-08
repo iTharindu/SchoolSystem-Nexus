@@ -1,4 +1,4 @@
-extends ./newLayout
+extends ./newLayoutTeacher
 
 block content
     h2 Payments
@@ -8,19 +8,19 @@ block content
           td  Student name
           td
             | :  
-            input(type='text', name='student', placeholder='eg:John Doe')
+            input(type='text', name='student', placeholder='eg:John Doe',required='true')
         tr
           td
             | Description
           td
             | : 
-            input(type='text', name='description', placeholder='Payment details')
+            input(type='text', name='description', placeholder='Payment details',required='true')
         tr
           td
             | Amount
           td
             | : 
-            input(type='text', name='amount', placeholder='Rs:')
+            input(type='number', name='amount', placeholder='Rs:',required='true')
         tr
         tr
           td

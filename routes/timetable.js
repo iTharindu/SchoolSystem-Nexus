@@ -69,5 +69,16 @@ router.post('/add',function(req,res){
     })
 });
 
+router.get('/view',function(req,res){
+    Timetable.find({},function(err,timetable){
+        if(err){
+          console.log(err);
+        }else{
+          res.render('student/view_timetable',{timetable:timetable});
+        }
+      });
+
+});
+
 
 module.exports=router;
