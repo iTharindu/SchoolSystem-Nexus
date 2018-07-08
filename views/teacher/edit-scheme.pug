@@ -51,11 +51,16 @@ block content
       $form.on("submit",function(e){
         e.preventDefault();
         var today=new Date();
-        var date=document.getElementById('year').value;
+        var year=document.getElementById('year').value;
         var grade=document.getElementById('grade').value;
-        if(date>today.getFullYear() && (grade<1 || grade>13)){
+        
+        if(isNaN(year)){
+          $('#changeThis').html('<div class="alert alert-danger">Invalid Year</div>');
+        }else if(isNaN(grade)){
+          $('#changeThis').html('<div class="alert alert-danger">Invalid Grade</div>');
+        }else if(year>today.getFullYear() && (grade<1 || grade>13)){
           $('#changeThis').html('<div class="alert alert-danger">Invalid Year</div><div class="alert alert-danger">Invalid Grade</div>');
-        }else if(date>today.getFullYear()){
+        }else if(year>today.getFullYear()){
           $('#changeThis').html('<div class="alert alert-danger">Invalid Year</div>');
         }else if(grade<1 || grade>13){
           $('#changeThis').html('<div class="alert alert-danger">Invalid Grade</div>');

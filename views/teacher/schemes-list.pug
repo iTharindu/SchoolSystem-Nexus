@@ -45,9 +45,10 @@ block content
         }
       });
       $('.delete').on('click',function(){
+        console.log('asf');
         $.ajax({
           type:'DELETE',
-          url:'/schemes/delete/'+this.id,
+          url:'/schemes/schemes/delete/'+this.id,
           success:function(){
             location.reload();
           }
