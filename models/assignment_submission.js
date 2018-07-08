@@ -35,5 +35,5 @@ let submissionSchema = mongoose.Schema({
     type : String,
     required : true
   }*/
-});
-var Submission = module.exports = mongoose.model('Submission',submissionSchema);
+//});
+//var Submission = module.exports = mongoose.model('Submission',submissionSchema);
